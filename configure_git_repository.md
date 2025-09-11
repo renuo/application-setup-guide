@@ -7,9 +7,9 @@ Please stick to it unless you have special needs.
   * Features: Remove *Wikis*, *Issues* and *Projects*
   * Pull Requests
     * Disable *Allow merge commits* and *Allow rebase merging*
+    * Always suggest updating pull request branches
     * Allow auto-merge
     * Automatically delete head branches
-    * Always suggest updating pull request branches
 * Manage access
   * Add *staff* team as a collaborator with Admin access
   * Add *security* team as collaborator with Write access
@@ -18,13 +18,13 @@ Please stick to it unless you have special needs.
 * Rules/Rulesets
   * `develop`
     * Enforcement status: `Active`
-    * Branch targeting criteria: `develop`
     * Bypass list: add `Repository Admin` Role with *allow for pull requests only* option
+    * Branch targeting criteria: `develop`
     * Restrict deletions
     * Require linear history
     * Require a pull request before merging
     * Require status checks to pass
-      * Select `ci/semaphore/push`
+      * Select `ci/semaphore/push` (WRONG. NOT AVAILABLE NOW)
     * Block force pushes
   * `main` (same as develop but...)
     * Branch targeting criteria: `main`

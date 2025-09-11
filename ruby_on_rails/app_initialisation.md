@@ -58,7 +58,6 @@ Some other adjustments must be performed manually.
 
 > ⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.
 
-
 ### Secrets
 
 We store the secrets necessary to configure the project locally in a 1password Item.

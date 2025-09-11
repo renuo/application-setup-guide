@@ -24,11 +24,16 @@ environment %(config.file_watcher = ActiveSupport::EventedFileUpdateChecker), en
 # replace bin/rails db:prepare with bin/rails db:setup in bin/setup
 gsub_file "bin/setup", "bin/rails db:prepare", "bin/rails db:setup"
 
-# add the renuo fetch-secrets command in bin/setup, before bin/rails db:setup
+# add the renuo fetch-secrets command and copying the dotenv file in bin/setup, before bin/rails db:setup
 insert_into_file "bin/setup", before: "\n  puts \"\\n== Preparing database ==\"" do
   <<-RUBY
   puts "\\n== Fetching 1password dependencies =="
   system! 'renuo fetch-secrets'
+  
+  puts "\n== Copying sample files =="
+  unless File.exist?('.env')
+    system! 'cp .env.example .env'
+  end
   RUBY
 end
 

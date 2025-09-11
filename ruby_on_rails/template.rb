@@ -8,6 +8,12 @@ insert_into_file "Gemfile", after: /^group :development do\n/ do
   RUBY
 end
 
+insert_into_file "Gemfile", after: /^group :development, :test do\n/ do
+  <<~RUBY
+    gem "dotenv"
+  RUBY
+end
+
 # Optimize Propshaft asset event-loop on macOS, see https://github.com/rails/propshaft/tree/main?tab=readme-ov-file#improving-performance-in-development
 gem_group :development, :test do
   gem "listen"
@@ -43,6 +49,9 @@ create_file ".rubocop.yml", force: true do
       renuocop: config/base.yml
   RUBOCOP
 end
+
+create_file ".env.example", force: true
+create_file ".env", force: true
 
 # convenience script to run the app locally (however the developer intended, probably similar to bin/dev nowadays)
 create_file "bin/run", force: true do

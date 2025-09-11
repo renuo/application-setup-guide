@@ -19,7 +19,6 @@ rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-act
 where the `project-name` is exactly the one you chose before.
 
 > ⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.\
-> If you do not need a DB you may rethink the fact that you may not need Rails at all: Take a look at [Sinatra](http://www.sinatrarb.com/) or [Angular](https://angular.io/)\
 > You might also need actionmailbox of course, so always double-check the parameters that you are using.
 
 > ⭐️ This setup does not include either js-bundling nor css-bundling by default.\
@@ -27,11 +26,10 @@ where the `project-name` is exactly the one you chose before.
 > If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.\
 > We want to go ["no build"](https://www.youtube.com/watch?v=iqXjGiQ_D-A) whenever possible.
 
+* Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
 * Run `bin/setup`
 
-* Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
-
-* Then check your default Rails setup by running `rails s` and visiting http://localhost:3000.
+* Then check your default Rails setup by running `bin/run` and visiting http://[project-name].localhost:3000.
   You should be on Rails now, yay!
 * Finally check if http://localhost:3000/up is green.
 

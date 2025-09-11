@@ -58,35 +58,6 @@ Some other adjustments must be performed manually.
 
 > ⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.
 
-### Manual adjustments
-
-Please perform these adjustments manually:
-
-#### ENV variables
-
-* Add `dotenv-rails` to Gemfile. Check the [gem homepage](https://github.com/bkeepers/dotenv) to see how to install the gem.
-* and create `.env.example` in the root folder of the project where you will specify the only environment variable you need for now:
-  `SECRET_KEY_BASE`.
-* Going forward we will only push the `.env.example` file to the repository in order to protect our env variables.
-* Add .env to .gitignore
-* Add the following section to your `bin/setup` script so that the `.env` is created from the `.env` when the project is setup locally:
-
-  ```ruby
-  puts "\n== Copying sample files =="
-  unless File.exist?('.env')
-    system! 'cp .env.example .env'
-  end
-  ```
-
-* add one more key to .env.example `APP_PORT=3000`
-* To ensure you have all the required keys from the `.env.example` in your `.env`,
-create the initializer for dotenv-rails in `config/initializers/dotenv_rails.rb`:
-
-```ruby
-Dotenv.require_keys(Dotenv.parse(".env.example").keys)
-```
-
-* Run `bin/setup` again.
 
 ### Secrets
 

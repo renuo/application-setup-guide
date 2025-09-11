@@ -24,11 +24,16 @@ environment %(config.file_watcher = ActiveSupport::EventedFileUpdateChecker), en
 # replace bin/rails db:prepare with bin/rails db:setup in bin/setup
 gsub_file "bin/setup", "bin/rails db:prepare", "bin/rails db:setup"
 
-# add the renuo fetch-secrets command in bin/setup, before bin/rails db:setup
+# add the renuo fetch-secrets command and copying the dotenv file in bin/setup, before bin/rails db:setup
 insert_into_file "bin/setup", before: "\n  puts \"\\n== Preparing database ==\"" do
   <<-RUBY
   puts "\\n== Fetching 1password dependencies =="
-  system! 'renuo fetch-secrets'  
+  system! 'renuo fetch-secrets'
+  
+  puts "\n== Copying sample files =="
+  unless File.exist?('.env')
+    system! 'cp .env.example .env'
+  end
   RUBY
 end
 
@@ -50,8 +55,26 @@ create_file ".rubocop.yml", force: true do
   RUBOCOP
 end
 
-create_file ".env.example", force: true
-create_file ".env", force: true
+
+create_file ".env.example", force: true do
+  <<~ENV
+    SECRET_KEY_BASE=<%= `bin/rails secret`.strip %>
+    APP_PORT=3000
+  ENV
+end
+
+create_file ".env", force: true do
+  <<~ENV
+    SECRET_KEY_BASE=#{`bin/rails secret`.strip}
+    APP_PORT=3000
+  ENV
+end
+
+create_file "config/initializers/dotenv.rb", force: true do
+  <<~DOTENV
+    Dotenv.require_keys(Dotenv.parse(".env.example").keys)
+  DOTENV
+end
 
 # convenience script to run the app locally (however the developer intended, probably similar to bin/dev nowadays)
 create_file "bin/run", force: true do

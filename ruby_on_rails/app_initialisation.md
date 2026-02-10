@@ -19,7 +19,6 @@ rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-act
 where the `project-name` is exactly the one you chose before.
 
 > ⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.\
-> If you do not need a DB you may rethink the fact that you may not need Rails at all: Take a look at [Sinatra](http://www.sinatrarb.com/) or [Angular](https://angular.io/)\
 > You might also need actionmailbox of course, so always double-check the parameters that you are using.
 
 > ⭐️ This setup does not include either js-bundling nor css-bundling by default.\
@@ -27,11 +26,10 @@ where the `project-name` is exactly the one you chose before.
 > If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.\
 > We want to go ["no build"](https://www.youtube.com/watch?v=iqXjGiQ_D-A) whenever possible.
 
+* Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
 * Run `bin/setup`
 
-* Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
-
-* Then check your default Rails setup by running `rails s` and visiting http://localhost:3000.
+* Then check your default Rails setup by running `bin/run` and visiting http://[project-name].localhost:3000.
   You should be on Rails now, yay!
 * Finally check if http://localhost:3000/up is green.
 
@@ -59,36 +57,6 @@ Some other adjustments must be performed manually.
 > ⭐️a bin/run script is added to the project. This script will start the application.
 
 > ⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.
-
-### Manual adjustments
-
-Please perform these adjustments manually:
-
-#### ENV variables
-
-* Add `dotenv-rails` to Gemfile. Check the [gem homepage](https://github.com/bkeepers/dotenv) to see how to install the gem.
-* and create `.env.example` in the root folder of the project where you will specify the only environment variable you need for now:
-  `SECRET_KEY_BASE`.
-* Going forward we will only push the `.env.example` file to the repository in order to protect our env variables.
-* Add .env to .gitignore
-* Add the following section to your `bin/setup` script so that the `.env` is created from the `.env` when the project is setup locally:
-
-  ```ruby
-  puts "\n== Copying sample files =="
-  unless File.exist?('.env')
-    system! 'cp .env.example .env'
-  end
-  ```
-
-* add one more key to .env.example `APP_PORT=3000`
-* To ensure you have all the required keys from the `.env.example` in your `.env`,
-create the initializer for dotenv-rails in `config/initializers/dotenv_rails.rb`:
-
-```ruby
-Dotenv.require_keys(Dotenv.parse(".env.example").keys)
-```
-
-* Run `bin/setup` again.
 
 ### Secrets
 

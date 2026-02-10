@@ -11,6 +11,7 @@ The application (and relative GitHub repo) will be named after the `[project-nam
 > Have you decided if you need two environments (develop and main) or just one?
 > As a rule of thumb: for customers we always use two environments, for internal projects we usually only use one.
 > Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.
+> Decide with your team if you want one or two branches.
 
 1. [Initialise the Rails Application](app_initialisation.md)
 1. [Push to Git Repository](first_git_push.md)

@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-71e6b70d.js";
+            window.path_to_searchindex_js = "searchindex-54bce333.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -419,7 +419,8 @@ The application (and relative GitHub repo) will be named after the <code>[projec
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
 <p>Have you decided if you need two environments (develop and main) or just one?
 As a rule of thumb: for customers we always use two environments, for internal projects we usually only use one.
-Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.</p>
+Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.
+Decide with your team if you want one or two branches.</p>
 </blockquote>
 <ol>
 <li><a href="#initialise-the-rails-application">Initialise the Rails Application</a></li>
@@ -516,20 +517,20 @@ You can do this with <code>gem update rails</code>. Beware of beta versions.</p>
 </code></pre>
 <p>where the <code>project-name</code> is exactly the one you chose before.</p>
 <blockquote>
-<p>⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.<br>If you do not need a DB you may rethink the fact that you may not need Rails at all: Take a look at <a href="http://www.sinatrarb.com/">Sinatra</a> or <a href="https://angular.io/">Angular</a><br>You might also need actionmailbox of course, so always double-check the parameters that you are using.</p>
+<p>⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.<br>You might also need actionmailbox of course, so always double-check the parameters that you are using.</p>
 </blockquote>
 <blockquote>
 <p>⭐️ This setup does not include either js-bundling nor css-bundling by default.<br>It will start with the simplest possible Rails setup and will use sprockets and importmaps.<br>If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.<br>We want to go <a href="https://www.youtube.com/watch?v=iqXjGiQ_D-A">“no build”</a> whenever possible.</p>
 </blockquote>
 <ul>
 <li>
-<p>Run <code>bin/setup</code></p>
-</li>
-<li>
 <p>Run <code>bundle exec rails db:migrate</code> to generate an empty <code>schema.rb</code> file.</p>
 </li>
 <li>
-<p>Then check your default Rails setup by running <code>rails s</code> and visiting http://localhost:3000.
+<p>Run <code>bin/setup</code></p>
+</li>
+<li>
+<p>Then check your default Rails setup by running <code>bin/run</code> and visiting http://[project-name].localhost:3000.
 You should be on Rails now, yay!</p>
 </li>
 <li>
@@ -564,44 +565,6 @@ It will be used as a hook before pushing to quickly check for linting issues.</p
 <blockquote>
 <p>⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.</p>
 </blockquote>
-<h3 id="manual-adjustments"><a class="header" href="#manual-adjustments">Manual adjustments</a></h3>
-<p>Please perform these adjustments manually:</p>
-<h4 id="env-variables"><a class="header" href="#env-variables">ENV variables</a></h4>
-<ul>
-<li>
-<p>Add <code>dotenv-rails</code> to Gemfile. Check the <a href="https://github.com/bkeepers/dotenv">gem homepage</a> to see how to install the gem.</p>
-</li>
-<li>
-<p>and create <code>.env.example</code> in the root folder of the project where you will specify the only environment variable you need for now:
-<code>SECRET_KEY_BASE</code>.</p>
-</li>
-<li>
-<p>Going forward we will only push the <code>.env.example</code> file to the repository in order to protect our env variables.</p>
-</li>
-<li>
-<p>Add .env to .gitignore</p>
-</li>
-<li>
-<p>Add the following section to your <code>bin/setup</code> script so that the <code>.env</code> is created from the <code>.env</code> when the project is setup locally:</p>
-<pre><code class="language-ruby">puts "\n== Copying sample files =="
-unless File.exist?('.env')
-  system! 'cp .env.example .env'
-end
-</code></pre>
-</li>
-<li>
-<p>add one more key to .env.example <code>APP_PORT=3000</code></p>
-</li>
-<li>
-<p>To ensure you have all the required keys from the <code>.env.example</code> in your <code>.env</code>,
-create the initializer for dotenv-rails in <code>config/initializers/dotenv_rails.rb</code>:</p>
-</li>
-</ul>
-<pre><code class="language-ruby">Dotenv.require_keys(Dotenv.parse(".env.example").keys)
-</code></pre>
-<ul>
-<li>Run <code>bin/setup</code> again.</li>
-</ul>
 <h3 id="secrets"><a class="header" href="#secrets">Secrets</a></h3>
 <p>We store the secrets necessary to configure the project locally in a 1password Item.
 Create a new Item for the project called <code>[project-name] project secrets</code> of type note.

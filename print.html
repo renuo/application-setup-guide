@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-28cee7b4.js";
+            window.path_to_searchindex_js = "searchindex-79dfc5e5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -653,8 +653,7 @@ git push -u origin main
 <p>These are the suggested configurations for our GitHub repositories.
 Please stick to it unless you have special needs.</p>
 <ul>
-<li>
-<p>General Settings</p>
+<li>General Settings
 <ul>
 <li>Features: Remove <em>Wikis</em>, <em>Issues</em> and <em>Projects</em></li>
 <li>Pull Requests
@@ -667,26 +666,29 @@ Please stick to it unless you have special needs.</p>
 </li>
 </ul>
 </li>
-<li>
-<p>Manage access</p>
+<li>Manage access
 <ul>
 <li>Add <em>staff</em> team as a collaborator with Admin access</li>
 <li>Add <em>security</em> team as collaborator with Write access</li>
 </ul>
 </li>
-<li>
-<p>Branches</p>
+<li>Branches
 <ul>
 <li>Default branch: either <code>main</code> or <code>develop</code> depending on whether you want one or two environments.</li>
 </ul>
 </li>
-<li>
-<p>Rules/Rulesets</p>
+<li>Rules/Rulesets
 <ul>
-<li><code>develop</code>
+<li>We use two rulesets: one for <code>main</code> and one for everything else. This ensures that long-lived branches like <code>redesign</code> and feature branches like <code>feat/my-feature</code> share the same protection rules as <code>develop</code>.</li>
+<li><code>non-main</code>
 <ul>
 <li>Enforcement status: <code>Active</code></li>
-<li>Branch targeting criteria: <code>develop</code></li>
+<li>Branch targeting criteria:
+<ul>
+<li>Include all branches</li>
+<li>Exclude by pattern: <code>main</code></li>
+</ul>
+</li>
 <li>Bypass list: add <code>Repository Admin</code> Role with <em>allow for pull requests only</em> option</li>
 <li>Restrict deletions</li>
 <li>Require linear history</li>
@@ -699,7 +701,7 @@ Please stick to it unless you have special needs.</p>
 <li>Block force pushes</li>
 </ul>
 </li>
-<li><code>main</code> (same as develop but…)
+<li><code>main</code> (same as non-main but…)
 <ul>
 <li>Branch targeting criteria: <code>main</code></li>
 <li>❌ Require a pull request before merging</li>
@@ -708,8 +710,7 @@ Please stick to it unless you have special needs.</p>
 </li>
 </ul>
 </li>
-<li>
-<p>Autolink references</p>
+<li>Autolink references
 <ul>
 <li>Add a new Autolink reference with:
 <ul>

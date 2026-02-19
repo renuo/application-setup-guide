@@ -16,6 +16,7 @@ Please stick to it unless you have special needs.
 * Branches
   * Default branch: either `main` or `develop` depending on whether you want one or two environments.
 * Rules/Rulesets
+  * ⚠️ Long-lived branches (e.g. `redesign`, `v2`) should follow the same protection rules as `develop`.
   * `develop`
     * Enforcement status: `Active`
     * Branch targeting criteria: `develop`
@@ -55,3 +56,4 @@ Thanks to this we can:
 
 * @renuo/[team-name]
 ```
+

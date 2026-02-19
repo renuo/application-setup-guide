@@ -74,8 +74,8 @@ Check existing projects for an example of the usage.
 * Update `config/application.rb` and set the default language and timezone
 
   ```ruby
-  config.time_zone = 'Zurich' # may vary
-  config.i18n.default_locale = :de # may vary
+  config.time_zone = 'Zurich'
+  config.i18n.default_locale = :de
   ```
 
 * Update your `config/environments/production.rb` settings:
@@ -91,9 +91,7 @@ Check existing projects for an example of the usage.
   config.action_controller.action_on_unpermitted_parameters = :raise
   config.i18n.raise_on_missing_translations = :strict
 
-  config.generators do |g|
-    g.apply_rubocop_autocorrect_after_generate!
-  end
+  config.generators.apply_rubocop_autocorrect_after_generate!
   ```
 
 * Update `config/environments/test.rb` settings:

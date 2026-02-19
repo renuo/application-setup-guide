@@ -16,9 +16,12 @@ Please stick to it unless you have special needs.
 * Branches
   * Default branch: either `main` or `develop` depending on whether you want one or two environments.
 * Rules/Rulesets
-  * `develop`
+  * We use two rulesets: one for `main` and one for everything else. This ensures that long-lived branches like `redesign` and feature branches like `feat/my-feature` share the same protection rules as `develop`.
+  * `non-main`
     * Enforcement status: `Active`
-    * Branch targeting criteria: `develop`
+    * Branch targeting criteria:
+      * Include all branches
+      * Exclude by pattern: `main`
     * Bypass list: add `Repository Admin` Role with *allow for pull requests only* option
     * Restrict deletions
     * Require linear history
@@ -26,11 +29,10 @@ Please stick to it unless you have special needs.
     * Require status checks to pass
       * Select `ci/semaphore/push`
     * Block force pushes
-  * `main` (same as develop but...)
+  * `main` (same as non-main but...)
     * Branch targeting criteria: `main`
     * ❌ Require a pull request before merging
     * ❌ Require status checks to pass
-
 * Autolink references
   * Add a new Autolink reference with:
     * Reference prefix: `TICKET-`

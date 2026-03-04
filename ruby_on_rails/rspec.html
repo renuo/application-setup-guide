@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-79dfc5e5.js";
+            window.path_to_searchindex_js = "../searchindex-ae2d8301.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a495be96.js"></script>
@@ -212,6 +212,7 @@ unless ENV["NO_COVERAGE"]
     add_filter "app/models/application_record.rb"
     add_filter ".semaphore-cache"
     enable_coverage :branch
+    enable_coverage_for_eval
     minimum_coverage line: 100, branch: 100
   end
 end

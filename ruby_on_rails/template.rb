@@ -1,5 +1,9 @@
-# replace rubocop-rails-omakase with renuocop
+# configure the database collation
+insert_into_file "config/database.yml", after: "adapter: postgresql\n" do
+  "  template: template0\n  collation: C.UTF-8\n"
+end
 
+# replace rubocop-rails-omakase with renuocop
 gsub_file "Gemfile", /gem "rubocop-rails-omakase"/, "gem \"renuocop\""
 
 insert_into_file "Gemfile", after: /^group :development do\n/ do

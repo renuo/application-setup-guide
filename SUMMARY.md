@@ -57,7 +57,6 @@
 
 - [Google Analytics](google_analytics.md)
 - [Google Apis](google_apis.md)
-- [Slack and Notifications](slack_and_notifications.md)
 
 
 # Templates

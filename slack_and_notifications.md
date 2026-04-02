@@ -40,4 +40,4 @@ Add the following rules:
 1. Pipelines -> `semaphore.yml`
 1. Results -> `failed`
 1. Slack Endpoint: Use the Webhook URL from other projects
-1. Send to Slack channel: `#project-[project-name]-ci`
+1. Send to Slack channel: `#project-[project-name]-notifications`

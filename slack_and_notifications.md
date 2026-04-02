@@ -32,7 +32,7 @@ Add the following rules:
 1. Branches -> `main,develop`
 1. Pipelines -> `/.*-deploy.yml/`
 1. Slack Endpoint: Use the Webhook URL from other projects
-1. Send to Slack channel: `#project-[project-name]-ci`
+1. Send to Slack channel: `#project-[project-name]-notifications`
 
 **build notifications**
 1. Name of the Rule -> `deployment notifications`

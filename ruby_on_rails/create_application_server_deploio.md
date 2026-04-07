@@ -29,6 +29,9 @@ e.g. `renuo create-deploio-app my-app git@github.com:renuo/my-app.git`
 Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use `develop`.
 
+By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).
+If you think that the production database will soon reach the 10 GB, please consider using the Business tier.
+
 **If you don't know what a command does: read the documentation and then execute it.**
 
 If you think that the script is outdated, please open a Pull Request on the [renuo-cli](https://github.com/renuo/renuo-cli) project.

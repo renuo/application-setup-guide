@@ -24,7 +24,7 @@ Please stick to it unless you have special needs.
     * Require linear history
     * Require a pull request before merging
     * Require status checks to pass
-      * Select `ci/semaphore/push` (WRONG. NOT AVAILABLE NOW)
+      * Select `ci/semaphore/push` (AFTER SETTING UP SEMAPHORE)
     * Block force pushes
   * `main` (same as develop but...)
     * Branch targeting criteria: `main`

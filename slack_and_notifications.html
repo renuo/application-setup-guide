@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-cf382d2f.js";
+            window.path_to_searchindex_js = "searchindex-9223f08e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -189,19 +189,28 @@ it for you communicating the <code>[project-name]</code>.</p>
 <p>⚠ <strong>You must have already setup <a href="ruby_on_rails/configure_ci.html">Automatic Deployment through SemaphoreCI</a></strong> ⚠
 If you used Renuo CLI to configure SemaphoreCI, the notifications should be already created. For manual setup, follow these steps:</p>
 <ol>
-<li>Open the project Notifications settings (<code>https://renuo.semaphoreci.com/notifications</code>)</li>
+<li>Open the global Notifications settings (<code>https://renuo.semaphoreci.com/notifications</code>)</li>
 <li>Create New Notification</li>
 <li>Name of the Notification -&gt; <code>[project-name]</code></li>
-<li>Name of the Rule -&gt; <code>Slack notifications</code></li>
-<li>Branches -&gt; <code>main</code></li>
-<li>Slack Endpoint: Use the Webhook URL from other projects</li>
-<li>Send to Slack channel: <code>#project-[project-name]</code></li>
-<li>Save changes</li>
 </ol>
-<blockquote>
-<p>We do not want to pollute the channel with many notifications, therefore we suggest to only send a notification about
-deployments to production.</p>
-</blockquote>
+<p>Add the following rules:</p>
+<p><strong>deployment notifications</strong></p>
+<ol>
+<li>Name of the Rule -&gt; <code>deployment notifications</code></li>
+<li>Branches -&gt; <code>main,develop</code></li>
+<li>Pipelines -&gt; <code>/.*-deploy.yml/</code></li>
+<li>Slack Endpoint: Use the Webhook URL from other projects</li>
+<li>Send to Slack channel: <code>#project-[project-name]-notifications</code></li>
+</ol>
+<p><strong>build notifications</strong></p>
+<ol>
+<li>Name of the Rule -&gt; <code>deployment notifications</code></li>
+<li>Branches -&gt; <code>main,develop</code></li>
+<li>Pipelines -&gt; <code>semaphore.yml</code></li>
+<li>Results -&gt; <code>failed</code></li>
+<li>Slack Endpoint: Use the Webhook URL from other projects</li>
+<li>Send to Slack channel: <code>#project-[project-name]-notifications</code></li>
+</ol>
 
                     </main>
 

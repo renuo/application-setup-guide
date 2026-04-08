@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-9223f08e.js";
+            window.path_to_searchindex_js = "searchindex-450d0e23.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -811,6 +811,8 @@ In particular, you might need only one of the two environments if you decided to
 <p>e.g. <code>renuo create-deploio-app my-app git@github.com:renuo/my-app.git</code></p>
 <p>Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
+<p>By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).
+If you think that the production database will soon reach the 10 GB, please consider using the Business tier.</p>
 <p><strong>If you don’t know what a command does: read the documentation and then execute it.</strong></p>
 <p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
 <p>For further configuration and best practices, please refer to the <a href="https://guides.deplo.io">Deploio documentation</a>. You can also view a Ruby on Rails specific guide <a href="https://guides.deplo.io/ruby/quick-start.html">here</a>.</p>

@@ -40,6 +40,10 @@ Some other adjustments must be performed manually.
 
 ### Automatic adjustments
 
+> ⭐️The `config/database.yml` is updated to have a `collation: C.UTF-8` setting.
+> This ensures deterministic, locale-independent sorting and avoids inconsistencies between local and production
+> environments.
+
 > ⭐The Gemfile reads the required ruby version from the `.ruby-version` file.
 > [This is used by Heroku to determine what version to use.](https://devcenter.heroku.com/articles/ruby-versions)
 > Deploio reads the ruby version from the Gemfile, with the .ruby-version file inlined into it. https://paketo.io/docs/howto/ruby/#override-the-detected-ruby-version

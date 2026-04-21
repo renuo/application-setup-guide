@@ -44,6 +44,7 @@ unless ENV["NO_COVERAGE"]
     add_filter "app/models/application_record.rb"
     add_filter ".semaphore-cache"
     enable_coverage :branch
+    enable_coverage_for_eval
     minimum_coverage line: 100, branch: 100
   end
 end

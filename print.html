@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-598a9d6f.js";
+            window.path_to_searchindex_js = "searchindex-1e7ad069.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -583,8 +583,8 @@ Check existing projects for an example of the usage.</p>
 <ul>
 <li>
 <p>Update <code>config/application.rb</code> and set the default language and timezone</p>
-<pre><code class="language-ruby">config.time_zone = 'Zurich' # may vary
-config.i18n.default_locale = :de # may vary
+<pre><code class="language-ruby">config.time_zone = 'Zurich'
+config.i18n.default_locale = :de
 </code></pre>
 </li>
 <li>
@@ -598,9 +598,7 @@ config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "warn") # change
 <pre><code class="language-ruby">config.action_controller.action_on_unpermitted_parameters = :raise
 config.i18n.raise_on_missing_translations = :strict
 
-config.generators do |g|
-  g.apply_rubocop_autocorrect_after_generate!
-end
+config.generators.apply_rubocop_autocorrect_after_generate!
 </code></pre>
 </li>
 <li>
@@ -665,9 +663,9 @@ Please stick to it unless you have special needs.</p>
 <li>Pull Requests
 <ul>
 <li>Disable <em>Allow merge commits</em> and <em>Allow rebase merging</em></li>
+<li>Always suggest updating pull request branches</li>
 <li>Allow auto-merge</li>
 <li>Automatically delete head branches</li>
-<li>Always suggest updating pull request branches</li>
 </ul>
 </li>
 </ul>
@@ -691,14 +689,14 @@ Please stick to it unless you have special needs.</p>
 <li><code>develop</code>
 <ul>
 <li>Enforcement status: <code>Active</code></li>
-<li>Branch targeting criteria: <code>develop</code></li>
 <li>Bypass list: add <code>Repository Admin</code> Role with <em>allow for pull requests only</em> option</li>
+<li>Branch targeting criteria: <code>develop</code></li>
 <li>Restrict deletions</li>
 <li>Require linear history</li>
 <li>Require a pull request before merging</li>
 <li>Require status checks to pass
 <ul>
-<li>Select <code>ci/semaphore/push</code></li>
+<li>Select <code>ci/semaphore/push</code> (AFTER SETTING UP SEMAPHORE)</li>
 </ul>
 </li>
 <li>Block force pushes</li>

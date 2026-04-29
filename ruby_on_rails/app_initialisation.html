@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-598a9d6f.js";
+            window.path_to_searchindex_js = "../searchindex-1e7ad069.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-a495be96.js"></script>
@@ -265,8 +265,8 @@ Check existing projects for an example of the usage.</p>
 <ul>
 <li>
 <p>Update <code>config/application.rb</code> and set the default language and timezone</p>
-<pre><code class="language-ruby">config.time_zone = 'Zurich' # may vary
-config.i18n.default_locale = :de # may vary
+<pre><code class="language-ruby">config.time_zone = 'Zurich'
+config.i18n.default_locale = :de
 </code></pre>
 </li>
 <li>
@@ -280,9 +280,7 @@ config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "warn") # change
 <pre><code class="language-ruby">config.action_controller.action_on_unpermitted_parameters = :raise
 config.i18n.raise_on_missing_translations = :strict
 
-config.generators do |g|
-  g.apply_rubocop_autocorrect_after_generate!
-end
+config.generators.apply_rubocop_autocorrect_after_generate!
 </code></pre>
 </li>
 <li>

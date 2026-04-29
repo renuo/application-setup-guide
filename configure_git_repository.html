@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-598a9d6f.js";
+            window.path_to_searchindex_js = "searchindex-1e7ad069.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a495be96.js"></script>
@@ -185,9 +185,9 @@ Please stick to it unless you have special needs.</p>
 <li>Pull Requests
 <ul>
 <li>Disable <em>Allow merge commits</em> and <em>Allow rebase merging</em></li>
+<li>Always suggest updating pull request branches</li>
 <li>Allow auto-merge</li>
 <li>Automatically delete head branches</li>
-<li>Always suggest updating pull request branches</li>
 </ul>
 </li>
 </ul>
@@ -211,14 +211,14 @@ Please stick to it unless you have special needs.</p>
 <li><code>develop</code>
 <ul>
 <li>Enforcement status: <code>Active</code></li>
-<li>Branch targeting criteria: <code>develop</code></li>
 <li>Bypass list: add <code>Repository Admin</code> Role with <em>allow for pull requests only</em> option</li>
+<li>Branch targeting criteria: <code>develop</code></li>
 <li>Restrict deletions</li>
 <li>Require linear history</li>
 <li>Require a pull request before merging</li>
 <li>Require status checks to pass
 <ul>
-<li>Select <code>ci/semaphore/push</code></li>
+<li>Select <code>ci/semaphore/push</code> (AFTER SETTING UP SEMAPHORE)</li>
 </ul>
 </li>
 <li>Block force pushes</li>

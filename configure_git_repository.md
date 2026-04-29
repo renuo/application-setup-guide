@@ -16,8 +16,7 @@ Please stick to it unless you have special needs.
 * Branches
   * Default branch: either `main` or `develop` depending on whether you want one or two environments.
 * Rules/Rulesets
-  * We use two rulesets: one for `main` and one for everything else. This ensures that long-lived branches like `redesign` and feature branches like `feat/my-feature` share the same protection rules as `develop`.
-  * `non-main`
+  * `develop`
     * Enforcement status: `Active`
     * Bypass list: add `Repository Admin` Role with *allow for pull requests only* option
     * Branch targeting criteria: `develop`
@@ -27,14 +26,18 @@ Please stick to it unless you have special needs.
     * Require status checks to pass
       * Select `ci/semaphore/push` (AFTER SETTING UP SEMAPHORE)
     * Block force pushes
-  * `main` (same as non-main but...)
+  * `main` (same as develop but...)
     * Branch targeting criteria: `main`
     * ❌ Require a pull request before merging
     * ❌ Require status checks to pass
+
 * Autolink references
   * Add a new Autolink reference with:
     * Reference prefix: `TICKET-`
     * Target URL: `https://redmine.renuo.ch/issues/<num>`
+
+In case you have a second long-living environment (e.g., for a design rewrite, a new major version, etc.),
+consider applying the same rules as on `develop` to it as well.
 
 ## Team
 

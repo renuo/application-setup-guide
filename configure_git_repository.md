@@ -36,6 +36,9 @@ Please stick to it unless you have special needs.
     * Reference prefix: `TICKET-`
     * Target URL: `https://redmine.renuo.ch/issues/<num>`
 
+In case you have a second long-living environment (e.g., for a design rewrite, a new major version, etc.),
+consider applying the same rules as on `develop` to it as well.
+
 ## Team
 
 Each project has a team owning it. The team is named after the project: `[team-name] = [project-name]`.

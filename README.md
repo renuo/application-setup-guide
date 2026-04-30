@@ -7,8 +7,9 @@ inner workings of Renuo.
 
 **You are always welcome to challenge the guide and improve it with a Pull Request.**
 
-**Do not blindly follow this guide, always think about what you are doing and why.
-If you think something is wrong or simply outdated, improve this guide with a Pull Request.**
+> [!IMPORTANT]
+> Do not blindly follow this guide, always think about what you are doing and why.
+> If you think something is wrong or simply outdated, improve this guide with a Pull Request.
 
 ## How to Use This Guide
 

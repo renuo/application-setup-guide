@@ -1,6 +1,7 @@
 # Setup RSpec
 
-> **Note:** The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
+> [!NOTE]
+> The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
 > Rails 8.1 does ship `capybara` and `selenium-webdriver` in the `:test` group by default. There is no need to add those manually when using the template.
 
 Even though Rails uses Minitest per default, RSpec is the *de-facto* standard at Renuo.
@@ -159,7 +160,8 @@ end
 
 * Add the line `bundle exec parallel_rspec` to `bin/check`
 
-> **Note:** If you want to debug a spec, you can simply uncomment the line `SELENIUM_DRIVER` in the .env to not run it headless:
+> [!NOTE]
+> If you want to debug a spec, you can simply uncomment the line `SELENIUM_DRIVER` in the .env to not run it headless:
 
 ![CleanShot 2021-06-25 at 16 54 22](https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif)
 
@@ -173,8 +175,9 @@ We are now going to write a first test to ensure that the whole configuration is
 
 Commit and push your changes! 🎉
 
-> ⭐️ The default health check path for Rails is `/up`. [Learn more in the Rails guides](https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html).\
-> To customize the health check and add additional checks, you can override the `Rails::HealthController` class.\
+> [!NOTE]
+> The default health check path for Rails is `/up`. [Learn more in the Rails guides](https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html).
+> To customize the health check and add additional checks, you can override the `Rails::HealthController` class.
 > You can find an example that also checks the database connection [in this file](../templates/app/controllers/rails/health_controller.rb).
 
 ## Verify

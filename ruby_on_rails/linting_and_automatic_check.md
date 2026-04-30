@@ -51,7 +51,8 @@ end
 
 ## SCSS lint
 
-> **Note:** Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
+> [!NOTE]
+> Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
 
 To lint the SASS/SCSS files in our project you can use the `stylelint` npm package.
 

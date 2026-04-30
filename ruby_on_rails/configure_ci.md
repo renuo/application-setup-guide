@@ -4,7 +4,8 @@ At Renuo we **always** use a CI (Continuous Integration) system to test our appl
 that all the tests pass before building and releasing a new version through our CD system. Our projects use
 [SemaphoreCI](<https://semaphoreci.com/>).
 
-> _Are you using **Gitlab**? Have a look at [this example](./gitlab_capybara_selenium.md) instead (and elaborate)._
+> [!NOTE]
+> Are you using **Gitlab**? Have a look at [this example](./gitlab_capybara_selenium.md) instead (and elaborate).
 
 Before configuring the CI, you should already have a Git Repository with the code, a `bin/check` command to execute,
 and the main branches already pushed and ready to be tested.

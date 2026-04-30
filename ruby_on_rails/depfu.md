@@ -17,7 +17,8 @@ Enable minor engine updates.
 
 ![Depfu Engine Updates](../images/depfu_engine_updates.png)
 
-> **Note:** If you are using Heroku, the latest Ruby / node version may not yet
+> [!NOTE]
+> If you are using Heroku, the latest Ruby / node version may not yet
 > be available on their platform, so you may need to delay the upgrade. Check the
 > following GitHub repositories to see if Heroku added support already:
 

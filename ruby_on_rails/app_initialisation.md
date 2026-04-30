@@ -18,7 +18,8 @@ rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-act
 ```
 where the `project-name` is exactly the one you chose before.
 
-> :warning: You may want to choose a different database than Postgres, but most of the time this will be your choice.\
+> [!WARNING]
+> You may want to choose a different database than Postgres, but most of the time this will be your choice.
 > You might also need actionmailbox of course, so always double-check the parameters that you are using.
 
 > ⭐️ This setup does not include either js-bundling nor css-bundling by default.\

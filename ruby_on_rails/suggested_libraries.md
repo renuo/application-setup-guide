@@ -3,9 +3,11 @@
 Here is an hopefully up-to-date version of gems which we strongly suggest to include in your project.
 Please include them or find a good reason not to.
 
-> :exclamation: Please follow the guide of each of these libraries to know how to properly install them.
+> [!IMPORTANT]
+> Please follow the guide of each of these libraries to know how to properly install them.
 
-> :bulb: **Tip:** Do you know all of them? Do you know why we'd like them to be included?
+> [!TIP]
+> Do you know all of them? Do you know why we'd like them to be included?
 
 ```rb
 gem 'simple_form'
@@ -25,4 +27,5 @@ group :production do
 end
 ```
 
-> :bulb: **Tip:** To install `simple_form`, run `rails generate simple_form:install --bootstrap` (omit the option if not using Bootstrap) after adding it to your Gemfile.
+> [!TIP]
+> To install `simple_form`, run `rails generate simple_form:install --bootstrap` (omit the option if not using Bootstrap) after adding it to your Gemfile.

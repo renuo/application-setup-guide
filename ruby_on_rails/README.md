@@ -4,14 +4,17 @@ This setup covers a pure, monolithic Rails application.
 This is the most frequent type of application at [Renuo](https://renuo.ch) and is probably the easiest to set up.
 The application (and its GitHub repo) will be named after the `[project-name]` you chose before.
 
-> **Note:** Have you chosen a `[project-name]` yet? If not, please do so now. Check our [Naming Conventions](../naming_conventions.md)
+> [!NOTE]
+> Have you chosen a `[project-name]` yet? If not, please do so now. Check our [Naming Conventions](../naming_conventions.md)
 
-> **Note:** Have you decided if you need two environments (develop and main) or just one?
+> [!NOTE]
+> Have you decided if you need two environments (develop and main) or just one?
 > As a rule of thumb: for customers we always use two environments, for internal projects we usually only use one.
 > Why the difference? Because we can bear the risk of having a bug in an internal project, but we cannot do that for a customer.
 > Decide with your team if you want one or two branches.
 
-> :bulb: **Tip:** Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.
+> [!TIP]
+> Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.
 
 ---
 

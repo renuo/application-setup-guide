@@ -11,7 +11,7 @@ dyno.
 ## Setup
 
 You will need Renuo-CLI to be set up and at the newest version:
-`gem install renuo-cli` --> see [renuo-cli](https://github.com/renuo/renuo-cli)
+`gem install renuo-cli` → see [renuo-cli](https://github.com/renuo/renuo-cli)
 
 1. Run the command `renuo setup-uptimerobot [url]`
    * Where `url` is the address you want to monitor. e.g. `https://[project-name]-main.renuoapp.ch/up` or `https://customdomain.ch/up`

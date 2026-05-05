@@ -2,7 +2,7 @@
 
 ## General configuration
 
-* Go to https://www.sentry.io and login as the renuo monitor user.
+* Go to <https://www.sentry.io> and login as the renuo monitor user.
 
 * Create a project named `[project-name]`.
 

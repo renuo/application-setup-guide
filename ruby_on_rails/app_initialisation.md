@@ -18,7 +18,7 @@ rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-act
 ```
 where the `project-name` is exactly the one you chose before.
 
-> ⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.\
+> :warning: You may want to choose a different database than Postgres, but most of the time this will be your choice.\
 > You might also need actionmailbox of course, so always double-check the parameters that you are using.
 
 > ⭐️ This setup does not include either js-bundling nor css-bundling by default.\
@@ -29,9 +29,9 @@ where the `project-name` is exactly the one you chose before.
 * Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
 * Run `bin/setup`
 
-* Then check your default Rails setup by running `bin/run` and visiting http://[project-name].localhost:3000.
+* Then check your default Rails setup by running `bin/run` and visiting [http://[project-name].localhost:3000](http://[project-name].localhost:3000).
   You should be on Rails now, yay!
-* Finally check if http://localhost:3000/up is green.
+* Finally check if [http://localhost:3000/up](http://localhost:3000/up) is green.
 
 ## Adjustments
 
@@ -40,31 +40,31 @@ Some other adjustments must be performed manually.
 
 ### Automatic adjustments
 
-> ⭐️The `config/database.yml` is updated to have a `collation: C.UTF-8` setting.
+> ⭐️ The `config/database.yml` is updated to have a `collation: C.UTF-8` setting.
 > This ensures deterministic, locale-independent sorting and avoids inconsistencies between local and production
 > environments.
 
-> ⭐The Gemfile reads the required ruby version from the `.ruby-version` file.
+> ⭐️ The Gemfile reads the required ruby version from the `.ruby-version` file.
 > [This is used by Heroku to determine what version to use.](https://devcenter.heroku.com/articles/ruby-versions)
-> Deploio reads the ruby version from the Gemfile, with the .ruby-version file inlined into it. https://paketo.io/docs/howto/ruby/#override-the-detected-ruby-version
+> Deploio reads the ruby version from the Gemfile, with the `.ruby-version` file inlined into it. See <https://paketo.io/docs/howto/ruby/#override-the-detected-ruby-version>.
 
-> ⭐️renuocop replaces the default rubocop-rails-omakase. We have our own set of rules at Renuo.
-> You can discuss them at https://github.com/renuo/renuocop and you can also contribute to them.
+> ⭐️ renuocop replaces the default rubocop-rails-omakase. We have our own set of rules at Renuo.
+> You can discuss them at <https://github.com/renuo/renuocop> and you can also contribute to them.
 
-> ⭐️a bin/check script is added to the project. This script will run all the tests of the project.
+> ⭐️ A `bin/check` script is added to the project. This script will run all the tests of the project.
 > It is used in our CI and can be used locally to check if everything is fine. You can customize it to your needs.
 
-> ⭐️a bin/fastcheck script is added to the project.
+> ⭐️ A `bin/fastcheck` script is added to the project.
 > This script will run all the linters of the project. It is used in our CI and can be customized to your needs.
 > It will be used as a hook before pushing to quickly check for linting issues.
 
-> ⭐️a bin/run script is added to the project. This script will start the application.
+> ⭐️ A `bin/run` script is added to the project. This script will start the application.
 
-> ⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.
+> ⭐️ `bin/check`, `bin/fastcheck` and `bin/run` are standardized tools for more convenience at Renuo.
 
 ### Secrets
 
-We store the secrets necessary to configure the project locally in a 1password Item.
+We store the secrets necessary to configure the project locally in a 1Password Item.
 Create a new Item for the project called `[project-name] project secrets` of type note.
 Right click on the vault and select `Copy Private link`.
 
@@ -78,8 +78,8 @@ Check existing projects for an example of the usage.
 * Update `config/application.rb` and set the default language and timezone
 
   ```ruby
-  config.time_zone = 'Zurich'
-  config.i18n.default_locale = :de
+  config.time_zone = 'Zurich' # may vary
+  config.i18n.default_locale = :de # may vary
   ```
 
 * Update your `config/environments/production.rb` settings:
@@ -95,7 +95,9 @@ Check existing projects for an example of the usage.
   config.action_controller.action_on_unpermitted_parameters = :raise
   config.i18n.raise_on_missing_translations = :strict
 
-  config.generators.apply_rubocop_autocorrect_after_generate!
+  config.generators do |g|
+    g.apply_rubocop_autocorrect_after_generate!
+  end
   ```
 
 * Update `config/environments/test.rb` settings:
@@ -129,4 +131,4 @@ Check existing projects for an example of the usage.
 ## Finalising
 
 * Check if the following scripts run successfully: `bin/setup`, `bin/check`, `bin/run`
-* If they do, commit all your changes to the main branch with Git.
+* If they do, you're ready for the next step.

@@ -8,8 +8,8 @@ Before setting up your application, ensure you have completed the following for 
 
 - You've [read about what Deploio is](https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio).
 - You have a Deploio account.
-- You have installed the `renuo-cli` gem.
-- You have installed the `nctl` command.
+- You have installed the [`renuo-cli`](https://github.com/renuo/renuo-cli) gem.
+- You have installed the [`nctl`](https://github.com/ninech/nctl) command.
 - You have logged in using `nctl`.
 
 ## Setup Your Application
@@ -24,7 +24,10 @@ Run [the command to generate a script](https://github.com/renuo/renuo-cli/blob/m
 renuo create-deploio-app [project-name] [git-url]
 ```
 
-e.g. `renuo create-deploio-app my-app git@github.com:renuo/my-app.git`
+e.g:
+```sh
+renuo create-deploio-app my-app git@github.com:renuo/my-app.git
+```
 
 Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use `develop`.
@@ -36,7 +39,7 @@ If you think that the production database will soon reach the 10 GB, please cons
 
 If you think that the script is outdated, please open a Pull Request on the [renuo-cli](https://github.com/renuo/renuo-cli) project.
 
-For further configuration and best practices, please refer to the [Deploio documentation](https://guides.deplo.io). You can also view a Ruby on Rails specific guide [here](https://guides.deplo.io/ruby/quick-start.html).
+For further configuration, see the [Rails on Deploio guide](https://guides.deplo.io/ruby/quick-start.html). For general Deploio docs, see [guides.deplo.io](https://guides.deplo.io).
 
 ## Next Steps
 

@@ -1,4 +1,4 @@
-# Create a Git Repository
+# Create a GitHub Repository
 
 At Renuo we currently use [GitHub](https://github.com/) as our git repository. You should already be part of the Renuo Organisation and have permissions to do so.
 If that's not the case, double check the Laptop Setup Guide or ask wg-operations.

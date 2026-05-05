@@ -273,7 +273,7 @@ Be aware that this is quite integrated with the business logic of your app, e.g.
 
          let(:wallee_transaction_id) { "194681414" }
 
-         it "goes the 😊 path" do
+         it "goes the happy path" do
            create(:shop_order,  wallee_transaction_id: wallee_transaction_id)
            post wallee_webhook_path,
              env: {"HTTP_X_SIGNATURE" => "fake"},

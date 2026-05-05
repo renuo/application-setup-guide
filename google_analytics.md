@@ -33,7 +33,7 @@ script which you can find [here](https://developers.google.com/analytics/devguid
 
 Make sure you insert this script at the end of the `<head>` tag of the page (not in the `<body>`).
 
-NOTE: There is a default IP anonymization feature in GA4. We no longer need to perform this step manually.
+> **Note:** There is a default IP anonymization feature in GA4. We no longer need to perform this step manually.
 
 ## b) Ruby rack-tracker
 

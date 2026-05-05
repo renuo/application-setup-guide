@@ -5,7 +5,7 @@ Please include them or find a good reason not to.
 
 > :exclamation: Please follow the guide of each of these libraries to know how to properly install them.
 
-> **:bulb:** Do you know all of them? Do you know why we'd like them to be included?
+> :bulb: **Tip:** Do you know all of them? Do you know why we'd like them to be included?
 
 ```rb
 gem 'simple_form'
@@ -25,4 +25,4 @@ group :production do
 end
 ```
 
-> **:bulb:** Note that to install `simple_form` you need to run `rails generate simple_form:install --bootstrap` (without option if not using Bootstrap) after adding it to your Gemfile.
+> :bulb: **Tip:** To install `simple_form`, run `rails generate simple_form:install --bootstrap` (omit the option if not using Bootstrap) after adding it to your Gemfile.

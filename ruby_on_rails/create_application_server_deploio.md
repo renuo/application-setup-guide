@@ -4,8 +4,8 @@
 
 - You've [read about what Deploio is](https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio).
 - You have a Deploio account.
-- You have installed the `renuo-cli` gem.
-- You have installed the `nctl` command.
+- You have installed the [`renuo-cli`](https://github.com/renuo/renuo-cli) gem.
+- You have installed the [`nctl`](https://github.com/ninech/nctl) command.
 - You have logged in using `nctl`.
 
 ## Setup
@@ -16,7 +16,10 @@ Run [the command to generate a script](https://github.com/renuo/renuo-cli/blob/m
 renuo create-deploio-app [project-name] [git-url]
 ```
 
-e.g. `renuo create-deploio-app my-app git@github.com:renuo/my-app.git`
+e.g:
+```sh
+renuo create-deploio-app my-app git@github.com:renuo/my-app.git
+```
 
 Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use `develop`.

@@ -25,4 +25,4 @@ DEVISE_SECRET_KEY="rake secret"
 DEVISE_PEPPER="rake secret"
 ```
 
-Open a pull request! :tada:
+Open a pull request! 🎉

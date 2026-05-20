@@ -35,9 +35,10 @@ Before the team can start working on a project, you need:
 
 ## Serving the Documentation Locally
 
-To view this documentation on your machine, run the following command:
+To view this documentation on your machine, run the following commands:
 
 ```sh
+brew install mdbook
 mdbook serve
 ```
 

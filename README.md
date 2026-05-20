@@ -41,10 +41,11 @@ Thank you for your work and have fun! :tada:
 
 ## Serving the Documentation Locally
 
-To view this documentation on your machine, run the following command:
+To view this documentation on your machine, run the following commands:
 
 ```sh
-mbook serve
+brew install mdbook
+mdbook serve
 ```
 
 ## License

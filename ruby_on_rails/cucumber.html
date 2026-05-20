@@ -201,10 +201,10 @@ not raise any issues. Therefore, you will have to add the following exception to
 <p>If you add Cucumber to an existing project, test a real page instead of using the given example test.</p>
 <p>Add the following files:</p>
 <ul>
-<li><a href="../templates/app/controllers/home_controller.rb"><code>app/controllers/home_controller.rb</code></a> (If you haven’t done so
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/home_controller.rb"><code>app/controllers/home_controller.rb</code></a> (If you haven’t done so
 already) in the <a href="rspec.html">RSpec</a> section.</li>
-<li><a href="../templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
-<li><a href="../templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
 </ul>
 <p>Now, you can run Cucumber in your terminal:</p>
 <pre><code class="language-sh">cucumber
@@ -223,12 +223,12 @@ fi
 <h2 id="custom-environment"><a class="header" href="#custom-environment">Custom environment</a></h2>
 <p>Probably, you are going to need the following configuration files in <code>/features/env</code>:</p>
 <ul>
-<li><a href="../templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
 which require Javascript (i.e. scenarios tagged with <code>@javascript</code>).</li>
-<li><a href="../templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
-<li><a href="../templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
 accessible in the step definition file.</li>
-<li><a href="../templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
 are using Devise).</li>
 </ul>
 

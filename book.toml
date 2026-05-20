@@ -1,12 +1,15 @@
 [book]
 authors = ["devs@Renuo"]
 language = "en"
-src = ""
+src = "."
 title = "Renuo - Application Setup Guide"
 
 [build]
 create-missing = false
 use-default-preprocessors = false
+
+[preprocessor.rewrite-links]
+command = "bin/mdbook-rewrite-links"
 
 [output.html.search]
 limit-results = 10

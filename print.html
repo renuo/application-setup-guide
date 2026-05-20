@@ -994,12 +994,12 @@ end
 <p>We are now going to write a first test to ensure that the whole configuration is working:</p>
 <ul>
 <li><code>bin/check</code> should be green ✅</li>
-<li>Write the test <a href="templates/spec/system/health_spec.rb"><code>spec/system/health_spec.rb</code></a></li>
+<li>Write the test <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/spec/system/health_spec.rb"><code>spec/system/health_spec.rb</code></a></li>
 <li>Run <code>bin/check</code> and the test should pass and coverage is 100%.</li>
 </ul>
 <p>Commit and push your changes! 🎉</p>
 <blockquote>
-<p>⭐️ The default health check path for Rails is <code>/up</code>. <a href="https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html">Learn more in the Rails guides</a>.<br>To customize the health check and add additional checks, you can override the <code>Rails::HealthController</code> class.<br>You can find an example that also checks the database connection <a href="templates/app/controllers/rails/health_controller.rb">in this file</a>.</p>
+<p>⭐️ The default health check path for Rails is <code>/up</code>. <a href="https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html">Learn more in the Rails guides</a>.<br>To customize the health check and add additional checks, you can override the <code>Rails::HealthController</code> class.<br>You can find an example that also checks the database connection <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/rails/health_controller.rb">in this file</a>.</p>
 </blockquote>
 <h2 id="verify"><a class="header" href="#verify">Verify</a></h2>
 <p>Check that you see a green page in each app.</p>
@@ -1018,13 +1018,13 @@ end
 </code></pre>
 <h2 id="javascript-error-reporter"><a class="header" href="#javascript-error-reporter">Javascript error reporter</a></h2>
 <ul>
-<li>Create the module <a href="templates/spec/support/javascript_error_reporter.rb"><code>spec/support/javascript_error_reporter.rb</code></a></li>
+<li>Create the module <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/spec/support/javascript_error_reporter.rb"><code>spec/support/javascript_error_reporter.rb</code></a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="linting-and-automatic-checks-"><a class="header" href="#linting-and-automatic-checks-">Linting and automatic checks ✅</a></h1>
 <p>All Renuo projects contain (and your project must contain as well) the following linters.
 Every linter consists of a gem (usually) and a command to add to our <code>bin/fastcheck</code> script.</p>
-<p>Check out the <code>bin/fastcheck</code> <a href="templates/bin/fastcheck">fastcheck</a> for the final version of it.</p>
+<p>Check out the <code>bin/fastcheck</code> <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/bin/fastcheck">fastcheck</a> for the final version of it.</p>
 <h2 id="renuocop-"><a class="header" href="#renuocop-">Renuocop 👮</a></h2>
 <p>Renuocop is based on Standard Ruby and is a set of rules that we use to lint our Ruby code.
 It’s already included in your Gemfile by default.</p>
@@ -1046,7 +1046,7 @@ end
 </blockquote>
 <p>To lint the SASS/SCSS files in our project you can use the <code>stylelint</code> npm package.</p>
 <p><code>npm install stylelint stylelint-config-standard-scss</code></p>
-<p>Add to the project the <a href="templates/.stylelintrc.yml">linter configuration file</a> and check the <a href="templates/bin/fastcheck"><code>bin/fastcheck</code>
+<p>Add to the project the <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/.stylelintrc.yml">linter configuration file</a> and check the <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/bin/fastcheck"><code>bin/fastcheck</code>
 template</a> to see the command to execute the SCSS linting.</p>
 <h2 id="linting-against-caniuse"><a class="header" href="#linting-against-caniuse">Linting against <a href="https://caniuse.com/">caniuse</a></a></h2>
 <p>You might want to check whether the JS/CSS you produce is working in your target browsers.
@@ -1211,7 +1211,7 @@ end
 </code></pre>
 </li>
 <li>
-<p>Add a Sentry initializer to your project <a href="templates/config/initializers/sentry.rb"><code>config/initializers/sentry.rb</code></a>.</p>
+<p>Add a Sentry initializer to your project <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/initializers/sentry.rb"><code>config/initializers/sentry.rb</code></a>.</p>
 </li>
 <li>
 <p>Add the following to your <code>.env.example</code> file:</p>
@@ -1236,8 +1236,8 @@ end
 <h2 id="frontend-javascript"><a class="header" href="#frontend-javascript">Frontend (Javascript)</a></h2>
 <ul>
 <li>Install the npm package: <code>yarn add @sentry/browser</code></li>
-<li>Include <a href="templates/app/views/shared/_sentry.html.erb">_sentry.html</a> in your header.</li>
-<li>Include <a href="templates/app/javascript/sentry.js">sentry.js</a> in your JS assets.</li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/views/shared/_sentry.html.erb">_sentry.html</a> in your header.</li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/javascript/sentry.js">sentry.js</a> in your JS assets.</li>
 </ul>
 <h2 id="verify-the-installation"><a class="header" href="#verify-the-installation">Verify the installation</a></h2>
 <h3 id="ruby"><a class="header" href="#ruby">Ruby</a></h3>
@@ -1270,7 +1270,7 @@ end
 </code></pre>
 </li>
 <li>
-<p>Add a NewRelic configuration file <a href="templates/config/newrelic.yml"><code>config/newrelic.yml</code></a> folder.
+<p>Add a NewRelic configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/newrelic.yml"><code>config/newrelic.yml</code></a> folder.
 (<strong>Note:</strong> If you are not using Heroku, adjust the app name to something else than <code>HEROKU_APP_NAME</code>)</p>
 </li>
 <li>
@@ -1718,10 +1718,10 @@ not raise any issues. Therefore, you will have to add the following exception to
 <p>If you add Cucumber to an existing project, test a real page instead of using the given example test.</p>
 <p>Add the following files:</p>
 <ul>
-<li><a href="templates/app/controllers/home_controller.rb"><code>app/controllers/home_controller.rb</code></a> (If you haven’t done so
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/home_controller.rb"><code>app/controllers/home_controller.rb</code></a> (If you haven’t done so
 already) in the <a href="#setup-rspec">RSpec</a> section.</li>
-<li><a href="templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
-<li><a href="templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
 </ul>
 <p>Now, you can run Cucumber in your terminal:</p>
 <pre><code class="language-sh">cucumber
@@ -1740,12 +1740,12 @@ fi
 <h2 id="custom-environment"><a class="header" href="#custom-environment">Custom environment</a></h2>
 <p>Probably, you are going to need the following configuration files in <code>/features/env</code>:</p>
 <ul>
-<li><a href="templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
 which require Javascript (i.e. scenarios tagged with <code>@javascript</code>).</li>
-<li><a href="templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
-<li><a href="templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
 accessible in the step definition file.</li>
-<li><a href="templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
 are using Devise).</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -2019,7 +2019,7 @@ into your app. See integration instructions for <a href="https://docs.appsignal.
 </code></pre>
 </li>
 <li>
-<p>Add a AppSignal configuration file <a href="templates/config/initializers/appsignal.rb"><code>config/initializers/appsignal.rb</code></a></p>
+<p>Add a AppSignal configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/initializers/appsignal.rb"><code>config/initializers/appsignal.rb</code></a></p>
 </li>
 <li>
 <p>Add the new variables to your Heroku environments:</p>
@@ -2180,12 +2180,12 @@ So once the project is created, the frontend API key can be found in the “Push
 </code></pre>
 </li>
 <li>Install the package: <code>yarn add @appsignal/javascript</code></li>
-<li>Include <a href="templates/app/views/shared/_appsignal.html.erb">_appsignal.html</a> in your header.</li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/views/shared/_appsignal.html.erb">_appsignal.html</a> in your header.</li>
 </ul>
 <pre><code class="language-erb">&lt;%= render 'shared/appsignal' %&gt;
 </code></pre>
 <ul>
-<li>Include <a href="templates/app/javascript/appsignal.js">appsignal.js</a> in your JS assets.</li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/javascript/appsignal.js">appsignal.js</a> in your JS assets.</li>
 </ul>
 <h2 id="verify-the-installation-1"><a class="header" href="#verify-the-installation-1">Verify the installation</a></h2>
 <h3 id="error-monitoring"><a class="header" href="#error-monitoring">Error monitoring</a></h3>

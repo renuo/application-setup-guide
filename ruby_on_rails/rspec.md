@@ -1,5 +1,8 @@
 # Setup RSpec
 
+> **Note:** The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
+> Rails 8.1 does ship `capybara` and `selenium-webdriver` in the `:test` group by default. There is no need to add those manually when using the template.
+
 Even though Rails uses Minitest per default, RSpec is the *de-facto* standard at Renuo.
 
 Add the following gems to your Gemfile:

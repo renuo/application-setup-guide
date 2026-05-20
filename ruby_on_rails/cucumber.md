@@ -41,8 +41,8 @@ If you add Cucumber to an existing project, test a real page instead of using th
 
 Add the following files:
 
-* [`app/controllers/home_controller.rb`](../templates/app/controllers/home_controller.rb) (If you haven't done so
-already) in the [RSpec](rspec.md) section.
+* [`app/controllers/rails/health_controller.rb`](../templates/app/controllers/rails/health_controller.rb) (If you
+haven't done so already) in the [RSpec](rspec.md) section.
 * [`features/home_check.feature`](../templates/features/home_check.feature)
 * [`features/step_definitions/home_check_steps.rb`](../templates/features/step_definitions/home_check_steps.rb)
 

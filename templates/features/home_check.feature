@@ -4,5 +4,5 @@ Feature:
   So I can assure the app is alive
 
   Scenario:
-    When I visit "/home/check"
-    Then I see the text "1+2=3"
+    When I visit "/up"
+    Then the response status is 200

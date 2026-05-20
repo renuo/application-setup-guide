@@ -19,7 +19,7 @@ You can execute it and correct the issues you'll find.
 
 > ✨ Ships with Rails 8.1 by default.
 
-Add it to the `bin/fastcheck` script.
+Add it to the `bin/fastcheck` script:
 
 ```sh
 bundle exec brakeman -q -z --no-summary --no-pager
@@ -49,7 +49,8 @@ end
 
 ## SCSS lint
 
-> _Note_: Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
+> [!NOTE]
+> Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
 
 To lint the SASS/SCSS files in our project you can use the `stylelint` npm package.
 

@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# mdbook preprocessor: rewrite relative links to templates/* (non-.md) into
+# absolute GitHub blob URLs so the published book points to GitHub instead of
+# offering a raw-file download. Source markdown keeps relative paths so local
+# editing and raw-GitHub viewing still work.
+
+require "json"
+
+GITHUB_BLOB = "https://github.com/renuo/application-setup-guide/blob/main"
+
+# Matches ](path) where path points into templates/ and does NOT end in .md.
+# Handles both ../templates/... and templates/... forms.
+LINK_RE = %r{\]\((\.\.?/)?(templates/[^)\s]+?)\)}
+
+def rewrite(markdown)
+  markdown.gsub(LINK_RE) do
+    path = Regexp.last_match(2)
+    next Regexp.last_match(0) if path.end_with?(".md")
+    "](#{GITHUB_BLOB}/#{path})"
+  end
+end
+
+def walk(section)
+  if section.is_a?(Hash) && section["Chapter"]
+    chapter = section["Chapter"]
+    chapter["content"] = rewrite(chapter["content"]) if chapter["content"]
+    chapter["sub_items"]&.each { |item| walk(item) }
+  end
+end
+
+if ARGV[0] == "supports"
+  exit 0
+end
+
+_context, book = JSON.parse($stdin.read)
+items = book["items"] || book["sections"] || []
+items.each { |section| walk(section) }
+puts JSON.generate(book)

@@ -1,11 +1,11 @@
-# Linting and automatic checks ✅
+# Linting and automatic checks :white_check_mark:
 
 All Renuo projects contain (and your project must contain as well) the following linters.
 Every linter consists of a gem (usually) and a command to add to our `bin/fastcheck` script.
 
 Check out the `bin/fastcheck` [fastcheck](../templates/bin/fastcheck) for the final version of it.
 
-## Renuocop 👮
+## Renuocop :cop:
 
 > ✨ Installed by the Renuo Rails template (replaces `rubocop-rails-omakase`).
 
@@ -19,7 +19,7 @@ You can execute it and correct the issues you'll find.
 
 > ✨ Ships with Rails 8.1 by default.
 
-Add it to the `bin/fastcheck` script:
+Add it to the `bin/fastcheck` script.
 
 ```sh
 bundle exec brakeman -q -z --no-summary --no-pager
@@ -49,8 +49,7 @@ end
 
 ## SCSS lint
 
-> [!NOTE]
-> Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
+> _Note_: Your Semaphore configuration might have to be adjusted if you decide to use `npm`.
 
 To lint the SASS/SCSS files in our project you can use the `stylelint` npm package.
 
@@ -171,4 +170,4 @@ The templates folder contains a template for the eslint configuration.
 
 ## All Good!
 
-Now your `bin/fastcheck` is not that fast anymore 😄
+Now your `bin/fastcheck` is not that fast anymore :smile:

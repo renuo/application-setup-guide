@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-dc5d1b66.js";
+            window.path_to_searchindex_js = "searchindex-35ba97ec.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-bfba33f3.js"></script>
@@ -222,7 +222,7 @@ sparkpost+<em>enviroment</em>@renuo.ch found in the credential store</li>
 the subaccount. Set up SPF, DKIM and DMARC with TXT DNS records (only use
 <code>renuoapp.ch</code> within the <code>sparkpost+develop@renuo.ch</code>)</li>
 <li>Verify your Email DNS configuration with <a href="https://mxtoolbox.com/SuperTool.aspx">https://mxtoolbox.com/SuperTool.aspx</a></li>
-<li>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></li>
+<li>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.new.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver!</code></li>
 <li>Send a test email to <a href="https://www.mail-tester.com/">https://www.mail-tester.com/</a> or <a href="https://www.experte.com/spam-checker">https://www.experte.com/spam-checker</a> and check the result</li>
 </ol>
 <p>For DNS setup also see <a href="go_live.html">Go Live</a></p>

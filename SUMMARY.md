@@ -14,10 +14,10 @@
 
 - [Step 1: Create the App]()
     - [Initialise the Rails App](ruby_on_rails/app_initialisation.md)
-    - [Create a GitHub Repository](create_git_repository.md)
+    - [Create a GitHub Repository](create_github_repository.md)
     - [Push to Git Repository](ruby_on_rails/first_git_push.md)
     - [Initialise Gitflow](ruby_on_rails/initialise_gitflow.md)
-    - [Configure Git Repository](configure_git_repository.md)
+    - [Configure GitHub Repository](configure_github_repository.md)
 - [Step 2: Deploy the App]()
     - [Create an Application Server (Deploio)](ruby_on_rails/create_application_server_deploio.md)
     - [Create an Application Server (Heroku)](ruby_on_rails/create_application_server_heroku.md)

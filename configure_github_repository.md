@@ -7,37 +7,36 @@ Please stick to it unless you have special needs.
   * Features: Remove *Wikis*, *Issues* and *Projects*
   * Pull Requests
     * Disable *Allow merge commits* and *Allow rebase merging*
-    * Always suggest updating pull request branches
     * Allow auto-merge
     * Automatically delete head branches
+    * Always suggest updating pull request branches
 * Manage access
   * Add *staff* team as a collaborator with Admin access
   * Add *security* team as collaborator with Write access
 * Branches
   * Default branch: either `main` or `develop` depending on whether you want one or two environments.
 * Rules/Rulesets
-  * `develop`
+  * We use two rulesets: one for `main` and one for everything else. This ensures that long-lived branches like `redesign` and feature branches like `feat/my-feature` share the same protection rules as `develop`.
+  * `non-main`
     * Enforcement status: `Active`
+    * Branch targeting criteria:
+      * Include all branches
+      * Exclude by pattern: `main`
     * Bypass list: add `Repository Admin` Role with *allow for pull requests only* option
-    * Branch targeting criteria: `develop`
     * Restrict deletions
     * Require linear history
     * Require a pull request before merging
     * Require status checks to pass
-      * Select `ci/semaphore/push` (AFTER SETTING UP SEMAPHORE)
+      * Select `ci/semaphore/push`
     * Block force pushes
-  * `main` (same as develop but...)
+  * `main` (same as non-main but...)
     * Branch targeting criteria: `main`
     * ❌ Require a pull request before merging
     * ❌ Require status checks to pass
-
 * Autolink references
   * Add a new Autolink reference with:
     * Reference prefix: `TICKET-`
     * Target URL: `https://redmine.renuo.ch/issues/<num>`
-
-In case you have a second long-living environment (e.g., for a design rewrite, a new major version, etc.),
-consider applying the same rules as on `develop` to it as well.
 
 ## Team
 

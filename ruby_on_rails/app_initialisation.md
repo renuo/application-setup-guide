@@ -78,8 +78,8 @@ Check existing projects for an example of the usage.
 * Update `config/application.rb` and set the default language and timezone
 
   ```ruby
-  config.time_zone = 'Zurich'
-  config.i18n.default_locale = :de
+  config.time_zone = 'Zurich' # may vary
+  config.i18n.default_locale = :de # may vary
   ```
 
 * Update your `config/environments/production.rb` settings:
@@ -129,4 +129,4 @@ Check existing projects for an example of the usage.
 ## Finalising
 
 * Check if the following scripts run successfully: `bin/setup`, `bin/check`, `bin/run`
-* If they do, commit all your changes to the main branch with Git.
+* If they do, you're ready for the next step.

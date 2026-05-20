@@ -1,4 +1,4 @@
-# :mailbox: Send Emails
+# 📬 Send Emails
 
 As soon as you have to send emails please follow those suggestions.
 They will help you having a proper system to deliver emails and development environment.

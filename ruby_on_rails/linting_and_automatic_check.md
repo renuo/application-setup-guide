@@ -1,11 +1,11 @@
-# Linting and automatic checks :white_check_mark:
+# Linting and automatic checks ✅
 
 All Renuo projects contain (and your project must contain as well) the following linters.
 Every linter consists of a gem (usually) and a command to add to our `bin/fastcheck` script.
 
 Check out the `bin/fastcheck` [fastcheck](../templates/bin/fastcheck) for the final version of it.
 
-## Renuocop :cop:
+## Renuocop 👮
 
 > ✨ Installed by the Renuo Rails template (replaces `rubocop-rails-omakase`).
 
@@ -171,4 +171,4 @@ The templates folder contains a template for the eslint configuration.
 
 ## All Good!
 
-Now your `bin/fastcheck` is not that fast anymore :smile:
+Now your `bin/fastcheck` is not that fast anymore 😄

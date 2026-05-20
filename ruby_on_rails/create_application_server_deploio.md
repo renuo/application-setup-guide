@@ -2,21 +2,13 @@
 
 ## Prerequisites
 
-Before setting up your application, ensure you have completed the following for Deploio.
-
-### Prerequisites for Deploio
-
 - You've [read about what Deploio is](https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio).
 - You have a Deploio account.
 - You have installed the `renuo-cli` gem.
 - You have installed the `nctl` command.
 - You have logged in using `nctl`.
 
-## Setup Your Application
-
-### Setup Deploio Application
-
-#### Remote Configuration
+## Setup
 
 Run [the command to generate a script](https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb) which will create and configure all Deploio apps. `[project-name]` string length is limited to 63 characters:
 
@@ -36,7 +28,7 @@ If you think that the production database will soon reach the 10 GB, please cons
 
 If you think that the script is outdated, please open a Pull Request on the [renuo-cli](https://github.com/renuo/renuo-cli) project.
 
-For further configuration and best practices, please refer to the [Deploio documentation](https://guides.deplo.io). You can also view a Ruby on Rails specific guide [here](https://guides.deplo.io/ruby/quick-start.html).
+For further configuration, see the [Rails on Deploio guide](https://guides.deplo.io/ruby/quick-start.html). For general Deploio docs, see [guides.deplo.io](https://guides.deplo.io).
 
 ## Next Steps
 

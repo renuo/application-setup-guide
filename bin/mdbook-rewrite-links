@@ -8,6 +8,12 @@
 
 require "json"
 
+# mdbook invokes preprocessors with `supports <renderer>` to probe compatibility.
+# Exit 0 to signal support; no stdin payload is sent in that mode.
+if ARGV[0] == "supports"
+  exit 0
+end
+
 GITHUB_BLOB = "https://github.com/renuo/application-setup-guide/blob/main"
 
 # Matches ](path) where path points into templates/ and does NOT end in .md.
@@ -28,10 +34,6 @@ def walk(section)
     chapter["content"] = rewrite(chapter["content"]) if chapter["content"]
     chapter["sub_items"]&.each { |item| walk(item) }
   end
-end
-
-if ARGV[0] == "supports"
-  exit 0
 end
 
 _context, book = JSON.parse($stdin.read)

@@ -79,3 +79,4 @@ useful services:
 1. [wicked pdf](wicked_pdf.md) `gem wicked_pdf`
 1. [Recaptcha v3](recaptcha.md)
 1. [Wallee Payment Integration](wallee.md)
+1. [Sign in with Redmine](https://gist.github.com/sislr/fb7f6d8f05c96c199d9525706561902d)

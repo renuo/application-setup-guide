@@ -160,15 +160,15 @@ end
 
 ![CleanShot 2021-06-25 at 16 54 22](https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif)
 
-## :white_check_mark: Our first (green) test
+## ✅ Our first (green) test
 
 We are now going to write a first test to ensure that the whole configuration is working:
 
-* `bin/check` should be green :white_check_mark:
+* `bin/check` should be green ✅
 * Write the test [`spec/system/health_spec.rb`](../templates/spec/system/health_spec.rb)
 * Run `bin/check` and the test should pass and coverage is 100%.
 
-Commit and push your changes! :tada:
+Commit and push your changes! 🎉
 
 > ⭐️ The default health check path for Rails is `/up`. [Learn more in the Rails guides](https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html).\
 > To customize the health check and add additional checks, you can override the `Rails::HealthController` class.\

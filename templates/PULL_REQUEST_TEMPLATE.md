@@ -1,12 +1,15 @@
+TICKET-
+
 ### Description
 
-What I did and maybe screenshots.
+What I did, human-written and with screenshots or video.
 
 ### General
 
 - [ ] I reviewed my code.
 - [ ] This PR is relatable to a ticket number (via branch name, title or description).
-- [ ] I updated the ticket on Redmine.
+- [ ] I updated the ticket state on Redmine.
+- [ ] The commits are properly portioned, sequenced and named well
 
 ### New feature
 

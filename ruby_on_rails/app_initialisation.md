@@ -64,7 +64,7 @@ Some other adjustments must be performed manually.
 
 ### Secrets
 
-We store the secrets necessary to configure the project locally in a 1password Item.
+We store the secrets necessary to configure the project locally in a 1Password Item.
 Create a new Item for the project called `[project-name] project secrets` of type note.
 Right click on the vault and select `Copy Private link`.
 

@@ -20,8 +20,8 @@ into your app. See integration instructions for [Ruby/Rails](https://docs.appsig
   ```ruby
   gem 'appsignal', github: 'renuo/appsignal-ruby'
   ```
-* Add a AppSignal configuration file [`config/initializers/appsignal.rb`](../templates/config/initializers/appsignal.rb)
-* Add the new variables to your Heroku environments:
+* Add a AppSignal configuration file [`config/appsignal.rb`](../templates/config/appsignal.rb)
+* Add the new variables to your Deploio environments:
 
   ```yml
   APPSIGNAL_APP_ENV: "main | develop"
@@ -178,12 +178,13 @@ end.parse!
 
 raise OptionParser::MissingArgument if options[:env].nil? || options[:name].nil?
 
-File.write 'config/initializers/appsignal.rb', <<~RUBY
+File.write 'config/appsignal.rb', <<~RUBY
   if defined?(Appsignal)
     Appsignal.configure do |config|
       %w[HTTP_REFERER HTTP_USER_AGENT HTTP_AUTHORIZATION REQUEST_URI].each do |header|
         config.request_headers << header
       end
+      config.revision = ENV.fetch("DEPLOIO_GIT_REVISION")
     end
   end
 RUBY

@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-bf6b1649.js";
+            window.path_to_searchindex_js = "../searchindex-09ae3a40.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-bfba33f3.js"></script>
@@ -195,10 +195,10 @@ into your app. See integration instructions for <a href="https://docs.appsignal.
 </code></pre>
 </li>
 <li>
-<p>Add a AppSignal configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/initializers/appsignal.rb"><code>config/initializers/appsignal.rb</code></a></p>
+<p>Add a AppSignal configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/appsignal.rb"><code>config/appsignal.rb</code></a></p>
 </li>
 <li>
-<p>Add the new variables to your Heroku environments:</p>
+<p>Add the new variables to your Deploio environments:</p>
 <pre><code class="language-yml">APPSIGNAL_APP_ENV: "main | develop"
 APPSIGNAL_APP_NAME: "project name without env"
 APPSIGNAL_IGNORE_ERRORS: "ActiveRecord::RecordNotFound,ActionController::UnknownFormat"
@@ -331,12 +331,13 @@ end.parse!
 
 raise OptionParser::MissingArgument if options[:env].nil? || options[:name].nil?
 
-File.write 'config/initializers/appsignal.rb', &lt;&lt;~RUBY
+File.write 'config/appsignal.rb', &lt;&lt;~RUBY
   if defined?(Appsignal)
     Appsignal.configure do |config|
       %w[HTTP_REFERER HTTP_USER_AGENT HTTP_AUTHORIZATION REQUEST_URI].each do |header|
         config.request_headers &lt;&lt; header
       end
+      config.revision = ENV.fetch("DEPLOIO_GIT_REVISION")
     end
   end
 RUBY

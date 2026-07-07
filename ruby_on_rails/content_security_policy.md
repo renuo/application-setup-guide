@@ -85,7 +85,7 @@ Starting from Rails 6 on, the `javascript_tag` view helper also accepts a nonce 
 | img-src     | `https://www.google-analytics.com`                                  |
 | connect-src | `https://www.google-analytics.com`                                  |
 
-For a more details list, see https://developers.google.com/tag-manager/web/csp
+For a more details list, see <https://developers.google.com/tag-manager/web/csp>.
 
 ### Facebook Tracking Pixel
 

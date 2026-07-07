@@ -4,13 +4,14 @@ At Renuo we **always** use a CI (Continuous Integration) system to test our appl
 that all the tests pass before building and releasing a new version through our CD system. Our projects use
 [SemaphoreCI](<https://semaphoreci.com/>).
 
-ℹ️ _Are you using **Gitlab**? Have a look at [this example](./gitlab_capybara_selenium.md) instead (and elaborate)._
+> [!NOTE]
+> Are you using **Gitlab**? Have a look at [this example](./gitlab_capybara_selenium.md) instead (and elaborate).
 
 Before configuring the CI, you should already have a Git Repository with the code, a `bin/check` command to execute,
 and the main branches already pushed and ready to be tested.
 
 1. Proceed to <https://renuo.semaphoreci.com/> and login through GitHub with renuobot@renuo.ch ([1Password](https://start.1password.com/open/i?a=QZNJJCCDWVCGBGI73Z2L55KSGE&v=crlutt26yprmp6thr573qxsxkq&i=u7rirvnrf5fjxd25caiq7ib6vq&h=renuo.1password.com))
-1. Follow these instructions to install semaphore CLI https://docs.semaphoreci.com/reference/sem-command-line-tool/
+1. Follow these instructions to install semaphore CLI: <https://docs.semaphoreci.com/reference/sem-command-line-tool/>
 1. Create a project here: <https://renuo.semaphoreci.com/new_project>
 1. Go to the project's artifact settings: `Settings` > `Artifacts`
 1. Set the retention policy for project, workflow and job artifacts to `/**/*` and `2 weeks`

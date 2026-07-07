@@ -1,6 +1,7 @@
 # Devise
 
-:warning: If you are going to use devise we suggest you to [send_emails](send_emails.md) first. :warning:
+> [!WARNING]
+> If you are going to use devise we suggest you to [send_emails](send_emails.md) first.
 
 * Add the following gem `gem 'devise'` and install it
 

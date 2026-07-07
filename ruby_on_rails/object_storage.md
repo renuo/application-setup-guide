@@ -51,7 +51,7 @@ The following Amazon services are involved in our app setups
 
 You will need Renuo-CLI to be set up and at the newest version:
 
-`gem install renuo-cli` --> see [renuo-cli](https://github.com/renuo/renuo-cli)
+`gem install renuo-cli` → see [renuo-cli](https://github.com/renuo/renuo-cli)
 
 Make sure `renuo -v` shows the [newest version](https://github.com/renuo/renuo-cli/tags)
 

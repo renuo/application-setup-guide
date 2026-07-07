@@ -18,7 +18,9 @@ One notification you may want to receive on this channel is about when a new dep
 order to do that you must be an admin of the Renuo Slack Organisation. If you are not an admin, ask wg-operations to do
 it for you communicating the `[project-name]`.
 
-:warning: **You must have already setup [Automatic Deployment through SemaphoreCI](ruby_on_rails/configure_ci.md)** :warning:
+> [!WARNING]
+> You must have already setup [Automatic Deployment through SemaphoreCI](ruby_on_rails/configure_ci.md).
+
 If you used Renuo CLI to configure SemaphoreCI, the notifications should be already created. For manual setup, follow these steps:
 
 1. Open the global Notifications settings (`https://renuo.semaphoreci.com/notifications`)

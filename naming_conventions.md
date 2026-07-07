@@ -18,7 +18,8 @@ asked to do the same.
 * Use `[project-name]-[purpose]-[branch]` for deployed projects (e.g. one11-web-main).
 * Use `[project-name]-local-[user]-[rails_env]` for local names which interact with online services (e.g. S3).
 
-**Note:** Previously on Heroku, the convention was to use `[project-name]-[branch]-[purpose]` for deployed projects (e.g. kingschair-main-assets). This has been updated due to deplo.io.
+> [!NOTE]
+> Previously on Heroku, the convention was to use `[project-name]-[branch]-[purpose]` for deployed projects (e.g. kingschair-main-assets). This has been updated due to deplo.io.
 
 ## Examples
 
@@ -32,13 +33,13 @@ asked to do the same.
 
 The naming conventions should be applied everywhere. Some examples:
 
-* Amazon S3 (usually [project-name]-[branch])
-* Github ([project-name])
-* Heroku ([project-name]-[branch])
-* Redmine ([project-name])
-* Semaphore CI (servers are named [project-name]-[branch])
-* Drive ([project-name])
-* New Relic ([project-name]-[branch])
+* Amazon S3 (usually `[project-name]-[branch]`)
+* Github (`[project-name]`)
+* Heroku (`[project-name]-[branch]`)
+* Redmine (`[project-name]`)
+* Semaphore CI (servers are named `[project-name]-[branch]`)
+* Drive (`[project-name]`)
+* New Relic (`[project-name]-[branch]`)
 * Get Sentry
 * App name in Rails
 * Sparkpost Account

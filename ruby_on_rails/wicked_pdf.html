@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-0392ca55.css">
-        <link rel="stylesheet" href="../css/chrome-fc474251.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-09ae3a40.js";
+            window.path_to_searchindex_js = "../searchindex-b0fe0ae1.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-bfba33f3.js"></script>
@@ -175,8 +175,12 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="wicked-pdf"><a class="header" href="#wicked-pdf">Wicked PDF</a></h1>
-<p>Can be used to generate PDFs and supports HTML to PDF.</p>
-<p>⚠ Up to now, Wicked PDF does not support Bootstrap 4, so if you want to use Bootstrap 4 Templates, use another library ⚠</p>
+<dl>
+<dt id="can-be-used-to-generate-pdfs-and-supports-html-to-pdf"><a class="header" href="#can-be-used-to-generate-pdfs-and-supports-html-to-pdf">Can be used to generate PDFs and supports HTML to PDF.</a></dt>
+<dd>
+<p>warning: Up to now, Wicked PDF does not support Bootstrap 4, so if you want to use Bootstrap 4 Templates, use another library :warning:</p>
+</dd>
+</dl>
 <ul>
 <li>Add <code>gem 'wicked_pdf'</code> to the main section of <code>Gemfile</code></li>
 <li>Add <code>gem 'wkhtmltopdf-binary'</code> to <code>group :development, :test</code></li>
@@ -191,12 +195,16 @@
 <p><em>Usage:</em></p>
 <pre><code class="language-rb">render pdf: &lt;&lt;filename&gt;&gt;, print_media_type: true, layout: 'pdf', disposition: 'attachment'
 </code></pre>
-<p>⚠ Consider using a job-runner to not block the server during creation of PDFs.</p>
+<p>:warning: Consider using a job-runner to not block the server during creation of PDFs.</p>
 <h2 id="heroku"><a class="header" href="#heroku">Heroku</a></h2>
 <p>Ensure that fonts are installed on Heroku, otherwise the PDF will look different compared to the one generated locally. The fonts need to be installed with a buildpack and put in the <code>~/.fonts</code> folder.
 If you need Arial, you can add the following buildpack on Heroku:</p>
-<p><code>https://github.com/propertybase/heroku-buildpack-fonts</code></p>
-<p>⚠ Make sure you add this as a first buildpack before <code>heroku/ruby</code>!</p>
+<dl>
+<dt id="httpsgithubcompropertybaseheroku-buildpack-fonts"><a class="header" href="#httpsgithubcompropertybaseheroku-buildpack-fonts"><code>https://github.com/propertybase/heroku-buildpack-fonts</code></a></dt>
+<dd>
+<p>warning: Make sure you add this as a first buildpack before <code>heroku/ruby</code>!</p>
+</dd>
+</dl>
 
                     </main>
 
@@ -246,7 +254,7 @@ If you need Arial, you can add the following buildpack on Heroku:</p>
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-c22b7243.js"></script>
+        <script src="../book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

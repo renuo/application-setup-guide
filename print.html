@@ -16,8 +16,8 @@
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-0392ca55.css">
-        <link rel="stylesheet" href="css/chrome-fc474251.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
         <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-09ae3a40.js";
+            window.path_to_searchindex_js = "searchindex-b0fe0ae1.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-bfba33f3.js"></script>
@@ -203,10 +203,10 @@ This guide is the result of more than ten years of experience, so this means thr
 <li>The application deployed for both branches</li>
 </ul>
 <p>As an appendix, you’ll find a <a href="#checklist">checklist</a> you can use to follow the guide.</p>
-<p><strong>❗ Do not blindly follow this guide, always think about what you are doing and why.
+<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
 If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
 <p>We want you to know exactly the reason behind each single step of this guide.</p>
-<p>Thank you for your work and have fun! 🎉</p>
+<p>Thank you for your work and have fun! :tada:</p>
 <h2 id="serving-the-documentation-locally"><a class="header" href="#serving-the-documentation-locally">Serving the Documentation Locally</a></h2>
 <p>To view this documentation on your machine, run the following commands:</p>
 <pre><code class="language-sh">brew install mdbook
@@ -436,11 +436,11 @@ Decide with your team if you want one or two branches.</p>
 <ol>
 <li><a href="#setup-rspec">RSpec</a></li>
 <li><a href="#linting-and-automatic-checks-">Linting and automatic checks</a></li>
-<li><a href="#suggested-gems">Gems and libraries 💎</a></li>
+<li><a href="#suggested-gems">Gems and libraries :gem:</a></li>
 <li><a href="#cloudflare">Cloudflare</a></li>
 <li><a href="ruby_on_rails/compile_readme.html">README</a></li>
 </ol>
-<p>🎉 Finally you are ready to start working on you new project! 🎉</p>
+<p>:tada: Finally you are ready to start working on you new project! :tada:</p>
 <p>While everyone starts working there are some more things which you should setup.
 Most are not optional, but the rest of the team can start working even if those are not in place yet.</p>
 <ol>
@@ -481,7 +481,7 @@ useful services:</p>
 <li>Favicons</li>
 <li><a href="https://github.com/cyu/rack-cors">Rack CORS</a></li>
 <li><a href="https://github.com/rack/rack-attack#installing">Rack Attack</a></li>
-<li><a href="#-hotjar">🔥 Hotjar</a></li>
+<li><a href="#-hotjar">:fire: Hotjar</a></li>
 <li>SEO
 <ul>
 <li>redirect non-www to www</li>
@@ -844,10 +844,10 @@ Adapt the files and remove the <code>develop</code> related ones if you don’t 
 <li>Commit the files to both branches, push and watch the CI run.</li>
 </ol>
 <p>When all builds are green, then you have properly configured your CI and CD.</p>
-<p><img src="images/semaphore_ci.png" alt="semaphoreci_2"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/semaphore_ci.png" alt="semaphoreci_2"><span class="img-wrapper"><img src="images/semaphore_ci.png" alt="semaphoreci_2"></span></label></p>
 <p>You should now see a third block where your deployment runs to Heroku.
 Make sure it is green and deploys correctly:</p>
-<p><img src="images/semaphore_cd.png" alt="semaphoreci_2"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/semaphore_cd.png" alt="semaphoreci_2"><span class="img-wrapper"><img src="images/semaphore_cd.png" alt="semaphoreci_2"></span></label></p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>You have now your application running on all the environments.
 From now on, all the changes you will push on <em>develop</em> or <em>main</em>
@@ -990,7 +990,7 @@ end
 <blockquote>
 <p><strong>Note</strong>: If you want to debug a spec, you can simply uncomment the line <code>SELENIUM_DRIVER</code> in the .env to not run it headless:</p>
 </blockquote>
-<p><img src="https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif" alt="CleanShot 2021-06-25 at 16 54 22"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif" alt="CleanShot 2021-06-25 at 16 54 22"><span class="img-wrapper"><img src="https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif" alt="CleanShot 2021-06-25 at 16 54 22"></span></label></p>
 <h2 id="-our-first-green-test"><a class="header" href="#-our-first-green-test">✅ Our first (green) test</a></h2>
 <p>We are now going to write a first test to ensure that the whole configuration is working:</p>
 <ul>
@@ -1136,10 +1136,10 @@ npx eslint --init (Use a popular style guide -&gt; Airbnb)
 <p>Here is an hopefully up-to-date version of gems which we strongly suggest to include in your project.
 Please include them or find a good reason not to.</p>
 <blockquote>
-<p>❗ Please follow the guide of each of these libraries to know how to properly install them.</p>
+<p>:exclamation: Please follow the guide of each of these libraries to know how to properly install them.</p>
 </blockquote>
 <blockquote>
-<p><strong>💡</strong> Do you know all of them? Do you know why we’d like them to be included?</p>
+<p><strong>:bulb:</strong> Do you know all of them? Do you know why we’d like them to be included?</p>
 </blockquote>
 <pre><code class="language-rb">gem 'simple_form'
 
@@ -1158,7 +1158,7 @@ group :production do
 end
 </code></pre>
 <blockquote>
-<p><strong>💡</strong> Note that to install <code>simple_form</code> you need to run <code>rails generate simple_form:install --bootstrap</code> (without option if not using Bootstrap) after adding it to your Gemfile.</p>
+<p><strong>:bulb:</strong> Note that to install <code>simple_form</code> you need to run <code>rails generate simple_form:install --bootstrap</code> (without option if not using Bootstrap) after adding it to your Gemfile.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="cloudflare"><a class="header" href="#cloudflare">Cloudflare</a></h1>
@@ -1193,7 +1193,7 @@ end
 </li>
 <li>
 <p>Note the DSN key.</p>
-<p><img src="images/sentry.png" alt="sentry_dsn"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/sentry.png" alt="sentry_dsn"><span class="img-wrapper"><img src="images/sentry.png" alt="sentry_dsn"></span></label></p>
 </li>
 </ul>
 <p>Add the ENV variables to the <code>.env</code> files for each environment.</p>
@@ -1423,7 +1423,7 @@ repository.</li>
 <p>Update strategy should be set to <code>Grouped Updates</code>, frequency: <code>monthly</code>. Assignee should be set.</p>
 <h2 id="engine-updates"><a class="header" href="#engine-updates">Engine Updates</a></h2>
 <p>Enable minor engine updates.</p>
-<p><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"><span class="img-wrapper"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"></span></label></p>
 <p><strong>Note:</strong> If you are using Heroku, the latest Ruby / node version may not yet
 be available on their platform, so you may need to delay the upgrade. Check the
 following GitHub repositories to see if Heroku added support already:</p>
@@ -1434,7 +1434,7 @@ following GitHub repositories to see if Heroku added support already:</p>
 <h2 id="automatic-merging"><a class="header" href="#automatic-merging">Automatic merging</a></h2>
 <p>To speed up the merging of smaller upgrades (like security fixes) we enable
 Automatic merging like this:</p>
-<p><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"><span class="img-wrapper"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"></span></label></p>
 <p>Since PRs need to be approved before depfu can merge them we add a GitHub
 Actions workflow to automatically approve PRs from depfu:</p>
 <pre><code class="language-yaml"># .github/workflows/depfu_autoapprove.yml
@@ -1460,7 +1460,7 @@ jobs:
 <h2 id="ticket-reference"><a class="header" href="#ticket-reference">Ticket reference</a></h2>
 <p>In order to avoid searching for the maintenance project after reviewing a Depfu PR,
 we add the ticket to the PR title according to the following Depfu configuration:</p>
-<p><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"><span class="img-wrapper"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"></span></label></p>
 <p>Make sure that the ticket number matches the actual maintenance ticket.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="run-javascript-tests-with-jest"><a class="header" href="#run-javascript-tests-with-jest">Run Javascript tests with Jest</a></h1>
@@ -1544,7 +1544,7 @@ describe('MyClass', () =&gt; {
 
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="-send-emails"><a class="header" href="#-send-emails">📫 Send Emails</a></h1>
+<h1 id="-send-emails"><a class="header" href="#-send-emails">📬 Send Emails</a></h1>
 <p>As soon as you have to send emails please follow those suggestions.
 They will help you having a proper system to deliver emails and development environment.</p>
 <h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
@@ -1633,7 +1633,7 @@ end
 <li>You can login to Mailtrap to see the sent email</li>
 </ul>
 <h2 id="sparkpost"><a class="header" href="#sparkpost">Sparkpost</a></h2>
-<p>⚠
+<p>:warning:
 Always use subaccounts for the project, so that the whole account doesn’t get suspended / blocked in case of compliance issues!</p>
 <ol>
 <li>Go to <a href="https://app.sparkpost.com/auth">https://app.sparkpost.com/auth</a> and log in with the credentials for
@@ -1670,7 +1670,7 @@ MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
 <p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="devise"><a class="header" href="#devise">Devise</a></h1>
-<p>⚠ If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first. ⚠</p>
+<p>:warning: If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first. :warning:</p>
 <ul>
 <li>Add the following gem <code>gem 'devise'</code> and install it</li>
 </ul>
@@ -2235,8 +2235,12 @@ end
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="wicked-pdf"><a class="header" href="#wicked-pdf">Wicked PDF</a></h1>
-<p>Can be used to generate PDFs and supports HTML to PDF.</p>
-<p>⚠ Up to now, Wicked PDF does not support Bootstrap 4, so if you want to use Bootstrap 4 Templates, use another library ⚠</p>
+<dl>
+<dt id="can-be-used-to-generate-pdfs-and-supports-html-to-pdf"><a class="header" href="#can-be-used-to-generate-pdfs-and-supports-html-to-pdf">Can be used to generate PDFs and supports HTML to PDF.</a></dt>
+<dd>
+<p>warning: Up to now, Wicked PDF does not support Bootstrap 4, so if you want to use Bootstrap 4 Templates, use another library :warning:</p>
+</dd>
+</dl>
 <ul>
 <li>Add <code>gem 'wicked_pdf'</code> to the main section of <code>Gemfile</code></li>
 <li>Add <code>gem 'wkhtmltopdf-binary'</code> to <code>group :development, :test</code></li>
@@ -2251,12 +2255,16 @@ end
 <p><em>Usage:</em></p>
 <pre><code class="language-rb">render pdf: &lt;&lt;filename&gt;&gt;, print_media_type: true, layout: 'pdf', disposition: 'attachment'
 </code></pre>
-<p>⚠ Consider using a job-runner to not block the server during creation of PDFs.</p>
+<p>:warning: Consider using a job-runner to not block the server during creation of PDFs.</p>
 <h2 id="heroku-3"><a class="header" href="#heroku-3">Heroku</a></h2>
 <p>Ensure that fonts are installed on Heroku, otherwise the PDF will look different compared to the one generated locally. The fonts need to be installed with a buildpack and put in the <code>~/.fonts</code> folder.
 If you need Arial, you can add the following buildpack on Heroku:</p>
-<p><code>https://github.com/propertybase/heroku-buildpack-fonts</code></p>
-<p>⚠ Make sure you add this as a first buildpack before <code>heroku/ruby</code>!</p>
+<dl>
+<dt id="httpsgithubcompropertybaseheroku-buildpack-fonts"><a class="header" href="#httpsgithubcompropertybaseheroku-buildpack-fonts"><code>https://github.com/propertybase/heroku-buildpack-fonts</code></a></dt>
+<dd>
+<p>warning: Make sure you add this as a first buildpack before <code>heroku/ruby</code>!</p>
+</dd>
+</dl>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="recaptcha-v3"><a class="header" href="#recaptcha-v3">reCAPTCHA v3</a></h1>
 <p>Here you will learn how to implement reCAPTCHA v3 into a project. It is pretty simple to use and doesn’t
@@ -2290,7 +2298,7 @@ which then returns a score based on which it will be decided if the request (to 
 <a href="https://www.google.com/recaptcha/admin">reCAPTCHA admin panel</a> and provide the required keys in
 the <code>.env</code>. If your integration worked, then you will see a small container in the bottom right
 corner of your chosen page, something like this:
-<img src="https://user-images.githubusercontent.com/31915276/55479133-ae4f8c80-561d-11e9-9df2-d94cbc5f92d3.png" alt="reCAPTCHA demonstration"></p>
+<label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="https://user-images.githubusercontent.com/31915276/55479133-ae4f8c80-561d-11e9-9df2-d94cbc5f92d3.png" alt="reCAPTCHA demonstration"><span class="img-wrapper"><img src="https://user-images.githubusercontent.com/31915276/55479133-ae4f8c80-561d-11e9-9df2-d94cbc5f92d3.png" alt="reCAPTCHA demonstration"></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="google-analytics"><a class="header" href="#google-analytics">Google Analytics</a></h1>
 <p>Google Analytics is only set up for the main branch (since *.renuoapp.ch domains are tracked via Cloudflare injection).</p>
@@ -2355,7 +2363,7 @@ using the google@renuo.ch account.</p>
 <li><code>tmp</code> for trials (e.g. learning week, presentations)</li>
 <li><code>system-gsuite</code> is for Google app script</li>
 </ul>
-<p><img src="images/google_app_1.png" alt="google_app_1"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/google_app_1.png" alt="google_app_1"><span class="img-wrapper"><img src="images/google_app_1.png" alt="google_app_1"></span></label></p>
 </li>
 </ul>
 <p>Before continuing, make sure that your new project is selected in the top navigational header of the Google Console.</p>
@@ -2364,7 +2372,7 @@ using the google@renuo.ch account.</p>
 <p>In order to user the Google APIs you will need to generate new credentials. Because we are using only one project per application, but would like to separate the usage in development from the one in production, name the keys like so: <code>maps-main</code> and <code>maps-develop</code>. Because we might need a key to also test the map locally, add a separate one named <code>maps-local</code>.</p>
 <p><strong>API key restrictions</strong></p>
 <p>To prevent quota and key theft, we need to add some restrictions to our keys. There are two types of restrictions: Key restrictions and API restrictions. For the develop API key add the following ones:</p>
-<p><img src="images/google_app_2.png" alt="google_app_2"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/google_app_2.png" alt="google_app_2"><span class="img-wrapper"><img src="images/google_app_2.png" alt="google_app_2"></span></label></p>
 <p>For main, enable only the specific domain <strong>and</strong> the <code>renuoapp.ch</code> domain.</p>
 <p>For the key we use locally, enable the specific localhost domain (<code>project-name.localhost</code>).</p>
 <h2 id="geocoding-api"><a class="header" href="#geocoding-api">Geocoding API</a></h2>
@@ -2382,11 +2390,15 @@ we suggest you to use <a href="https://renuo.slack.com/">Slack</a>.</p>
 <code>#project-gifcoins</code>, etc..).</p>
 <p>Invite all team members involved in the project to the channel.</p>
 <h2 id="deploy-notifications"><a class="header" href="#deploy-notifications">Deploy Notifications</a></h2>
-<p>One notification you may want to receive on this channel is about when a new deployment on main has been performed. In
+<dl>
+<dt id="one-notification-you-may-want-to-receive-on-this-channel-is-about-when-a-new-deployment-on-main-has-been-performed-in-order-to-do-that-you-must-be-an-admin-of-the-renuo-slack-organisation-if-you-are-not-an-admin-ask-wg-operations-to-do-it-for-you-communicating-the-project-name"><a class="header" href="#one-notification-you-may-want-to-receive-on-this-channel-is-about-when-a-new-deployment-on-main-has-been-performed-in-order-to-do-that-you-must-be-an-admin-of-the-renuo-slack-organisation-if-you-are-not-an-admin-ask-wg-operations-to-do-it-for-you-communicating-the-project-name">One notification you may want to receive on this channel is about when a new deployment on main has been performed. In
 order to do that you must be an admin of the Renuo Slack Organisation. If you are not an admin, ask wg-operations to do
-it for you communicating the <code>[project-name]</code>.</p>
-<p>⚠ <strong>You must have already setup <a href="#configure-the-ci">Automatic Deployment through SemaphoreCI</a></strong> ⚠
+it for you communicating the <code>[project-name]</code>.</a></dt>
+<dd>
+<p>warning: <strong>You must have already setup <a href="#configure-the-ci">Automatic Deployment through SemaphoreCI</a></strong> :warning:
 If you used Renuo CLI to configure SemaphoreCI, the notifications should be already created. For manual setup, follow these steps:</p>
+</dd>
+</dl>
 <ol>
 <li>Open the global Notifications settings (<code>https://renuo.semaphoreci.com/notifications</code>)</li>
 <li>Create New Notification</li>
@@ -2498,7 +2510,7 @@ simply run the following command from the root folder of the project:</p>
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-abc7f01d.js"></script>
-        <script src="book-c22b7243.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

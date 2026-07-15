@@ -37,12 +37,12 @@ Add SimpleCov configuration at the top of the file (before `RSpec.configure`):
 unless ENV["NO_COVERAGE"]
   require "simplecov"
   SimpleCov.start "rails" do
-    add_filter "app/channels/application_cable/channel.rb"
-    add_filter "app/channels/application_cable/connection.rb"
-    add_filter "app/jobs/application_job.rb"
-    add_filter "app/mailers/application_mailer.rb"
-    add_filter "app/models/application_record.rb"
-    add_filter ".semaphore-cache"
+    skip "app/channels/application_cable/channel.rb"
+    skip "app/channels/application_cable/connection.rb"
+    skip "app/jobs/application_job.rb"
+    skip "app/mailers/application_mailer.rb"
+    skip "app/models/application_record.rb"
+    skip ".semaphore-cache"
     enable_coverage :branch
     enable_coverage_for_eval
     minimum_coverage line: 100, branch: 100

@@ -151,10 +151,7 @@ SELENIUM_DRIVER="selenium_chrome_headless"
 ### config/environments/development.rb
 
 ```rb
-config.generators do |g|
-  g.test_framework :rspec
-end
-
+config.generators { |g| g.test_framework :rspec }
 ```
 
 * Add the line `bundle exec parallel_rspec` to `bin/check`

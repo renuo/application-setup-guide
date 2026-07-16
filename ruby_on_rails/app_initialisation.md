@@ -129,4 +129,4 @@ Check existing projects for an example of the usage.
 ## Finalising
 
 * Check if the following scripts run successfully: `bin/setup`, `bin/check`, `bin/run`
-* If they do, you're ready for the next step.
+* If they do, commit all your changes to the main branch with Git.

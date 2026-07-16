@@ -25,18 +25,6 @@ Add it to the `bin/fastcheck` script.
 bundle exec brakeman -q -z --no-summary --no-pager
 ```
 
-## Bundler-audit
-
-> ✨ Ships with Rails 8.1 by default.
-
-Scans `Gemfile.lock` for gems with known security vulnerabilities. Add it to the `bin/fastcheck` script:
-
-```sh
-bundle exec bundler-audit check --update
-```
-
-Use `config/bundler-audit.yml` to ignore specific advisories if needed.
-
 ## Mdl
 
 An optional check for markdown files. You can include it or not. Discuss within your team.

@@ -1,18 +1,15 @@
 # Push to Git Repository
 
-It's now time to push to the git repository and configure our CI and CD to deploy our application on Heroku.
-To do that you first need to [Create a Git Repository](../create_git_repository.md).
+By now `rails new` has already initialised the local git repository and created an initial commit for you. This step pushes that commit to the GitHub repository you created in the [previous step](../create_github_repository.md).
 
-After creating the repo you can connect your project to the remote git repo (if you didn't use `hub create` command)
+If you used `gh repo create renuo/[project-name] --private --source=. --remote=origin`, the `origin` remote is already set. Otherwise, add it:
 
 ```sh
 git remote add origin git@github.com:renuo/[project-name].git
 ```
 
-and push using:
+Then push:
 
 ```sh
-git add .
-git commit -m "Initial commit"
 git push -u origin main
 ```

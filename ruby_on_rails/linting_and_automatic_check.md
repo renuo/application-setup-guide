@@ -7,8 +7,9 @@ Check out the `bin/fastcheck` [fastcheck](../templates/bin/fastcheck) for the fi
 
 ## Renuocop 👮
 
+> ✨ Installed by the Renuo Rails template (replaces `rubocop-rails-omakase`).
+
 Renuocop is based on Standard Ruby and is a set of rules that we use to lint our Ruby code.
-It's already included in your Gemfile by default.
 
 You can execute it and correct the issues you'll find.
 
@@ -16,7 +17,9 @@ You can execute it and correct the issues you'll find.
 
 ## Brakeman
 
-Brakeman comes by default with Rails. Add it to the `bin/fastcheck` script.
+> ✨ Ships with Rails 8.1 by default.
+
+Add it to the `bin/fastcheck` script.
 
 ```sh
 bundle exec brakeman -q -z --no-summary --no-pager

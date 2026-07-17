@@ -2,19 +2,11 @@
 
 ## Prerequisites
 
-Before setting up your application, ensure you have completed the following for Heroku.
-
-### Prerequisites for Heroku
-
 - You've [read about what Heroku is](https://www.heroku.com/platform).
 - You have a Heroku account.
 - You have installed the `renuo-cli` gem.
 
-## Setup Your Application
-
-### Setup Heroku Application
-
-#### Remote Configuration
+## Setup
 
 Run the command to generate a script which will create and configure all Heroku apps. `[project-name]` string length is limited to 22 characters:
 
@@ -29,7 +21,7 @@ In particular, you might need only one of the two environments if you decided to
 
 If you think that the script is outdated, please open a Pull Request on the [renuo-cli](https://github.com/renuo/renuo-cli) project.
 
-#### Setup Rails for Heroku
+## Setup Rails for Heroku
 
 1. Add a file called `Procfile` to your code root:
 

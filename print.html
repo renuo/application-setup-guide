@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-5ab0665e.js";
+            window.path_to_searchindex_js = "searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-bfba33f3.js"></script>
+        <script src="toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,10 +180,6 @@
 We are a <a href="https://rubyonrails.org/foundation">Rails company</a>, so the most value probably
 will be found in the parts concerning Rails. But anyways you’ll also find a lot about the
 inner workings of Renuo.</p>
-<ul>
-<li><a href="#ruby-on-rails---application-setup-guide">Ruby on Rails – Application Setup Guide</a></li>
-</ul>
-<h2 id="some-notes-on-the-side"><a class="header" href="#some-notes-on-the-side">Some Notes on the Side</a></h2>
 <p>If you are reading this document, it means that you have to setup a new application.
 A new project started and it’s now time to set everything up so that <strong>everyone</strong>,
 in your team, <strong>can start working on it</strong>.</p>
@@ -191,132 +187,35 @@ in your team, <strong>can start working on it</strong>.</p>
 fast as possible. There are things, in Renuo projects, which are mandatory, other that are suggested.
 This guide is the result of more than ten years of experience, so this means three things: it’s very robust, very opinionated, and possibly very outdated.</p>
 <p><strong>You are always welcome to challenge the guide and improve it with a Pull Request.</strong></p>
-<p>The basic things that need to be ready before the team can start working on a project are:</p>
+<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
+If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
+<p>Thank you for your work and have fun! :tada:</p>
+<h2 id="how-to-use-this-guide"><a class="header" href="#how-to-use-this-guide">How to Use This Guide</a></h2>
+<p>The guide is structured as a linear walkthrough. Follow it from top to bottom when setting up a new project.</p>
+<ol>
+<li><strong>Before You Start</strong> — Read <a href="#naming-conventions">Naming Conventions</a>, <a href="#gitflow">GitFlow</a>, and <a href="#security">Security</a> to understand the ground rules.</li>
+<li><strong>Rails Application Setup</strong> — Follow the <a href="#ruby-on-rails---application-setup-guide">step-by-step setup</a> to create, deploy, and configure your app.</li>
+<li><strong>Guides &amp; Recipes</strong> — Pick the ones you need (emails, authentication, payment, etc.).</li>
+<li><strong>Reference</strong> — Use the <a href="#checklist">Checklist</a> to verify you haven’t missed anything, and the <a href="#go-live">Go Live!</a> page when you’re ready to launch.</li>
+</ol>
+<h2 id="what-needs-to-be-ready"><a class="header" href="#what-needs-to-be-ready">What Needs to Be Ready</a></h2>
+<p>Before the team can start working on a project, you need:</p>
 <ul>
 <li>An existing <em>git</em> repository containing the project</li>
-<li>Two branches: <em>main</em> and <em>develop</em></li>
+<li>Two branches: <em>main</em> and <em>develop</em> (or just <em>main</em> for internal projects)</li>
 <li>A README with essential information about the application</li>
 <li>Convenience-scripts: <code>bin/setup</code>, <code>bin/check</code>, <code>bin/fastcheck</code>, <code>bin/run</code></li>
 <li>One running, green test</li>
-<li>Continuous integration (<em>CI</em>) ready, running and green for both branches</li>
-<li>Continuous deployment (<em>CD</em>) ready and running for both branches</li>
-<li>The application deployed for both branches</li>
+<li>Continuous integration (<em>CI</em>) ready, running and green for all branches</li>
+<li>Continuous deployment (<em>CD</em>) ready and running for all branches</li>
+<li>The application deployed for all branches</li>
 </ul>
-<p>As an appendix, you’ll find a <a href="#checklist">checklist</a> you can use to follow the guide.</p>
-<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
-If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
-<p>We want you to know exactly the reason behind each single step of this guide.</p>
-<p>Thank you for your work and have fun! :tada:</p>
 <h2 id="serving-the-documentation-locally"><a class="header" href="#serving-the-documentation-locally">Serving the Documentation Locally</a></h2>
-<p>To view this documentation on your machine, run the following commands:</p>
-<pre><code class="language-sh">brew install mdbook
-mdbook serve
+<p>To view this documentation on your machine, run the following command:</p>
+<pre><code class="language-sh">mdbook serve
 </code></pre>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p><a href="https://creativecommons.org/licenses/by/4.0/legalcode">Attribution 4.0 International (CC BY 4.0)</a></p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="create-a-git-repository"><a class="header" href="#create-a-git-repository">Create a Git Repository</a></h1>
-<p>At Renuo we currently use <a href="https://github.com/">GitHub</a> as our git repository. You should already be part of the Renuo Organisation and have permissions to do so.
-If that’s not the case, double check the Laptop Setup Guide or ask wg-operations.</p>
-<p>To create a new GitHub project you can use the tool you prefer, but it should have the following characteristics:</p>
-<ul>
-<li>Should be under <code>renuo</code> organisation</li>
-<li>Should have <code>[project-name]</code> as a name</li>
-<li>Should be private (unless you are creating an OpenSource project)</li>
-</ul>
-<p>Use the command <code>hub create -p renuo/[project-name]</code> to create the repo and add it to the origin of the current folder.</p>
-<h2 id="public-repos-need-a-license"><a class="header" href="#public-repos-need-a-license">Public repos need a license</a></h2>
-<p>If your repository is public, ensure that it contains a license.
-We usually use the <a href="https://choosealicense.com/licenses/mit/">MIT</a> license if possible or a <a href="https://creativecommons.org/licenses/">CreativeCommons</a> license for documentation-only repositories (such as the application setup guide 🙂).
-You can add a license directly on GitHub while initializing a repository by selecting a license template in the “Add a license” dropdown.
-However, if the repository is already initialized, you’re still able to add a license using a template:</p>
-<ul>
-<li>Click <code>Create new file</code></li>
-<li>Use <code>LICENSE</code> for the filename</li>
-<li>Then click on <code>Choose a license template</code> and select the MIT license</li>
-<li>Fill in Renuo AG in the full name placeholder</li>
-<li>Click submit and commit the file</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="gitflow"><a class="header" href="#gitflow">Gitflow</a></h1>
-<p>At Renuo we follow <a href="http://nvie.com/posts/a-successful-git-branching-model/">gitflow convention</a> and we use it in every project.
-Please check it out and read how it works if you don’t know it yet.
-It’s very important that you know how gitflow works to work at Renuo.</p>
-<p>Since we follow gitflow, we have two main branches connected, via CD, to two servers, we call “main” and “develop”.</p>
-<pre><code class="language-mermaid">graph LR
-A[main] --&gt; CI1(CI) --&gt; CD1(CD)
-CD1(CD) --&gt; S11(server)
-CD1(CD) --&gt; S12(server)
-
-    B[develop] --&gt; CI2(CI) --&gt; CD2(CD)
-    CD2(CD) --&gt; S21(server)
-    CD2(CD) --&gt; S22(server)
-
-    B[develop] --&gt; C[feature/1337-ff] --&gt; CI3(CI)
-</code></pre>
-<pre><code class="language-mermaid">sequenceDiagram
-    actor Developer
-    participant G as GitHub
-    participant CI
-    participant S as Server
-
-    rect rgb(191, 223, 255)
-
-    Developer-&gt;&gt;G: git push origin develop or main
-    G-&gt;&gt;CI: notify about code change
-    CI-&gt;&gt;G: checkout code
-    CI-&gt;&gt;CI: run tests
-    CI-&gt;&gt;S: deploy
-    end
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="go-live"><a class="header" href="#go-live">Go Live</a></h1>
-<h2 id="dns-ssl--smtp"><a class="header" href="#dns-ssl--smtp">DNS, SSL &amp; SMTP</a></h2>
-<ul>
-<li>Check your DNS records, for example
-<ul>
-<li><code>CNAME</code> to Heroku (<a href="https://devcenter.heroku.com/articles/custom-domains">see their docs</a>)</li>
-<li><code>TXT</code> records for <a href="https://support.sparkpost.com/docs/getting-started/setting-up-domains">SparkPost sending domains</a></li>
-<li><code>CAA</code> records (<a href="https://developers.cloudflare.com/ssl/edge-certificates/caa-records/#create-caa-records">see Cloudflare</a>)</li>
-</ul>
-</li>
-<li>If SparkPost has been set up with the renuoapp.ch domain and the project has its own domain now, set up SparkPost again with its own domain</li>
-<li>Verify that SparkPost mails are working and the <a href="https://app.sparkpost.com/domains/list/sending">sending domain is validated</a>.</li>
-<li>Verify that SSL is working correctly</li>
-</ul>
-<p>If the final domain isn’t already in use, you can configure it also already:
-Add a CNAME DNS record pointing to the app (<code>[project-name]-main.renuoapp.ch</code>).</p>
-<h3 id="url-rewriting-on-cloudflare"><a class="header" href="#url-rewriting-on-cloudflare">URL rewriting on Cloudflare</a></h3>
-<p>For user comfort we redirect HTTP calls to <a href="https://example.com">https://example.com</a> to <a href="https://www.example.com">https://www.example.com</a>.
-This is done via page rules in Cloudflare.</p>
-<ol>
-<li>Add a new page rule</li>
-<li>Enter <code>example.com/*</code></li>
-<li>Choose “Forwarding URL”</li>
-<li>Choose “301 - Permanent Redirect”</li>
-<li>Enter <code>https://www.example.com/$1</code></li>
-<li>Click “Save and Deploy”</li>
-</ol>
-<h2 id="deploio-preferred-deployment-method"><a class="header" href="#deploio-preferred-deployment-method">Deploio (Preferred Deployment Method)</a></h2>
-<p>We now recommend deploying applications using <a href="https://deplo.io">Deploio</a>, moving away from Heroku.</p>
-<p>When preparing your app for production on Deploio, ensure the following:</p>
-<ul>
-<li>Verify the machine type of the PostgreSQL database in the PostgreSQL resource view.</li>
-<li>Confirm the configured application size in the application configuration tab.</li>
-<li>Ensure the application replica count is correctly set in the application configuration tab.</li>
-</ul>
-<p>For detailed instructions and best practices, including quick start guides for a variety of frameworks, please refer to the <a href="https://guides.deplo.io/user-guide/network-and-deployment.html#network-deployment">Deploio deployment documentation</a>.</p>
-<h2 id="heroku"><a class="header" href="#heroku">Heroku</a></h2>
-<ul>
-<li>Check the size and amount of dynos on Heroku</li>
-<li>Check the database size plan on Heroku and upgrade if it is foreseeable that 10’000 rows are exceeded in a short time</li>
-<li>Check additional addons and according plans on Heroku</li>
-</ul>
-<h2 id="other"><a class="header" href="#other">Other</a></h2>
-<ul>
-<li>Reset admin credentials, seeds, … if necessary</li>
-<li>Test the whole application by hand if everything is working as it should</li>
-</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="naming-conventions"><a class="header" href="#naming-conventions">Naming Conventions</a></h1>
 <p>Naming the project properly is very important and even more important is doing it from the beginning.
@@ -367,6 +266,38 @@ asked to do the same.</p>
 <li>Etc…</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="gitflow"><a class="header" href="#gitflow">Gitflow</a></h1>
+<p>At Renuo we follow <a href="http://nvie.com/posts/a-successful-git-branching-model/">gitflow convention</a> and we use it in every project.
+Please check it out and read how it works if you don’t know it yet.
+It’s very important that you know how gitflow works to work at Renuo.</p>
+<p>Since we follow gitflow, we have two main branches connected, via CD, to two servers, we call “main” and “develop”.</p>
+<pre><code class="language-mermaid">graph LR
+A[main] --&gt; CI1(CI) --&gt; CD1(CD)
+CD1(CD) --&gt; S11(server)
+CD1(CD) --&gt; S12(server)
+
+    B[develop] --&gt; CI2(CI) --&gt; CD2(CD)
+    CD2(CD) --&gt; S21(server)
+    CD2(CD) --&gt; S22(server)
+
+    B[develop] --&gt; C[feature/1337-ff] --&gt; CI3(CI)
+</code></pre>
+<pre><code class="language-mermaid">sequenceDiagram
+    actor Developer
+    participant G as GitHub
+    participant CI
+    participant S as Server
+
+    rect rgb(191, 223, 255)
+
+    Developer-&gt;&gt;G: git push origin develop or main
+    G-&gt;&gt;CI: notify about code change
+    CI-&gt;&gt;G: checkout code
+    CI-&gt;&gt;CI: run tests
+    CI-&gt;&gt;S: deploy
+    end
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="security"><a class="header" href="#security">Security</a></h1>
 <h2 id="email-contact"><a class="header" href="#email-contact">Email contact</a></h2>
 <p>Make it easy for others to let you know about security issues.
@@ -388,26 +319,6 @@ To report a security vulnerability, please email security@renuo.ch.
 <h2 id="cipher-suite-review"><a class="header" href="#cipher-suite-review">Cipher suite review</a></h2>
 <p>Review your SSL/TLS configuration periodically: <a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a></p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="checklist"><a class="header" href="#checklist">Checklist</a></h1>
-<ul>
-<li><input disabled="" type="checkbox"> Application name chosen</li>
-<li><input disabled="" type="checkbox"> Rails Application created</li>
-<li><input disabled="" type="checkbox"> Git Repository created and configured</li>
-<li><input disabled="" type="checkbox"> CI configured</li>
-<li><input disabled="" type="checkbox"> Server created</li>
-<li><input disabled="" type="checkbox"> CD configured</li>
-<li><input disabled="" type="checkbox"> App running</li>
-<li><input disabled="" type="checkbox"> Linting tools installed</li>
-<li><input disabled="" type="checkbox"> RSpec installed</li>
-<li><input disabled="" type="checkbox"> Suggested gems included</li>
-<li><input disabled="" type="checkbox"> Sentry, Appsignal and/or NewRelic configured depending on your choice.</li>
-<li><input disabled="" type="checkbox"> Logs on Appsignal configured</li>
-<li><input disabled="" type="checkbox"> Cloudflare configured</li>
-<li><input disabled="" type="checkbox"> README written and complete</li>
-<li><input disabled="" type="checkbox"> Uptime Monitor configured</li>
-<li><input disabled="" type="checkbox"> robots.txt configured</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="ruby-on-rails---application-setup-guide"><a class="header" href="#ruby-on-rails---application-setup-guide">Ruby On Rails - Application Setup Guide</a></h1>
 <p>This setup will cover a pure, monolithic Rails Applications.
 This is the most frequent type of application we have at <a href="https://renuo.ch">Renuo</a> and is probably also the easiest to setup.
@@ -423,24 +334,33 @@ As a rule of thumb: for customers we always use two environments, for internal p
 Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.
 Decide with your team if you want one or two branches.</p>
 </blockquote>
+<blockquote>
+<p>:bulb: <strong>Tip:</strong> Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.</p>
+</blockquote>
+<hr>
+<h2 id="step-1-create-the-app"><a class="header" href="#step-1-create-the-app">Step 1: Create the App</a></h2>
 <ol>
 <li><a href="#initialise-the-rails-application">Initialise the Rails Application</a></li>
 <li><a href="#push-to-git-repository">Push to Git Repository</a></li>
 <li><a href="#initialise-gitflow">Initialise Gitflow</a></li>
 <li><a href="#configure-the-github-repository">Configure Github Repository</a></li>
+</ol>
+<h2 id="step-2-deploy-the-app"><a class="header" href="#step-2-deploy-the-app">Step 2: Deploy the App</a></h2>
+<ol>
 <li><a href="#setup-application-server-for-deploio">Create an Application Server for Deploio</a> or <a href="#setup-application-server-for-heroku">Create an Application Server for Heroku</a></li>
 <li><a href="#configure-the-ci">Configure the CI / CD</a></li>
 </ol>
 <p>Once here, your app should be up and running on all environments.</p>
+<h2 id="step-3-quality-tools"><a class="header" href="#step-3-quality-tools">Step 3: Quality Tools</a></h2>
 <p>It’s now time to introduce some more tools which will help you and the team to keep a high quality during the project development.</p>
 <ol>
 <li><a href="#setup-rspec">RSpec</a></li>
 <li><a href="#linting-and-automatic-checks-">Linting and automatic checks</a></li>
 <li><a href="#suggested-gems">Gems and libraries :gem:</a></li>
 <li><a href="#cloudflare">Cloudflare</a></li>
-<li><a href="ruby_on_rails/compile_readme.html">README</a></li>
 </ol>
 <p>:tada: Finally you are ready to start working on you new project! :tada:</p>
+<h2 id="step-4-monitoring--protection"><a class="header" href="#step-4-monitoring--protection">Step 4: Monitoring &amp; Protection</a></h2>
 <p>While everyone starts working there are some more things which you should setup.
 Most are not optional, but the rest of the team can start working even if those are not in place yet.</p>
 <ol>
@@ -451,21 +371,20 @@ Most are not optional, but the rest of the team can start working even if those 
 <li><a href="#configure-percy">Percy</a> (optional)</li>
 <li><a href="#staging-environment-protection">Protect develop environment</a></li>
 </ol>
-<p>Some services should be configured accordingly to the packages bought by the customer.
-Once the new application is created, please add the project to the
-<a href="https://docs.google.com/spreadsheets/d/1FY4jqByO-aI5sDan0hD7ULu6a2-eLsmO6kgdCFlPmuY/edit#gid=0">monitoring list</a>
-and discuss with the PO how the service should be configured.</p>
+<h2 id="step-5-customer-plan-services"><a class="header" href="#step-5-customer-plan-services">Step 5: Customer Plan Services</a></h2>
+<p>Bookmark the project on <a href="https://dashboard.renuo.ch/redmine_projects">Redmine</a> and configure the services listed there.</p>
 <ol>
 <li><a href="#uptimerobot-monitoring">Uptimerobot</a></li>
-<li>Depending on the monitoring list, also <a href="#sentry">Sentry notifications</a> need to be configured.</li>
+<li><a href="#sentry">Sentry notifications</a>, if requested</li>
 <li><a href="#depfu">Depfu security monitoring</a></li>
-<li>Depending on the monitoring list, also <a href="ruby_on_rails/papertrail.html">Papertrail alerts</a> need to be configured.</li>
+<li><a href="ruby_on_rails/papertrail.html">Papertrail alerts</a>, if requested</li>
 </ol>
-<p>Here you will find a series of chapters and guides on how to setup some of the gems we use most often and some other
-useful services:</p>
-<ol>
+<hr>
+<h2 id="guides--recipes"><a class="header" href="#guides--recipes">Guides &amp; Recipes</a></h2>
+<p>The following are not part of the sequential setup. Use them as needed for your project.</p>
+<ul>
 <li><a href="#run-javascript-tests-with-jest">Run Javascript tests with Jest</a></li>
-<li><a href="pull_requests_template.html">Pull Requests Template</a></li>
+<li><a href="#pull-requests-template">Pull Requests Template</a></li>
 <li><a href="#slack-and-notifications">Slack and Project Notifications</a></li>
 <li><a href="#-send-emails">Send emails</a></li>
 <li><a href="#sparkpost--mailtrap-1">Sparkpost &amp; Mailtrap</a></li>
@@ -476,7 +395,7 @@ useful services:</p>
 <li><a href="#bootstrap">bootstrap</a></li>
 <li><a href="#font-awesome">font-awesome</a></li>
 <li><a href="#bullet">bullet</a> <code>gem 'bullet'</code></li>
-<li><a href="#logs--error-monitoring-with-appsignal">lograge</a> <code>gem 'lograge'</code></li>
+<li><a href="#lograge">lograge</a> <code>gem 'lograge'</code></li>
 <li>Rack Tracker (Google Analytics) <code>gem 'rack-tracker'</code> –&gt; see <a href="#google-analytics">Google Analytics</a></li>
 <li>Favicons</li>
 <li><a href="https://github.com/cyu/rack-cors">Rack CORS</a></li>
@@ -490,9 +409,8 @@ useful services:</p>
 </li>
 <li><a href="#wicked-pdf">wicked pdf</a> <code>gem wicked_pdf</code></li>
 <li><a href="#recaptcha-v3">Recaptcha v3</a></li>
-<li><a href="ruby_on_rails/wallee.html">Wallee Payment Integration</a></li>
-<li><a href="https://gist.github.com/sislr/fb7f6d8f05c96c199d9525706561902d">Sign in with Redmine</a></li>
-</ol>
+<li><a href="#wallee">Wallee Payment Integration</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="initialise-the-rails-application"><a class="header" href="#initialise-the-rails-application">Initialise the Rails Application</a></h1>
 <h2 id="default-rails-setup"><a class="header" href="#default-rails-setup">Default Rails setup</a></h2>
@@ -600,7 +518,7 @@ config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "warn") # change
 <pre><code class="language-ruby">config.action_controller.action_on_unpermitted_parameters = :raise
 config.i18n.raise_on_missing_translations = :strict
 
-config.generators.apply_rubocop_autocorrect_after_generate!
+config.generators { |g| g.apply_rubocop_autocorrect_after_generate! }
 </code></pre>
 </li>
 <li>
@@ -619,7 +537,7 @@ end
 </code></pre>
 </li>
 <li>
-<p>The default <a href="ruby_on_rails/content_security_policy.html">Content Security Policies</a> should not always be activated, but rather only where there are platform secrets that need to be secured. This rule can be overwritten by a customer, if he opted into CSP when selecting his maintenance plans.</p>
+<p>The default <a href="#content-security-policy">Content Security Policies</a> should not always be activated, but rather only where there are platform secrets that need to be secured. This rule can be overwritten by a customer, if he opted into CSP when selecting his maintenance plans.</p>
 </li>
 <li>
 <p>If you’re using a js-bundling tool, let’s clean up after asset precompilation
@@ -637,74 +555,96 @@ end
 <li>If they do, commit all your changes to the main branch with Git.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="create-a-github-repository"><a class="header" href="#create-a-github-repository">Create a GitHub Repository</a></h1>
+<p>At Renuo we currently use <a href="https://github.com/">GitHub</a> as our git repository. You should already be part of the Renuo Organisation and have permissions to do so.
+If that’s not the case, double check the Laptop Setup Guide or ask wg-operations.</p>
+<p>To create a new GitHub project you can use the tool you prefer, but it should have the following characteristics:</p>
+<ul>
+<li>Should be under <code>renuo</code> organisation</li>
+<li>Should have <code>[project-name]</code> as a name</li>
+<li>Should be private (unless you are creating an OpenSource project)</li>
+</ul>
+<p>Use the command <code>gh repo create renuo/[project-name] --private --source=. --remote=origin</code> to create the repo and add it to the origin of the current folder.</p>
+<h2 id="public-repos-need-a-license"><a class="header" href="#public-repos-need-a-license">Public repos need a license</a></h2>
+<p>If your repository is public, ensure that it contains a license.
+We usually use the <a href="https://choosealicense.com/licenses/mit/">MIT</a> license if possible or a <a href="https://creativecommons.org/licenses/">CreativeCommons</a> license for documentation-only repositories (such as the application setup guide 🙂).
+You can add a license directly on GitHub while initializing a repository by selecting a license template in the “Add a license” dropdown.
+However, if the repository is already initialized, you’re still able to add a license using a template:</p>
+<ul>
+<li>Click <code>Create new file</code></li>
+<li>Use <code>LICENSE</code> for the filename</li>
+<li>Then click on <code>Choose a license template</code> and select the MIT license</li>
+<li>Fill in Renuo AG in the full name placeholder</li>
+<li>Click submit and commit the file</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="push-to-git-repository"><a class="header" href="#push-to-git-repository">Push to Git Repository</a></h1>
-<p>It’s now time to push to the git repository and configure our CI and CD to deploy our application on Heroku.
-To do that you first need to <a href="#create-a-git-repository">Create a Git Repository</a>.</p>
-<p>After creating the repo you can connect your project to the remote git repo (if you didn’t use <code>hub create</code> command)</p>
+<p>By now <code>rails new</code> has already initialised the local git repository and created an initial commit for you. This step pushes that commit to the GitHub repository you created in the <a href="#create-a-github-repository">previous step</a>.</p>
+<p>If you used <code>gh repo create renuo/[project-name] --private --source=. --remote=origin</code>, the <code>origin</code> remote is already set. Otherwise, add it:</p>
 <pre><code class="language-sh">git remote add origin git@github.com:renuo/[project-name].git
 </code></pre>
-<p>and push using:</p>
-<pre><code class="language-sh">git add .
-git commit -m "Initial commit"
-git push -u origin main
+<p>Then push:</p>
+<pre><code class="language-sh">git push -u origin main
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="initialise-gitflow"><a class="header" href="#initialise-gitflow">Initialise Gitflow</a></h1>
 <p>You can initialise gitflow in you project with <code>git flow init -d</code></p>
 <p>Then push also your new develop branch <code>git push --set-upstream origin develop</code> if you have one.</p>
-<p>Once you have pushed all the branches, you can finish the <a href="#configure-the-github-repository">configuration of Git Repository</a></p>
+<p>Once you have pushed all the branches, you can finish the <a href="#configure-the-github-repository">configuration of GitHub Repository</a></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="configure-the-github-repository"><a class="header" href="#configure-the-github-repository">Configure the GitHub Repository</a></h1>
 <p>These are the suggested configurations for our GitHub repositories.
 Please stick to it unless you have special needs.</p>
 <ul>
-<li>
-<p>General Settings</p>
+<li>General Settings
 <ul>
 <li>Features: Remove <em>Wikis</em>, <em>Issues</em> and <em>Projects</em></li>
 <li>Pull Requests
 <ul>
 <li>Disable <em>Allow merge commits</em> and <em>Allow rebase merging</em></li>
-<li>Always suggest updating pull request branches</li>
 <li>Allow auto-merge</li>
 <li>Automatically delete head branches</li>
+<li>Always suggest updating pull request branches</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>Manage access</p>
+<li>Manage access
 <ul>
 <li>Add <em>staff</em> team as a collaborator with Admin access</li>
 <li>Add <em>security</em> team as collaborator with Write access</li>
 </ul>
 </li>
-<li>
-<p>Branches</p>
+<li>Branches
 <ul>
 <li>Default branch: either <code>main</code> or <code>develop</code> depending on whether you want one or two environments.</li>
 </ul>
 </li>
-<li>
-<p>Rules/Rulesets</p>
+<li>Rules/Rulesets
 <ul>
-<li><code>develop</code>
+<li>We use two rulesets: one for <code>main</code> and one for everything else. This ensures that long-lived branches like <code>redesign</code> and feature branches like <code>feat/my-feature</code> share the same protection rules as <code>develop</code>.</li>
+<li><code>non-main</code>
 <ul>
 <li>Enforcement status: <code>Active</code></li>
+<li>Branch targeting criteria:
+<ul>
+<li>Include all branches</li>
+<li>Exclude by pattern: <code>main</code></li>
+</ul>
+</li>
 <li>Bypass list: add <code>Repository Admin</code> Role with <em>allow for pull requests only</em> option</li>
-<li>Branch targeting criteria: <code>develop</code></li>
 <li>Restrict deletions</li>
 <li>Require linear history</li>
 <li>Require a pull request before merging</li>
 <li>Require status checks to pass
 <ul>
-<li>Select <code>ci/semaphore/push</code> (AFTER SETTING UP SEMAPHORE)</li>
+<li>Select <code>ci/semaphore/push</code></li>
 </ul>
 </li>
 <li>Block force pushes</li>
 </ul>
 </li>
-<li><code>main</code> (same as develop but…)
+<li><code>main</code> (same as non-main but…)
 <ul>
 <li>Branch targeting criteria: <code>main</code></li>
 <li>❌ Require a pull request before merging</li>
@@ -713,8 +653,7 @@ Please stick to it unless you have special needs.</p>
 </li>
 </ul>
 </li>
-<li>
-<p>Autolink references</p>
+<li>Autolink references
 <ul>
 <li>Add a new Autolink reference with:
 <ul>
@@ -725,8 +664,6 @@ Please stick to it unless you have special needs.</p>
 </ul>
 </li>
 </ul>
-<p>In case you have a second long-living environment (e.g., for a design rewrite, a new major version, etc.),
-consider applying the same rules as on <code>develop</code> to it as well.</p>
 <h2 id="team"><a class="header" href="#team">Team</a></h2>
 <p>Each project has a team owning it. The team is named after the project: <code>[team-name] = [project-name]</code>.
 Thanks to this we can:</p>
@@ -758,18 +695,38 @@ Thanks to this we can:</p>
 * @renuo/[team-name]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="setup-application-server-for-heroku"><a class="header" href="#setup-application-server-for-heroku">Setup Application Server for Heroku</a></h1>
+<h1 id="setup-application-server-for-deploio"><a class="header" href="#setup-application-server-for-deploio">Setup Application Server for Deploio</a></h1>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>Before setting up your application, ensure you have completed the following for Heroku.</p>
-<h3 id="prerequisites-for-heroku"><a class="header" href="#prerequisites-for-heroku">Prerequisites for Heroku</a></h3>
+<ul>
+<li>You’ve <a href="https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio">read about what Deploio is</a>.</li>
+<li>You have a Deploio account.</li>
+<li>You have installed the <code>renuo-cli</code> gem.</li>
+<li>You have installed the <code>nctl</code> command.</li>
+<li>You have logged in using <code>nctl</code>.</li>
+</ul>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
+<p>Run <a href="https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb">the command to generate a script</a> which will create and configure all Deploio apps. <code>[project-name]</code> string length is limited to 63 characters:</p>
+<pre><code class="language-sh">renuo create-deploio-app [project-name] [git-url]
+</code></pre>
+<p>e.g. <code>renuo create-deploio-app my-app git@github.com:renuo/my-app.git</code></p>
+<p>Please review the script before running it and execute only the commands you need and understand.
+In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
+<p>By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).
+If you think that the production database will soon reach the 10 GB, please consider using the Business tier.</p>
+<p><strong>If you don’t know what a command does: read the documentation and then execute it.</strong></p>
+<p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
+<p>For further configuration, see the <a href="https://guides.deplo.io/ruby/quick-start.html">Rails on Deploio guide</a>. For general Deploio docs, see <a href="https://guides.deplo.io">guides.deplo.io</a>.</p>
+<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
+<p>That’s it! You have now configured your application with Deploio. No more configuration is needed.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="setup-application-server-for-heroku"><a class="header" href="#setup-application-server-for-heroku">Setup Application Server for Heroku</a></h1>
+<h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
 <ul>
 <li>You’ve <a href="https://www.heroku.com/platform">read about what Heroku is</a>.</li>
 <li>You have a Heroku account.</li>
 <li>You have installed the <code>renuo-cli</code> gem.</li>
 </ul>
-<h2 id="setup-your-application"><a class="header" href="#setup-your-application">Setup Your Application</a></h2>
-<h3 id="setup-heroku-application"><a class="header" href="#setup-heroku-application">Setup Heroku Application</a></h3>
-<h4 id="remote-configuration"><a class="header" href="#remote-configuration">Remote Configuration</a></h4>
+<h2 id="setup-1"><a class="header" href="#setup-1">Setup</a></h2>
 <p>Run the command to generate a script which will create and configure all Heroku apps. <code>[project-name]</code> string length is limited to 22 characters:</p>
 <pre><code class="language-sh">renuo create-heroku-app [project-name]
 </code></pre>
@@ -777,7 +734,7 @@ Thanks to this we can:</p>
 In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
 <p><strong>If you don’t know what a command does: read the documentation and then execute it.</strong></p>
 <p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
-<h4 id="setup-rails-for-heroku"><a class="header" href="#setup-rails-for-heroku">Setup Rails for Heroku</a></h4>
+<h2 id="setup-rails-for-heroku"><a class="header" href="#setup-rails-for-heroku">Setup Rails for Heroku</a></h2>
 <ol>
 <li>Add a file called <code>Procfile</code> to your code root:</li>
 </ol>
@@ -791,34 +748,6 @@ In particular, you might need only one of the two environments if you decided to
 /.semaphore
 </code></pre>
 <p>This file allows you to mark files and folders to be excluded from the Heroku</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="setup-application-server-for-deploio"><a class="header" href="#setup-application-server-for-deploio">Setup Application Server for Deploio</a></h1>
-<h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
-<p>Before setting up your application, ensure you have completed the following for Deploio.</p>
-<h3 id="prerequisites-for-deploio"><a class="header" href="#prerequisites-for-deploio">Prerequisites for Deploio</a></h3>
-<ul>
-<li>You’ve <a href="https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio">read about what Deploio is</a>.</li>
-<li>You have a Deploio account.</li>
-<li>You have installed the <code>renuo-cli</code> gem.</li>
-<li>You have installed the <code>nctl</code> command.</li>
-<li>You have logged in using <code>nctl</code>.</li>
-</ul>
-<h2 id="setup-your-application-1"><a class="header" href="#setup-your-application-1">Setup Your Application</a></h2>
-<h3 id="setup-deploio-application"><a class="header" href="#setup-deploio-application">Setup Deploio Application</a></h3>
-<h4 id="remote-configuration-1"><a class="header" href="#remote-configuration-1">Remote Configuration</a></h4>
-<p>Run <a href="https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb">the command to generate a script</a> which will create and configure all Deploio apps. <code>[project-name]</code> string length is limited to 63 characters:</p>
-<pre><code class="language-sh">renuo create-deploio-app [project-name] [git-url]
-</code></pre>
-<p>e.g. <code>renuo create-deploio-app my-app git@github.com:renuo/my-app.git</code></p>
-<p>Please review the script before running it and execute only the commands you need and understand.
-In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
-<p>By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).
-If you think that the production database will soon reach the 10 GB, please consider using the Business tier.</p>
-<p><strong>If you don’t know what a command does: read the documentation and then execute it.</strong></p>
-<p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
-<p>For further configuration and best practices, please refer to the <a href="https://guides.deplo.io">Deploio documentation</a>. You can also view a Ruby on Rails specific guide <a href="https://guides.deplo.io/ruby/quick-start.html">here</a>.</p>
-<h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
-<p>That’s it! You have now configured your application with Deploio. No more configuration is needed.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="configure-the-ci"><a class="header" href="#configure-the-ci">Configure the CI</a></h1>
 <p>At Renuo we <strong>always</strong> use a CI (Continuous Integration) system to test our applications. It’s essential to guarantee
@@ -860,6 +789,10 @@ If this is not the <code>renuo.ch</code> address, you need to tell them (<code>s
 to change your contact email address manually.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="setup-rspec"><a class="header" href="#setup-rspec">Setup RSpec</a></h1>
+<blockquote>
+<p><strong>Note:</strong> The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
+Rails 8.1 does ship <code>capybara</code> and <code>selenium-webdriver</code> in the <code>:test</code> group by default. There is no need to add those manually when using the template.</p>
+</blockquote>
 <p>Even though Rails uses Minitest per default, RSpec is the <em>de-facto</em> standard at Renuo.</p>
 <p>Add the following gems to your Gemfile:</p>
 <pre><code class="language-ruby">group :development, :test do
@@ -979,10 +912,7 @@ end
 SELENIUM_DRIVER="selenium_chrome_headless"
 </code></pre>
 <h3 id="configenvironmentsdevelopmentrb"><a class="header" href="#configenvironmentsdevelopmentrb">config/environments/development.rb</a></h3>
-<pre><code class="language-rb">config.generators do |g|
-  g.test_framework :rspec
-end
-
+<pre><code class="language-rb">config.generators { |g| g.test_framework :rspec }
 </code></pre>
 <ul>
 <li>Add the line <code>bundle exec parallel_rspec</code> to <code>bin/check</code></li>
@@ -1004,7 +934,7 @@ end
 </blockquote>
 <h2 id="verify"><a class="header" href="#verify">Verify</a></h2>
 <p>Check that you see a green page in each app.</p>
-<h3 id="heroku-1"><a class="header" href="#heroku-1">Heroku</a></h3>
+<h3 id="heroku"><a class="header" href="#heroku">Heroku</a></h3>
 <ul>
 <li>Open the two apps
 <ul>
@@ -1027,12 +957,17 @@ end
 Every linter consists of a gem (usually) and a command to add to our <code>bin/fastcheck</code> script.</p>
 <p>Check out the <code>bin/fastcheck</code> <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/bin/fastcheck">fastcheck</a> for the final version of it.</p>
 <h2 id="renuocop-"><a class="header" href="#renuocop-">Renuocop 👮</a></h2>
-<p>Renuocop is based on Standard Ruby and is a set of rules that we use to lint our Ruby code.
-It’s already included in your Gemfile by default.</p>
+<blockquote>
+<p>✨ Installed by the Renuo Rails template (replaces <code>rubocop-rails-omakase</code>).</p>
+</blockquote>
+<p>Renuocop is based on Standard Ruby and is a set of rules that we use to lint our Ruby code.</p>
 <p>You can execute it and correct the issues you’ll find.</p>
 <p><code>bundle exec rubocop -A</code> will fix <del>most</del> all of them automatically.</p>
 <h2 id="brakeman"><a class="header" href="#brakeman">Brakeman</a></h2>
-<p>Brakeman comes by default with Rails. Add it to the <code>bin/fastcheck</code> script.</p>
+<blockquote>
+<p>✨ Ships with Rails 8.1 by default.</p>
+</blockquote>
+<p>Add it to the <code>bin/fastcheck</code> script.</p>
 <pre><code class="language-sh">bundle exec brakeman -q -z --no-summary --no-pager
 </code></pre>
 <h2 id="mdl"><a class="header" href="#mdl">Mdl</a></h2>
@@ -1179,826 +1114,6 @@ end
 <h2 id="crypto-settings"><a class="header" href="#crypto-settings">Crypto settings</a></h2>
 <p>When setting up a new site on Cloudflare, make sure you set SSL to “Full” under Crypto settings. You may end up in endless loop of redirects if it stays on the default setting (“Flexible”)</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="sentry"><a class="header" href="#sentry">Sentry</a></h1>
-<h2 id="general-configuration"><a class="header" href="#general-configuration">General configuration</a></h2>
-<ul>
-<li>
-<p>Go to https://www.sentry.io and login as the renuo monitor user.</p>
-</li>
-<li>
-<p>Create a project named <code>[project-name]</code>.</p>
-</li>
-<li>
-<p>Add the project to the <em>#renuo</em> team if the client pays for monitoring, to the <code>#no-notifications</code> otherwise.</p>
-</li>
-<li>
-<p>Note the DSN key.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/sentry.png" alt="sentry_dsn"><span class="img-wrapper"><img src="images/sentry.png" alt="sentry_dsn"></span></label></p>
-</li>
-</ul>
-<p>Add the ENV variables to the <code>.env</code> files for each environment.</p>
-<p>Use the <strong>same</strong> <code>SENTRY_DSN</code> across all environments, but set a different <code>SENTRY_ENVIRONMENT</code> in each environment (e.g. <code>main</code>, <code>develop</code>).</p>
-<p>This allows all errors to be tracked in a single Sentry project while still being grouped by environment.</p>
-<p>The project’s Sentry issues can be monitored on the <a href="https://dashboard.renuo.ch/redmine_projects">Renuo Dashboard</a>. To configure this, ensure that the <code>dash</code> attribute for the project on Redmine is equal to the Sentry project name.</p>
-<p>The different environments will be automatically detected, and you can monitor and view the Sentry issues from one place.</p>
-<h2 id="backend-rails"><a class="header" href="#backend-rails">Backend (Rails)</a></h2>
-<ul>
-<li>
-<p>Add sentry gems to the project:</p>
-<pre><code class="language-ruby">group :production do
-  gem "sentry-rails"
-  gem "sentry-ruby"
-end
-</code></pre>
-</li>
-<li>
-<p>Add a Sentry initializer to your project <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/initializers/sentry.rb"><code>config/initializers/sentry.rb</code></a>.</p>
-</li>
-<li>
-<p>Add the following to your <code>.env.example</code> file:</p>
-</li>
-</ul>
-<pre><code class="language-bash"># .env.example
-# SENTRY_DSN="find_me_on_password_manager"
-# SENTRY_ENVIRONMENT="local"
-# CSP_REPORT_URI=""
-</code></pre>
-<ul>
-<li>
-<p>Enable CSP Reporting to Sentry in <code>config/initializers/content_security_policy.rb</code> and allow unsafe inline JS:</p>
-<pre><code class="language-ruby">Rails.application.config.content_security_policy do |policy|
-  ...
-  policy.report_uri ENV['CSP_REPORT_URI'] if ENV['CSP_REPORT_URI']
-end
-</code></pre>
-<p>You can find the correct value in <code>Sentry -&gt; Project Settings -&gt; Security Headers -&gt; REPORT URI</code>. Add the environment to the <code>CSP_REPORT_URI</code> using <code>&amp;sentry_environment=main</code>.</p>
-</li>
-</ul>
-<h2 id="frontend-javascript"><a class="header" href="#frontend-javascript">Frontend (Javascript)</a></h2>
-<ul>
-<li>Install the npm package: <code>yarn add @sentry/browser</code></li>
-<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/views/shared/_sentry.html.erb">_sentry.html</a> in your header.</li>
-<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/javascript/sentry.js">sentry.js</a> in your JS assets.</li>
-</ul>
-<h2 id="verify-the-installation"><a class="header" href="#verify-the-installation">Verify the installation</a></h2>
-<h3 id="ruby"><a class="header" href="#ruby">Ruby</a></h3>
-<p>For each Heroku app, connect to the <code>heroku run rails console --app [project-name]-[branch-name]</code> and raise an exception using Sentry:</p>
-<pre><code>begin
-  1 / 0
-rescue ZeroDivisionError =&gt; exception
-  Sentry.capture_exception(exception)
-end
-</code></pre>
-<p>On <code>https://sentry.io/renuo/[project-name]</code> you should find the exception of the ZeroDivisionError.</p>
-<h3 id="javascript"><a class="header" href="#javascript">Javascript</a></h3>
-<p>Open the dev console in chrome, and run</p>
-<pre><code class="language-js">try {
-    throw new Error('test sentry js');
-} catch(e) {
-    Sentry.captureException(e)
-}
-</code></pre>
-<p>On <code>https://sentry.io/renuo/[project-name]</code> you should find “Uncaught Error: test sentry js”.</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="newrelic"><a class="header" href="#newrelic">NewRelic</a></h1>
-<p>NewRelic is a service to monitor app performance.</p>
-<ul>
-<li>
-<p>Add the following gem to your Gemfile:</p>
-<pre><code class="language-ruby">group :production do
-  gem 'newrelic_rpm'
-end
-</code></pre>
-</li>
-<li>
-<p>Add a NewRelic configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/newrelic.yml"><code>config/newrelic.yml</code></a> folder.
-(<strong>Note:</strong> If you are not using Heroku, adjust the app name to something else than <code>HEROKU_APP_NAME</code>)</p>
-</li>
-<li>
-<p>Add the new variables to your Heroku environments and <code>.env</code>:</p>
-<pre><code class="language-yml">NEW_RELIC_LICENSE_KEY: "from newrelic"
-</code></pre>
-</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="robotstxt"><a class="header" href="#robotstxt">robots.txt</a></h1>
-<p>It is time to configure the <code>robots.txt</code> file properly, to avoid crawlers to find our develop environments.
-The main environment should be the only one searchable in the end.</p>
-<p>Make sure that there is a <code>robots.txt</code> file in the public folder or your project (Rails should have created it).
-This file will only be used in environments where the <code>BLOCK_ROBOTS</code> environment variable is not set.
-If it is set then a custom middleware catches calls to <code>/robots.txt</code></p>
-<p>Add the following gem:</p>
-<pre><code class="language-ruby">group :production do
-  gem "norobots"
-end
-</code></pre>
-<h2 id="setting-environment-variables"><a class="header" href="#setting-environment-variables">Setting Environment Variables</a></h2>
-<h3 id="heroku-2"><a class="header" href="#heroku-2">Heroku</a></h3>
-<p>Add the environment variable <code>BLOCK_ROBOTS=true</code> in your develop environment:</p>
-<pre><code class="language-sh">heroku config:add BLOCK_ROBOTS=true --app [project-name]-develop
-</code></pre>
-<h3 id="deploio-1"><a class="header" href="#deploio-1">Deploio</a></h3>
-<p>Set the environment variable using:</p>
-<pre><code class="language-sh">nctl update app [app-name] --env=BLOCK_ROBOTS=true --project=[project-name]
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="configure-percy"><a class="header" href="#configure-percy">Configure Percy</a></h1>
-<p>Percy is a service that recognizes UI changes between pull requests. Read more about it <a href="https://percy.io">here</a></p>
-<h2 id="create-a-new-project-on-the-percy-website"><a class="header" href="#create-a-new-project-on-the-percy-website">Create a new project on the Percy website.</a></h2>
-<ol>
-<li>Ask wg-operations to add the project to Percy.</li>
-<li>Visit <a href="https://percy.io/organizations/renuo/projects/new">this</a> link.</li>
-<li>Fill in the name with <code>[project-name]</code> and select the github repository of the project.</li>
-</ol>
-<h2 id="setup-the-ci"><a class="header" href="#setup-the-ci">Setup the CI</a></h2>
-<ol>
-<li>Add the PERCY_TOKEN and PERCY_PROJECT env variables to the CI.
-They can be found under <code>https://percy.io/renuo/[project-name]/settings</code>.</li>
-<li>Also add PERCY_TARGET_BRANCH and set it to <code>develop</code>. Like that Percy always compares the screenshots
-to the develop branch.</li>
-</ol>
-<h2 id="setup-the-rails-application"><a class="header" href="#setup-the-rails-application">Setup the Rails application</a></h2>
-<ol>
-<li>Add the gem <code>percy-capybara</code> to the test group in the Gemfile and run <code>bundle install</code>.</li>
-<li>Follow the setup instructions <a href="https://percy.io/docs/clients/ruby/capybara-rails#setup">here</a></li>
-<li>If the application uses the gem <code>vcr</code>,
-follow the instructions <a href="https://percy.io/docs/clients/ruby/capybara-rails#_web-mock/vcr-users">here</a>.</li>
-</ol>
-<h2 id="start-using-percy"><a class="header" href="#start-using-percy">Start using Percy</a></h2>
-<p>Create a snapshot in any capybara spec by adding the following line:</p>
-<p><code>Percy::Capybara.snapshot(page, name: 'name of your snapshot')</code></p>
-<h2 id="when-to-add-screenshots"><a class="header" href="#when-to-add-screenshots">When to add screenshots</a></h2>
-<p>Usually it’s enough to add one screenshot for each view.
-In special cases you may want to add more screenshots.</p>
-<h2 id="encoding"><a class="header" href="#encoding">Encoding</a></h2>
-<p>For Percy to render all characters correctly, every page that has a screenshot needs to have
-the header <code>&lt;meta charset="utf-8"&gt;</code>.</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="staging-environment-protection"><a class="header" href="#staging-environment-protection">Staging Environment Protection</a></h1>
-<p>HTTP Basic Authentication should be configured to prevent public traffic on our development applications.</p>
-<h2 id="configuration-for-heroku"><a class="header" href="#configuration-for-heroku">Configuration for Heroku</a></h2>
-<p>With Heroku, basic auth can be configured as follows:</p>
-<p>Add <code># BASIC_AUTH: 'admin:some-memorable-password'</code> to <code>application.example.yml</code>, then run the following command:</p>
-<pre><code class="language-sh">heroku config:set BASIC_AUTH='admin:[first-memorable-password]' --app [your-app]-develop
-</code></pre>
-<p>Finally, save the passwords in 1Password.</p>
-<h2 id="configuration-for-deploio"><a class="header" href="#configuration-for-deploio">Configuration for Deploio</a></h2>
-<p>On Deploio, basic auth can be configured in the following way:</p>
-<pre><code class="language-sh">nctl update app {APPLICATION_NAME} --project {PROJECT_NAME} --basic-auth=true
-</code></pre>
-<p>Credentials can be changed like this:</p>
-<pre><code class="language-sh">nctl update app {APPLICATION_NAME} --project {PROJECT_NAME} --change-basic-auth-password
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="uptimerobot-monitoring"><a class="header" href="#uptimerobot-monitoring">Uptimerobot Monitoring</a></h1>
-<p>To ensure that our application is always up and running, we offer a monitoring
-service to the customers.</p>
-<p>When we are still developing a new application, the uptimerobot check should not be
-setup to avoid premature costs. Once the go-live date is very close, we enable
-the monitoring only for the <code>main</code> environment, which <em>must</em> have a paid
-dyno.</p>
-<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
-<p>You will need Renuo-CLI to be set up and at the newest version:
-<code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
-<ol>
-<li>
-<p>Run the command <code>renuo setup-uptimerobot [url]</code></p>
-<ul>
-<li>Where <code>url</code> is the address you want to monitor. e.g. <code>https://[project-name]-main.renuoapp.ch/up</code> or <code>https://customdomain.ch/up</code></li>
-</ul>
-</li>
-<li>
-<p>The app will ask for the <code>api-key</code> for uptimerobot. It can be found at the companies’ password manager.
-Paste it and press enter to continue.</p>
-</li>
-</ol>
-<p>The command will setup the project in a paused state. You can start it once your app has a paid dyno.</p>
-<p><strong>Until then do not start the monitoring.</strong></p>
-<h2 id="examples-1"><a class="header" href="#examples-1">Examples</a></h2>
-<ul>
-<li><code>renuo setup-uptimerobot https://germann.ch/up</code></li>
-</ul>
-<h2 id="replacing-monitors"><a class="header" href="#replacing-monitors">Replacing monitors</a></h2>
-<p>It’s cumbersome to exchange a monitor for all projects.
-You can utilize this script for that:</p>
-<pre><code class="language-rb">require "json"
-require "open3"
-
-API_KEY = "XXX"
-OFFSET = 0 # default page size is 50
-
-# Use Open3 to capture stdout and stderr to avoid shell-specific parsing issues
-monitors_response, stderr, status = Open3.capture3("curl -X POST -H \"Content-Type: application/x-www-form-urlencoded\" -H \"Cache-Control: no-cache\" -d 'api_key=#{API_KEY}&amp;format=json&amp;alert_contacts=1&amp;offset=#{OFFSET}' \"https://api.uptimerobot.com/v2/getMonitors\" | jq -c '[.monitors[] | {id: .id, alert_contacts: .alert_contacts}]'")
-
-unless status.success?
-  puts "Error executing command: #{stderr}"
-  exit
-end
-
-monitors = JSON.parse(monitors_response)
-monitors.each do |monitor|
-  id = monitor["id"]
-
-  # Add your new monitor here so that it is added to all projects
-  monitor["alert_contacts"] &lt;&lt; { "id" =&gt; raise("TODO: replace this"), "threshold" =&gt; 0, "recurrence" =&gt; 0 }
-
-  alert_contacts = monitor["alert_contacts"].map { |contact|
-    contact.values_at("id", "threshold", "recurrence").compact.join("_")
-  }.join("-")
-
-  cmd = %(curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: application/x-www-form-urlencoded" -d 'api_key=#{API_KEY}&amp;format=json&amp;id=#{id}&amp;alert_contacts=#{alert_contacts}' "https://api.uptimerobot.com/v2/editMonitor")
-  puts cmd
-end
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="depfu"><a class="header" href="#depfu">Depfu</a></h1>
-<p>Depfu is a service which checks out the Gemfile / yarn.lock of a project for problematic
-dependencies. It will automatically create a pull request to the project
-if a security vulnerability has been disclosed.</p>
-<ol>
-<li>Ask wg-operations to add repository access for Depfu to you new Github
-repository.</li>
-</ol>
-<p>That’s all :-)</p>
-<p>Update strategy should be set to <code>Grouped Updates</code>, frequency: <code>monthly</code>. Assignee should be set.</p>
-<h2 id="engine-updates"><a class="header" href="#engine-updates">Engine Updates</a></h2>
-<p>Enable minor engine updates.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"><span class="img-wrapper"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"></span></label></p>
-<p><strong>Note:</strong> If you are using Heroku, the latest Ruby / node version may not yet
-be available on their platform, so you may need to delay the upgrade. Check the
-following GitHub repositories to see if Heroku added support already:</p>
-<ul>
-<li><a href="https://github.com/heroku/heroku-buildpack-nodejs">https://github.com/heroku/heroku-buildpack-nodejs</a></li>
-<li><a href="https://github.com/heroku/heroku-buildpack-ruby">https://github.com/heroku/heroku-buildpack-ruby</a></li>
-</ul>
-<h2 id="automatic-merging"><a class="header" href="#automatic-merging">Automatic merging</a></h2>
-<p>To speed up the merging of smaller upgrades (like security fixes) we enable
-Automatic merging like this:</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"><span class="img-wrapper"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"></span></label></p>
-<p>Since PRs need to be approved before depfu can merge them we add a GitHub
-Actions workflow to automatically approve PRs from depfu:</p>
-<pre><code class="language-yaml"># .github/workflows/depfu_autoapprove.yml
-name: Depfu auto-approve
-on:
-  pull_request_target:
-    types: [opened]
-
-permissions:
-  pull-requests: write
-
-jobs:
-  depfu:
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'depfu[bot]' }}
-    steps:
-      - name: Approve all depfu PRs
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-</code></pre>
-<h2 id="ticket-reference"><a class="header" href="#ticket-reference">Ticket reference</a></h2>
-<p>In order to avoid searching for the maintenance project after reviewing a Depfu PR,
-we add the ticket to the PR title according to the following Depfu configuration:</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"><span class="img-wrapper"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"></span></label></p>
-<p>Make sure that the ticket number matches the actual maintenance ticket.</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="run-javascript-tests-with-jest"><a class="header" href="#run-javascript-tests-with-jest">Run Javascript tests with Jest</a></h1>
-<p>When you start writing Javascript code, you have to test it. Webpacker doesn’t come (yet) with a default test tool.
-Here is a configuration suggestion to start testing using Jest.</p>
-<ul>
-<li>Install Jest</li>
-</ul>
-<pre><code class="language-bash">./bin/yarn add --dev jest
-</code></pre>
-<ul>
-<li>Add the following to the <code>package.json</code></li>
-</ul>
-<pre><code class="language-json">  "scripts": {
-    "test": "jest --coverage"
-  },
-  "jest": {
-    "roots": [
-      "spec/javascripts"
-    ],
-    "setupFiles": [
-      "./spec/javascripts/setup-jest.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100.0,
-        "functions": 100.0,
-        "lines": 100.0,
-        "statements": 100.0
-      }
-    },
-    "coverageDirectory": "./coverage/jest"
-  }
-</code></pre>
-<p>This creates a <code>yarn test</code> command which runs your tests, including coverage.
-It also configures the root of your tests into spec/javascripts folder and the coverage thresholds.</p>
-<ul>
-<li>Create the file <code>spec/javascripts/setup-jest.js</code> and, if you are using JQuery, add:</li>
-</ul>
-<pre><code class="language-js">import $ from 'jquery';
-global.$ = global.jQuery = $;
-</code></pre>
-<p>In this file you create the configuration that is necessary before running the tests.</p>
-<ul>
-<li>Add the following to your <code>.babelrc</code> configuration file:</li>
-</ul>
-<pre><code>"env": {
-  "test": {
-    "plugins": ["@babel/plugin-transform-modules-commonjs"]
-  }
-}
-</code></pre>
-<p>Now you can run your tests with <code>yarn test</code> and they should fail because you don’t have any test.</p>
-<p>Add your Javascript tests check run to <code>bin/check</code>:</p>
-<pre><code>bin/yarn test
-if [ $? -ne 0 ]; then
-  echo 'Javascript tests did not run successfully, commit aborted'
-  exit 1
-fi
-</code></pre>
-<p>Add your tests to the <code>spec/javascripts</code> folder,
-naming them <code>yourtest.spec.js</code> to be automatically recognised by Jest as tests.</p>
-<p>A template for a test could be the following:</p>
-<pre><code class="language-js">// spec/javascripts/my_class.spec.js
-
-import MyClass from '../../app/webpacker/src/javascripts/my_class';
-
-describe('MyClass', () =&gt; {
-
-  beforeEach(() =&gt; {
-    ...
-  });
-
-  describe('#amethod', () =&gt; {
-    it('runs a test', () =&gt; {
-      new MyClass();
-      expect(1).toEqual(2);
-    });
-  });
-});
-
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="-send-emails"><a class="header" href="#-send-emails">📬 Send Emails</a></h1>
-<p>As soon as you have to send emails please follow those suggestions.
-They will help you having a proper system to deliver emails and development environment.</p>
-<h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
-<ul>
-<li>Add the following to your Gemfile and <code>bundle install</code></li>
-</ul>
-<pre><code class="language-ruby">group :development do
-  gem 'letter_opener'
-end
-</code></pre>
-<ul>
-<li>add the following to <code>.env.example</code></li>
-</ul>
-<pre><code class="language-yml">APP_HOST="[project-name].localhost"
-APP_PORT="3000"
-MAIL_SENDER="yourname+&lt;application&gt;@example.com"
-MAIL_HOST=""
-MAIL_USERNAME=""
-MAIL_PASSWORD=""
-</code></pre>
-<ul>
-<li>update <code>app/mailers/application_mailer.rb</code></li>
-</ul>
-<pre><code class="language-ruby">class ApplicationMailer &lt; ActionMailer::Base
-  default from: ENV.fetch('MAIL_SENDER')  # &lt;-- change this
-  layout 'mailer'
-end
-</code></pre>
-<ul>
-<li>add the following to <code>config/application.rb</code></li>
-</ul>
-<pre><code class="language-ruby">config.action_mailer.default_url_options = { host: ENV.fetch('APP_HOST'), port: ENV.fetch('APP_PORT') }
-</code></pre>
-<ul>
-<li>add the following to <code>config/environments/development.rb</code>:</li>
-</ul>
-<pre><code class="language-ruby">config.action_mailer.delivery_method = :letter_opener
-</code></pre>
-<ul>
-<li>add the following <code>config/environments/production.rb</code>:</li>
-</ul>
-<pre><code class="language-ruby">config.action_mailer.smtp_settings = {
-  address: ENV.fetch('MAIL_HOST'),
-  port: 587,
-  enable_starttls_auto: true,
-  user_name: ENV.fetch('MAIL_USERNAME'),
-  password: ENV.fetch('MAIL_PASSWORD'),
-  authentication: 'login',
-  domain: ENV.fetch('APP_HOST')
-}
-</code></pre>
-<h2 id="sparkpost--mailtrap"><a class="header" href="#sparkpost--mailtrap">Sparkpost &amp; Mailtrap</a></h2>
-<p>Follow the <a href="#sparkpost--mailtrap-1">sparkpost</a> section to configure Sparkpost and Mailtrap on your production environment</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="sparkpost--mailtrap-1"><a class="header" href="#sparkpost--mailtrap-1">SparkPost &amp; Mailtrap</a></h1>
-<p>⚠️ Always use subaccounts in Sparkpost!</p>
-<blockquote>
-<p>Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.</p>
-</blockquote>
-<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
-<p><strong>Main (Sparkpost, sample-app@yourdomain.tld)</strong></p>
-<ul>
-<li>Each app is using a separate subaccount under the main account</li>
-<li>The Domain should be set up and verified under the subaccount’s sending domains</li>
-<li>Login: sparkpost+main@renuo.ch</li>
-</ul>
-<p><strong>Develop (Sparkpost, renuoapp.ch)</strong></p>
-<ul>
-<li>
-<p>Each app is using a separate subaccount under the main account</p>
-</li>
-<li>
-<p>The emails will be sent with <strong>*@renuoapp.ch</strong> as your mail sender</p>
-</li>
-<li>
-<p>Login: sparkpost+develop@renuo.ch</p>
-</li>
-<li>
-<p>If you want, you can also use Mailtrap for develop. Create a new Inbox <a href="https://mailtrap.io/inboxes">https://mailtrap.io/inboxes</a> and use this credentials</p>
-</li>
-</ul>
-<p><strong>Testing (Mailtrap)</strong></p>
-<ul>
-<li>Login: operations@renuo.ch</li>
-<li>The Email will be caught by Mailtrap and not forwarded to the intended receiver</li>
-<li>You can login to Mailtrap to see the sent email</li>
-</ul>
-<h2 id="sparkpost"><a class="header" href="#sparkpost">Sparkpost</a></h2>
-<p>:warning:
-Always use subaccounts for the project, so that the whole account doesn’t get suspended / blocked in case of compliance issues!</p>
-<ol>
-<li>Go to <a href="https://app.sparkpost.com/auth">https://app.sparkpost.com/auth</a> and log in with the credentials for
-sparkpost+<em>enviroment</em>@renuo.ch found in the credential store</li>
-<li>Create <a href="https://app.sparkpost.com/account/subaccounts">one new subaccount</a> and name it like your project</li>
-<li>Create <a href="https://app.sparkpost.com/account/api-keys/create">a new API-Key for your subaccount</a> and assign it to the new subaccount, with the following permissions: <em>Send via SMTP, Sending Domains: Read/Write</em></li>
-<li>Write down the API-key in the credential store (in a list under sparkpost+<em>enviroment</em>@renuo.ch), because it’s only showed once!</li>
-<li>Credentials for SMTP setup on your app can be found <a href="https://app.sparkpost.com/account/smtp">here</a>, password is your generated API-key</li>
-<li>(if domain is known) Add your sending domain
-<a href="https://app.sparkpost.com/domains/create?type=sending">here</a>. Assign it to
-the subaccount. Set up SPF, DKIM and DMARC with TXT DNS records (only use
-<code>renuoapp.ch</code> within the <code>sparkpost+develop@renuo.ch</code>)</li>
-<li>Verify your Email DNS configuration with <a href="https://mxtoolbox.com/SuperTool.aspx">https://mxtoolbox.com/SuperTool.aspx</a></li>
-<li>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.new.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver!</code></li>
-<li>Send a test email to <a href="https://www.mail-tester.com/">https://www.mail-tester.com/</a> or <a href="https://www.experte.com/spam-checker">https://www.experte.com/spam-checker</a> and check the result</li>
-</ol>
-<p>For DNS setup also see <a href="#go-live">Go Live</a></p>
-<p>ENV-variables example:</p>
-<pre><code>MAIL_USERNAME: 'SMTP_Injection'
-MAIL_PASSWORD:  'YOUR API KEY'
-MAIL_HOST: 'smtp.sparkpostmail.com'
-MAIL_SENDER: 'Sample App &lt;sample-app@renuoapp.ch&gt;'
-</code></pre>
-<p>Or with a custom domain:</p>
-<pre><code>MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
-</code></pre>
-<h2 id="mailtrap"><a class="header" href="#mailtrap">Mailtrap</a></h2>
-<p>ENV-variables example:</p>
-<pre><code>MAIL_USERNAME: 'found in credential store'
-MAIL_PASSWORD:  'found in credential store'
-MAIL_HOST: 'smtp.mailtrap.io'
-MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
-</code></pre>
-<p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="devise"><a class="header" href="#devise">Devise</a></h1>
-<p>:warning: If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first. :warning:</p>
-<ul>
-<li>Add the following gem <code>gem 'devise'</code> and install it</li>
-</ul>
-<pre><code class="language-sh">bundle install
-rails generate devise:install
-</code></pre>
-<ul>
-<li>update <code>config/initializers/devise.rb</code> and set</li>
-</ul>
-<pre><code class="language-rb">config.secret_key = ENV['DEVISE_SECRET_KEY']
-config.mailer_sender = ENV['MAIL_SENDER']
-config.pepper = ENV['DEVISE_PEPPER']
-</code></pre>
-<ul>
-<li>add the two variables to the <code>.env.example</code></li>
-</ul>
-<pre><code class="language-bash">DEVISE_SECRET_KEY="rake secret"
-DEVISE_PEPPER="rake secret"
-</code></pre>
-<p>Open a pull request! 🎉</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="cucumber"><a class="header" href="#cucumber">Cucumber</a></h1>
-<p><a href="https://cucumber.io">Cucumber</a> is a testing framework which allows us to specify feature tests using plain language.
-We use Cucumber for e2e tests in some of our projects. We integrate it using the <code>cucumber-rails</code> gem.</p>
-<h2 id="installing-cucumber-rails"><a class="header" href="#installing-cucumber-rails">Installing <code>cucumber-rails</code></a></h2>
-<p>The installation process of <code>cucumber-rails</code> is also documented on its
-<a href="https://github.com/cucumber/cucumber-rails">Github page</a>.</p>
-<p>To install <code>cucumber-rails</code>, add the following gems to your Gemfile:</p>
-<pre><code class="language-rb">group :test do
-    gem 'capybara', require: false
-    gem 'cucumber-rails', require: false
-    gem 'database_cleaner'
-end
-</code></pre>
-<p>Run <code>bundle install</code> to install the gems.</p>
-<p>Finally, set up Cucumber with</p>
-<pre><code class="language-sh">rails generate cucumber:install
-</code></pre>
-<p>At this time, it is recommended to inspect the generated files and commit. Before committing, make sure, Rubocop does
-not raise any issues. Therefore, you will have to add the following exception to <code>.rubocop.yml</code>:</p>
-<pre><code class="language-yaml">AllCops:
-  Exclude:
-    - 'lib/tasks/cucumber.rake'
-</code></pre>
-<h2 id="running-your-first-cucumber-test"><a class="header" href="#running-your-first-cucumber-test">Running your first Cucumber test</a></h2>
-<p>If you add Cucumber to an existing project, test a real page instead of using the given example test.</p>
-<p>Add the following files:</p>
-<ul>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/home_controller.rb"><code>app/controllers/home_controller.rb</code></a> (If you haven’t done so
-already) in the <a href="#setup-rspec">RSpec</a> section.</li>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
-</ul>
-<p>Now, you can run Cucumber in your terminal:</p>
-<pre><code class="language-sh">cucumber
-</code></pre>
-<p>You may get a couple of deprecation warnings. There is currently an
-<a href="https://github.com/cucumber/cucumber-rails/issues/346">issue</a> about them on the Github page of <code>rspec-rails</code></p>
-<h2 id="adding-cucumber-tests-to-bincheck"><a class="header" href="#adding-cucumber-tests-to-bincheck">Adding Cucumber tests to <code>bin/check</code></a></h2>
-<p>Add the following code to <code>bin/check</code>, so the Cucumber tests are run on CI:</p>
-<pre><code class="language-sh">NO_COVERAGE=true bundle exec cucumber --format progress
-if [ $? -ne 0 ]; then
-  echo 'Cucumber did not run successfully, commit aborted'
-  exit 1
-fi
-</code></pre>
-<p>Assure that <code>bin/check</code> fails, if you have a broken Cucumber test.</p>
-<h2 id="custom-environment"><a class="header" href="#custom-environment">Custom environment</a></h2>
-<p>Probably, you are going to need the following configuration files in <code>/features/env</code>:</p>
-<ul>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
-which require Javascript (i.e. scenarios tagged with <code>@javascript</code>).</li>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
-accessible in the step definition file.</li>
-<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
-are using Devise).</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="object-storage"><a class="header" href="#object-storage">Object Storage</a></h1>
-<h2 id="deploio-2"><a class="header" href="#deploio-2">Deploio</a></h2>
-<h3 id="command-generation"><a class="header" href="#command-generation">Command generation</a></h3>
-<p>The following command will generate command-line-commands to set up object storage on Deploio.
-You’ll need to run them by yourself after reviewing the output.</p>
-<ol>
-<li>
-<p>Run <code>renuo create-deploio-object-storage</code></p>
-</li>
-<li>
-<p>Follow the steps and answer the questions</p>
-</li>
-<li>
-<p>Now it will print you out a series of commands e.g.:</p>
-<pre><code class="language-sh"># Deploio main
-
-    nctl create bucketuser main --project &lt;&lt;your-project&gt;&gt; --location &lt;&lt;location&gt;&gt;
-    [...]
-    nctl get bucketuser main --project &lt;&lt;your-project&gt;&gt; --print-credentials
-    [...]
-
-# Deploio develop
-[...]
-</code></pre>
-</li>
-<li>
-<p>Review the commands carefully (e.g. make sure that you enable bucket versioning for the main branch)</p>
-</li>
-</ol>
-<p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
-<p>For further configuration and best practices, please refer to the <a href="https://guides.deplo.io/ruby/object-storage.html#setup-object-storage">Deploio documentation</a>.</p>
-<h2 id="aws"><a class="header" href="#aws">AWS</a></h2>
-<p>The following Amazon services are involved in our app setups</p>
-<ul>
-<li>Amazon <strong>S3</strong> is Amazon’s Simple Cloud Storage Service,
-and used in most of your projects to store images and files.</li>
-<li>Amazon <strong>CloudFront</strong> is a large scale, global, and feature rich CDN.
-We mostly use it together with S3 to provide a proper HTTP endpoint (caching, header forwarding, etc.).
-You could also host a Single Page Application (SPA).</li>
-<li>Amazon <strong>ACM</strong> issues certificates which can be used for custom Cloudfront distribution domains</li>
-<li>Amazon <strong>IAM</strong> issues resource policies.
-<ul>
-<li>We use a special “renuo-app-setup” user to setup our projects.</li>
-<li>Each app has an own user to separate tenants properly. The user belongs to “renuo-apps-v2”</li>
-<li>You can find a graphical overview in <a href="https://docs.google.com/presentation/d/1E-6hQB7ZezsVlkESEQVJmdZtdTUWRalT8XjkriurIQc/edit#slide=id.g3ba9e981d1_0_7">this lightning talk</a>.</li>
-</ul>
-</li>
-</ul>
-<h2 id="setup-1"><a class="header" href="#setup-1">Setup</a></h2>
-<h3 id="preconditions"><a class="header" href="#preconditions">Preconditions</a></h3>
-<h4 id="renuo-cli"><a class="header" href="#renuo-cli">renuo-cli</a></h4>
-<p>You will need Renuo-CLI to be set up and at the newest version:</p>
-<p><code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
-<p>Make sure <code>renuo -v</code> shows the <a href="https://github.com/renuo/renuo-cli/tags">newest version</a></p>
-<h4 id="aws-cli"><a class="header" href="#aws-cli">aws-cli</a></h4>
-<p>Retrieve the credentials “AWS Profile ‘renuo-app-setup’ for s3 setup” from the password manager at first (or ask <em>wg-operations</em> for help).</p>
-<p>You’ll need to use <code>aws-cli</code>. You can either just continue with “Start the Setup”. The command will ensure that everything is set up properly.
-Or you can install it manually:</p>
-<pre><code>brew install awscli
-aws configure --profile renuo-app-setup
-</code></pre>
-<p>If you want to check your config, run <code>aws configure --profile renuo-app-setup list</code>.</p>
-<p>We would recommend setting default region name to <code>eu-central-1</code>. The default output format is json and should not be changed.</p>
-<h3 id="aws-command-generation"><a class="header" href="#aws-command-generation">AWS Command generation</a></h3>
-<p>The following command will generate command-line-commands to set up S3 and CloudFront.
-You’ll need to run them by yourself after reviewing the output.</p>
-<ol>
-<li>
-<p>Run <code>renuo create-aws-project</code></p>
-</li>
-<li>
-<p>Follow the steps and answer the questions</p>
-</li>
-<li>
-<p>Now it will print you out a series of commands e.g.:</p>
-<pre><code class="language-sh"># AWS main
-
-    aws --profile renuo-app-setup iam create-user --user-name &lt;&lt;your-project&gt;&gt;
-    [...]
-
-# AWS develop
-[...]
-</code></pre>
-</li>
-<li>
-<p>Review the commands carefully (e.g. make sure that you enable bucket versioning)</p>
-</li>
-</ol>
-<h3 id="executing-the-commands"><a class="header" href="#executing-the-commands">Executing the commands</a></h3>
-<p>Running the commands will print some JSON pages to your screen.
-<strong>Copy each <code>SecretAccessKey</code> and <code>AccessKeyId</code> to your credentials store!</strong></p>
-<p>Once you have worked through the commands, you are ready to use S3 for Active Storage within your Rails app by configuring the storage.yml file (as below) and setting <code>config.active_storage.service = :amazon</code> in your production.rb file.</p>
-<h3 id="custom-cloudfront-distribution-cname-aliases"><a class="header" href="#custom-cloudfront-distribution-cname-aliases">Custom Cloudfront Distribution CNAME Aliases</a></h3>
-<p>If you want to serve your S3 bucket via a custom domain, you need to add the CNAMEs to
-your Cloudfront Distibution manually.</p>
-<ol>
-<li>Visit <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=eu-central-1#/distributions">https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=eu-central-1#/distributions</a> and edit
-your distribution.</li>
-<li>Enter the CNAMEs as aliases</li>
-<li>Click “Request certificate” (this opens a new tab with Amazon ACM, make sure it’s region is us-east-1)</li>
-<li>Enter all the CNAMEs you want to have as aliases (normally only one)</li>
-<li>Enter the domain ownership verification records into Cloudflare (CNAME with cryptic values)</li>
-<li>Submit the ACM form and wait for the certificate to being issued.</li>
-<li>Go back to the Cloudfront distribution, refresh the certifactes drop down and choose your new certificate.</li>
-<li>Save the changes to the Cloudfront distribution.</li>
-</ol>
-<h3 id="rails-configuration"><a class="header" href="#rails-configuration">Rails Configuration</a></h3>
-<p>You then can use an <em>ActiveStorage</em> configuration like this:</p>
-<pre><code class="language-yaml">amazon:
-  service: S3
-  access_key_id: &lt;%= ENV['AWS_S3_ACCESS_KEY_ID'] %&gt;
-  secret_access_key: &lt;%= ENV['AWS_S3_SECRET_ACCESS_KEY'] %&gt;
-  bucket: &lt;%= ENV['AWS_S3_BUCKET'] %&gt;
-  region: "eu-central-1"
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
-<p>You can use the npm package of the latest version of Bootstrap.</p>
-<p><code>yarn add bootstrap</code></p>
-<p>and include it in your stylesheet pack with:</p>
-<pre><code class="language-scss">@import '~bootstrap/scss/bootstrap';
-</code></pre>
-<p>If you want to use also the javascript part of Bootstrap you need both popper.js and jquery.
-Add them with:</p>
-<p><code>yarn add jquery popper.js</code></p>
-<p>and configure them in <code>environment.js</code>:</p>
-<pre><code class="language-js">const webpack = require('webpack')
-environment.plugins.append('Provide', new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
-  Popper: ['popper.js', 'default']
-}));
-</code></pre>
-<p>Change <code>extract_css: false</code> to <code>extract_css: true</code> in <code>config/webpacker.yml</code></p>
-<p>and finally, import bootstrap library in <code>application.js</code> with</p>
-<pre><code class="language-js">import 'bootstrap/dist/js/bootstrap';
-</code></pre>
-<h2 id="simple-form"><a class="header" href="#simple-form">Simple Form</a></h2>
-<p>If you use the gem <a href="https://github.com/plataformatec/simple_form">Simple Form</a>,
-you need to adjust the configuration in the <code>config/initializers/simple_form.rb</code> file.</p>
-<p>Here are some recommended options:</p>
-<pre><code class="language-ruby">config.wrappers :default, class: 'form-group',
-                hint_class: :field_with_hint, error_class: 'has-danger' do |b|
-</code></pre>
-<pre><code class="language-ruby">config.error_notification_class = 'alert alert-danger'
-</code></pre>
-<pre><code class="language-ruby">b.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
-</code></pre>
-<pre><code class="language-ruby">config.label_class = 'form-control-label'
-</code></pre>
-<pre><code class="language-ruby">config.input_class = 'form-control'
-</code></pre>
-<p>To make the error highlighting work you need to add some css to your application</p>
-<pre><code class="language-scss">.invalid-feedback {
-  display: block;
-}
-
-.has-danger {
-  .form-control {
-    border-color: $form-feedback-invalid-color;
-  }
-}
-</code></pre>
-<p>Please note that this is a workaround, as there is yet no way to add an error class directly onto an input.
-However, there is an open issue on Simple Form: <a href="https://github.com/plataformatec/simple_form/pull/147">https://github.com/plataformatec/simple_form/pull/147</a>
-Once this feature is added, please remove the css.</p>
-<p>For the styling of the pull down date selectors or checkboxes, you need to write some wrappers, that you can add
-to the input element.
-It is best to create a separate config file for this.</p>
-<p>Once the issue <a href="https://github.com/plataformatec/simple_form/pull/1337">https://github.com/plataformatec/simple_form/pull/1337</a> is done, you can also configure simple form
-with the command <code>rails generate simple_form:install --bootstrap4</code>.</p>
-<pre><code class="language-ruby"># config/initializers/simple_form_bootstrap.rb
-
-SimpleForm.setup do |config|
-  config.wrappers :inline_date, tag: 'div', error_class: 'has-danger' do |b|
-    b.use :html5
-    b.use :label, class: 'control-label'
-    b.wrapper tag: 'div', class: 'form-inline row' do |ba|
-      ba.use :input, class: 'form-control form-inline', wrap_with: { class: 'col-md-6' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'invalid-feedback' }
-      ba.use :hint, wrap_with:  { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrappers :inline_checkbox, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.wrapper tag: 'div', class: 'controls' do |ba|
-      ba.use :label_input, wrap_with: { class: 'checkbox inline' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrapper_mappings = {
-    check_boxes: :inline_checkbox,
-    date: :inline_date,
-    datatime: :inline_date
-  }
-end
-
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="font-awesome"><a class="header" href="#font-awesome">Font Awesome</a></h1>
-<p>You can either include Font Awesome through their CDN or install it via npm/yarn.</p>
-<h2 id="installation-with-yarn"><a class="header" href="#installation-with-yarn">Installation with yarn</a></h2>
-<h3 id="pro-version"><a class="header" href="#pro-version">Pro version</a></h3>
-<ol>
-<li>Look up the auth token which can be found <a href="https://fontawesome.com/account">here</a>. The credentials can be found on 1Password.</li>
-<li>Follow <a href="https://docs.fontawesome.com/web/setup/packages#installing-pro">these steps</a> to set up <em>font-awesome</em> pro either per project or globally.</li>
-</ol>
-<h3 id="free"><a class="header" href="#free">Free</a></h3>
-<p>For the free version of <em>font-awesome 5</em> just run <code>yarn add @fortawesome/fontawesome-free</code></p>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<ol>
-<li>Navigate to the <a href="https://fontawesome.com/icons?d=gallery">Font Awesome gallery list</a></li>
-<li>Search for the icon that you wish to include and copy paste the <code>&lt;i&gt;</code> tag into your application:
-For example for the Angular symbol I can just use this tag: <code>&lt;i class="fab fa-angular"&gt;&lt;/i&gt;</code></li>
-</ol>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="bullet"><a class="header" href="#bullet">Bullet</a></h1>
-<p>We don’t like N+1 queries. Nobody does.
-If you don’t know what we are talking about,
-please read <a href="https://www.sitepoint.com/silver-bullet-n1-problem/">this article</a> that explains it pretty well.</p>
-<p>In order to identify possible N+1 queries, we use the gem <a href="https://github.com/flyerhzm/bullet"><code>bullet</code></a>.</p>
-<p>Please add the gem to both <code>development</code> and <code>test</code> group of the Gemfile since we’ll use it also in our tests.</p>
-<p>Those are our favourite configurations:</p>
-<ul>
-<li>in development we enable it and we see the issues both a footer in the page and also in the logs</li>
-</ul>
-<pre><code class="language-ruby"># config/environments/development.rb
-
-config.after_initialize do
-  Bullet.enable = true
-  Bullet.bullet_logger = true
-  Bullet.add_footer = true
-end
-</code></pre>
-<ul>
-<li>in test we enable it and raise an exception in case a N+1 is identified (or an unused eager loading)</li>
-</ul>
-<pre><code class="language-ruby"># config/environments/test.rb
-
-config.after_initialize do
-  Bullet.enable = true
-  Bullet.bullet_logger = true
-  Bullet.raise = true
-end
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="logs--error-monitoring-with-appsignal"><a class="header" href="#logs--error-monitoring-with-appsignal">Logs &amp; error monitoring with AppSignal</a></h1>
 <p>AppSignal is a service to record logs, monitor errors and performance.
 Recording logs works independently from the tech stack. So you should use AppSignal
@@ -2007,7 +1122,7 @@ redirect the multiplexed Logplex logs to AppSignal in any case.</p>
 <ol>
 <li><a href="#backend">Backend</a></li>
 <li><a href="#frontend">Frontend</a></li>
-<li><a href="#verify-the-installation-1">Verify the installation</a></li>
+<li><a href="#verify-the-installation">Verify the installation</a></li>
 </ol>
 <h2 id="backend"><a class="header" href="#backend">Backend</a></h2>
 <h3 id="logs--errors"><a class="header" href="#logs--errors">Logs &amp; errors</a></h3>
@@ -2189,9 +1304,9 @@ So once the project is created, the frontend API key can be found in the “Push
 <ul>
 <li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/javascript/appsignal.js">appsignal.js</a> in your JS assets.</li>
 </ul>
-<h2 id="verify-the-installation-1"><a class="header" href="#verify-the-installation-1">Verify the installation</a></h2>
+<h2 id="verify-the-installation"><a class="header" href="#verify-the-installation">Verify the installation</a></h2>
 <h3 id="error-monitoring"><a class="header" href="#error-monitoring">Error monitoring</a></h3>
-<h4 id="ruby-1"><a class="header" href="#ruby-1">Ruby</a></h4>
+<h4 id="ruby"><a class="header" href="#ruby">Ruby</a></h4>
 <p>For each environment of your app, connect to the <code>heroku run rails console --app [project-name]-[branch-name]</code> and raise an exception using Appsignal:</p>
 <pre><code>begin
   1 / 0
@@ -2200,7 +1315,7 @@ rescue ZeroDivisionError =&gt; exception
 end
 </code></pre>
 <p>You should find the exception of the ZeroDivisionError on Appsignal after a minute or two.</p>
-<h4 id="javascript-1"><a class="header" href="#javascript-1">Javascript</a></h4>
+<h4 id="javascript"><a class="header" href="#javascript">Javascript</a></h4>
 <p>Open the dev console in chrome, and run</p>
 <pre><code class="language-js">try {
   throw new Error('test appsignal js');
@@ -2209,6 +1324,824 @@ end
 }
 </code></pre>
 <p>On Appsignal you should find “Uncaught Error: test appsignal js”.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="sentry"><a class="header" href="#sentry">Sentry</a></h1>
+<h2 id="general-configuration"><a class="header" href="#general-configuration">General configuration</a></h2>
+<ul>
+<li>
+<p>Go to https://www.sentry.io and login as the renuo monitor user.</p>
+</li>
+<li>
+<p>Create a project named <code>[project-name]</code>.</p>
+</li>
+<li>
+<p>Add the project to the <em>#renuo</em> team if the client pays for monitoring, to the <code>#no-notifications</code> otherwise.</p>
+</li>
+<li>
+<p>Note the DSN key.</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/sentry.png" alt="sentry_dsn"><span class="img-wrapper"><img src="images/sentry.png" alt="sentry_dsn"></span></label></p>
+</li>
+</ul>
+<p>Add the ENV variables to the <code>.env</code> files for each environment.</p>
+<p>Use the <strong>same</strong> <code>SENTRY_DSN</code> across all environments, but set a different <code>SENTRY_ENVIRONMENT</code> in each environment (e.g. <code>main</code>, <code>develop</code>).</p>
+<p>This allows all errors to be tracked in a single Sentry project while still being grouped by environment.</p>
+<p>The project’s Sentry issues can be monitored on the <a href="https://dashboard.renuo.ch/redmine_projects">Renuo Dashboard</a>. To configure this, ensure that the <code>dash</code> attribute for the project on Redmine is equal to the Sentry project name.</p>
+<p>The different environments will be automatically detected, and you can monitor and view the Sentry issues from one place.</p>
+<h2 id="backend-rails"><a class="header" href="#backend-rails">Backend (Rails)</a></h2>
+<ul>
+<li>
+<p>Add sentry gems to the project:</p>
+<pre><code class="language-ruby">group :production do
+  gem "sentry-rails"
+  gem "sentry-ruby"
+end
+</code></pre>
+</li>
+<li>
+<p>Add a Sentry initializer to your project <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/initializers/sentry.rb"><code>config/initializers/sentry.rb</code></a>.</p>
+</li>
+<li>
+<p>Add the following to your <code>.env.example</code> file:</p>
+</li>
+</ul>
+<pre><code class="language-bash"># .env.example
+# SENTRY_DSN="find_me_on_password_manager"
+# SENTRY_ENVIRONMENT="local"
+# CSP_REPORT_URI=""
+</code></pre>
+<ul>
+<li>
+<p>Enable CSP Reporting to Sentry in <code>config/initializers/content_security_policy.rb</code> and allow unsafe inline JS:</p>
+<pre><code class="language-ruby">Rails.application.config.content_security_policy do |policy|
+  ...
+  policy.report_uri ENV['CSP_REPORT_URI'] if ENV['CSP_REPORT_URI']
+end
+</code></pre>
+<p>You can find the correct value in <code>Sentry -&gt; Project Settings -&gt; Security Headers -&gt; REPORT URI</code>. Add the environment to the <code>CSP_REPORT_URI</code> using <code>&amp;sentry_environment=main</code>.</p>
+</li>
+</ul>
+<h2 id="frontend-javascript"><a class="header" href="#frontend-javascript">Frontend (Javascript)</a></h2>
+<ul>
+<li>Install the npm package: <code>yarn add @sentry/browser</code></li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/views/shared/_sentry.html.erb">_sentry.html</a> in your header.</li>
+<li>Include <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/javascript/sentry.js">sentry.js</a> in your JS assets.</li>
+</ul>
+<h2 id="verify-the-installation-1"><a class="header" href="#verify-the-installation-1">Verify the installation</a></h2>
+<h3 id="ruby-1"><a class="header" href="#ruby-1">Ruby</a></h3>
+<p>For each Heroku app, connect to the <code>heroku run rails console --app [project-name]-[branch-name]</code> and raise an exception using Sentry:</p>
+<pre><code>begin
+  1 / 0
+rescue ZeroDivisionError =&gt; exception
+  Sentry.capture_exception(exception)
+end
+</code></pre>
+<p>On <code>https://sentry.io/renuo/[project-name]</code> you should find the exception of the ZeroDivisionError.</p>
+<h3 id="javascript-1"><a class="header" href="#javascript-1">Javascript</a></h3>
+<p>Open the dev console in chrome, and run</p>
+<pre><code class="language-js">try {
+    throw new Error('test sentry js');
+} catch(e) {
+    Sentry.captureException(e)
+}
+</code></pre>
+<p>On <code>https://sentry.io/renuo/[project-name]</code> you should find “Uncaught Error: test sentry js”.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="newrelic"><a class="header" href="#newrelic">NewRelic</a></h1>
+<p>NewRelic is a service to monitor app performance.</p>
+<ul>
+<li>
+<p>Add the following gem to your Gemfile:</p>
+<pre><code class="language-ruby">group :production do
+  gem 'newrelic_rpm'
+end
+</code></pre>
+</li>
+<li>
+<p>Add a NewRelic configuration file <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/config/newrelic.yml"><code>config/newrelic.yml</code></a> folder.
+(<strong>Note:</strong> If you are not using Heroku, adjust the app name to something else than <code>HEROKU_APP_NAME</code>)</p>
+</li>
+<li>
+<p>Add the new variables to your Heroku environments and <code>.env</code>:</p>
+<pre><code class="language-yml">NEW_RELIC_LICENSE_KEY: "from newrelic"
+</code></pre>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="robotstxt"><a class="header" href="#robotstxt">robots.txt</a></h1>
+<p>It is time to configure the <code>robots.txt</code> file properly, to avoid crawlers to find our develop environments.
+The main environment should be the only one searchable in the end.</p>
+<p>Make sure that there is a <code>robots.txt</code> file in the public folder or your project (Rails should have created it).
+This file will only be used in environments where the <code>BLOCK_ROBOTS</code> environment variable is not set.
+If it is set then a custom middleware catches calls to <code>/robots.txt</code></p>
+<p>Add the following gem:</p>
+<pre><code class="language-ruby">group :production do
+  gem "norobots"
+end
+</code></pre>
+<h2 id="setting-environment-variables"><a class="header" href="#setting-environment-variables">Setting Environment Variables</a></h2>
+<h3 id="heroku-1"><a class="header" href="#heroku-1">Heroku</a></h3>
+<p>Add the environment variable <code>BLOCK_ROBOTS=true</code> in your develop environment:</p>
+<pre><code class="language-sh">heroku config:add BLOCK_ROBOTS=true --app [project-name]-develop
+</code></pre>
+<h3 id="deploio-1"><a class="header" href="#deploio-1">Deploio</a></h3>
+<p>Set the environment variable using:</p>
+<pre><code class="language-sh">nctl update app [app-name] --env=BLOCK_ROBOTS=true --project=[project-name]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="configure-percy"><a class="header" href="#configure-percy">Configure Percy</a></h1>
+<p>Percy is a service that recognizes UI changes between pull requests. Read more about it <a href="https://percy.io">here</a></p>
+<h2 id="create-a-new-project-on-the-percy-website"><a class="header" href="#create-a-new-project-on-the-percy-website">Create a new project on the Percy website.</a></h2>
+<ol>
+<li>Ask wg-operations to add the project to Percy.</li>
+<li>Visit <a href="https://percy.io/organizations/renuo/projects/new">this</a> link.</li>
+<li>Fill in the name with <code>[project-name]</code> and select the github repository of the project.</li>
+</ol>
+<h2 id="setup-the-ci"><a class="header" href="#setup-the-ci">Setup the CI</a></h2>
+<ol>
+<li>Add the PERCY_TOKEN and PERCY_PROJECT env variables to the CI.
+They can be found under <code>https://percy.io/renuo/[project-name]/settings</code>.</li>
+<li>Also add PERCY_TARGET_BRANCH and set it to <code>develop</code>. Like that Percy always compares the screenshots
+to the develop branch.</li>
+</ol>
+<h2 id="setup-the-rails-application"><a class="header" href="#setup-the-rails-application">Setup the Rails application</a></h2>
+<ol>
+<li>Add the gem <code>percy-capybara</code> to the test group in the Gemfile and run <code>bundle install</code>.</li>
+<li>Follow the setup instructions <a href="https://percy.io/docs/clients/ruby/capybara-rails#setup">here</a></li>
+<li>If the application uses the gem <code>vcr</code>,
+follow the instructions <a href="https://percy.io/docs/clients/ruby/capybara-rails#_web-mock/vcr-users">here</a>.</li>
+</ol>
+<h2 id="start-using-percy"><a class="header" href="#start-using-percy">Start using Percy</a></h2>
+<p>Create a snapshot in any capybara spec by adding the following line:</p>
+<p><code>Percy::Capybara.snapshot(page, name: 'name of your snapshot')</code></p>
+<h2 id="when-to-add-screenshots"><a class="header" href="#when-to-add-screenshots">When to add screenshots</a></h2>
+<p>Usually it’s enough to add one screenshot for each view.
+In special cases you may want to add more screenshots.</p>
+<h2 id="encoding"><a class="header" href="#encoding">Encoding</a></h2>
+<p>For Percy to render all characters correctly, every page that has a screenshot needs to have
+the header <code>&lt;meta charset="utf-8"&gt;</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="staging-environment-protection"><a class="header" href="#staging-environment-protection">Staging Environment Protection</a></h1>
+<p>HTTP Basic Authentication should be configured to prevent public traffic on our development applications.</p>
+<h2 id="configuration-for-heroku"><a class="header" href="#configuration-for-heroku">Configuration for Heroku</a></h2>
+<p>With Heroku, basic auth can be configured as follows:</p>
+<p>Add <code># BASIC_AUTH: 'admin:some-memorable-password'</code> to <code>application.example.yml</code>, then run the following command:</p>
+<pre><code class="language-sh">heroku config:set BASIC_AUTH='admin:[first-memorable-password]' --app [your-app]-develop
+</code></pre>
+<p>Finally, save the passwords in 1Password.</p>
+<h2 id="configuration-for-deploio"><a class="header" href="#configuration-for-deploio">Configuration for Deploio</a></h2>
+<p>On Deploio, basic auth can be configured in the following way:</p>
+<pre><code class="language-sh">nctl update app {APPLICATION_NAME} --project {PROJECT_NAME} --basic-auth=true
+</code></pre>
+<p>Credentials can be changed like this:</p>
+<pre><code class="language-sh">nctl update app {APPLICATION_NAME} --project {PROJECT_NAME} --change-basic-auth-password
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="uptimerobot-monitoring"><a class="header" href="#uptimerobot-monitoring">Uptimerobot Monitoring</a></h1>
+<p>To ensure that our application is always up and running, we offer a monitoring
+service to the customers.</p>
+<p>When we are still developing a new application, the uptimerobot check should not be
+setup to avoid premature costs. Once the go-live date is very close, we enable
+the monitoring only for the <code>main</code> environment, which <em>must</em> have a paid
+dyno.</p>
+<h2 id="setup-2"><a class="header" href="#setup-2">Setup</a></h2>
+<p>You will need Renuo-CLI to be set up and at the newest version:
+<code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
+<ol>
+<li>
+<p>Run the command <code>renuo setup-uptimerobot [url]</code></p>
+<ul>
+<li>Where <code>url</code> is the address you want to monitor. e.g. <code>https://[project-name]-main.renuoapp.ch/up</code> or <code>https://customdomain.ch/up</code></li>
+</ul>
+</li>
+<li>
+<p>The app will ask for the <code>api-key</code> for uptimerobot. It can be found at the companies’ password manager.
+Paste it and press enter to continue.</p>
+</li>
+</ol>
+<p>The command will setup the project in a paused state. You can start it once your app has a paid dyno.</p>
+<p><strong>Until then do not start the monitoring.</strong></p>
+<h2 id="examples-1"><a class="header" href="#examples-1">Examples</a></h2>
+<ul>
+<li><code>renuo setup-uptimerobot https://germann.ch/up</code></li>
+</ul>
+<h2 id="replacing-monitors"><a class="header" href="#replacing-monitors">Replacing monitors</a></h2>
+<p>It’s cumbersome to exchange a monitor for all projects.
+You can utilize this script for that:</p>
+<pre><code class="language-rb">require "json"
+require "open3"
+
+API_KEY = "XXX"
+OFFSET = 0 # default page size is 50
+
+# Use Open3 to capture stdout and stderr to avoid shell-specific parsing issues
+monitors_response, stderr, status = Open3.capture3("curl -X POST -H \"Content-Type: application/x-www-form-urlencoded\" -H \"Cache-Control: no-cache\" -d 'api_key=#{API_KEY}&amp;format=json&amp;alert_contacts=1&amp;offset=#{OFFSET}' \"https://api.uptimerobot.com/v2/getMonitors\" | jq -c '[.monitors[] | {id: .id, alert_contacts: .alert_contacts}]'")
+
+unless status.success?
+  puts "Error executing command: #{stderr}"
+  exit
+end
+
+monitors = JSON.parse(monitors_response)
+monitors.each do |monitor|
+  id = monitor["id"]
+
+  # Add your new monitor here so that it is added to all projects
+  monitor["alert_contacts"] &lt;&lt; { "id" =&gt; raise("TODO: replace this"), "threshold" =&gt; 0, "recurrence" =&gt; 0 }
+
+  alert_contacts = monitor["alert_contacts"].map { |contact|
+    contact.values_at("id", "threshold", "recurrence").compact.join("_")
+  }.join("-")
+
+  cmd = %(curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: application/x-www-form-urlencoded" -d 'api_key=#{API_KEY}&amp;format=json&amp;id=#{id}&amp;alert_contacts=#{alert_contacts}' "https://api.uptimerobot.com/v2/editMonitor")
+  puts cmd
+end
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="depfu"><a class="header" href="#depfu">Depfu</a></h1>
+<p>Depfu is a service which checks out the Gemfile / yarn.lock of a project for problematic
+dependencies. It will automatically create a pull request to the project
+if a security vulnerability has been disclosed.</p>
+<ol>
+<li>Ask wg-operations to add repository access for Depfu to you new Github
+repository.</li>
+</ol>
+<p>That’s all :-)</p>
+<p>Update strategy should be set to <code>Grouped Updates</code>, frequency: <code>monthly</code>. Assignee should be set.</p>
+<h2 id="engine-updates"><a class="header" href="#engine-updates">Engine Updates</a></h2>
+<p>Enable minor engine updates.</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"><span class="img-wrapper"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"></span></label></p>
+<p><strong>Note:</strong> If you are using Heroku, the latest Ruby / node version may not yet
+be available on their platform, so you may need to delay the upgrade. Check the
+following GitHub repositories to see if Heroku added support already:</p>
+<ul>
+<li><a href="https://github.com/heroku/heroku-buildpack-nodejs">https://github.com/heroku/heroku-buildpack-nodejs</a></li>
+<li><a href="https://github.com/heroku/heroku-buildpack-ruby">https://github.com/heroku/heroku-buildpack-ruby</a></li>
+</ul>
+<h2 id="automatic-merging"><a class="header" href="#automatic-merging">Automatic merging</a></h2>
+<p>To speed up the merging of smaller upgrades (like security fixes) we enable
+Automatic merging like this:</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"><span class="img-wrapper"><img src="images/depfu_automatic_merging.png" alt="Depfu Automatic Merging"></span></label></p>
+<p>Since PRs need to be approved before depfu can merge them we add a GitHub
+Actions workflow to automatically approve PRs from depfu:</p>
+<pre><code class="language-yaml"># .github/workflows/depfu_autoapprove.yml
+name: Depfu auto-approve
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  depfu:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'depfu[bot]' }}
+    steps:
+      - name: Approve all depfu PRs
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+</code></pre>
+<h2 id="ticket-reference"><a class="header" href="#ticket-reference">Ticket reference</a></h2>
+<p>In order to avoid searching for the maintenance project after reviewing a Depfu PR,
+we add the ticket to the PR title according to the following Depfu configuration:</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"><span class="img-wrapper"><img src="images/depfu_pr_title.png" alt="Depfu Redmine Ticket PR Title"></span></label></p>
+<p>Make sure that the ticket number matches the actual maintenance ticket.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="-send-emails"><a class="header" href="#-send-emails">📬 Send Emails</a></h1>
+<p>As soon as you have to send emails please follow those suggestions.
+They will help you having a proper system to deliver emails and development environment.</p>
+<h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
+<ul>
+<li>Add the following to your Gemfile and <code>bundle install</code></li>
+</ul>
+<pre><code class="language-ruby">group :development do
+  gem 'letter_opener'
+end
+</code></pre>
+<ul>
+<li>add the following to <code>.env.example</code></li>
+</ul>
+<pre><code class="language-yml">APP_HOST="[project-name].localhost"
+APP_PORT="3000"
+MAIL_SENDER="yourname+&lt;application&gt;@example.com"
+MAIL_HOST=""
+MAIL_USERNAME=""
+MAIL_PASSWORD=""
+</code></pre>
+<ul>
+<li>update <code>app/mailers/application_mailer.rb</code></li>
+</ul>
+<pre><code class="language-ruby">class ApplicationMailer &lt; ActionMailer::Base
+  default from: ENV.fetch('MAIL_SENDER')  # &lt;-- change this
+  layout 'mailer'
+end
+</code></pre>
+<ul>
+<li>add the following to <code>config/application.rb</code></li>
+</ul>
+<pre><code class="language-ruby">config.action_mailer.default_url_options = { host: ENV.fetch('APP_HOST'), port: ENV.fetch('APP_PORT') }
+</code></pre>
+<ul>
+<li>add the following to <code>config/environments/development.rb</code>:</li>
+</ul>
+<pre><code class="language-ruby">config.action_mailer.delivery_method = :letter_opener
+</code></pre>
+<ul>
+<li>add the following <code>config/environments/production.rb</code>:</li>
+</ul>
+<pre><code class="language-ruby">config.action_mailer.smtp_settings = {
+  address: ENV.fetch('MAIL_HOST'),
+  port: 587,
+  enable_starttls_auto: true,
+  user_name: ENV.fetch('MAIL_USERNAME'),
+  password: ENV.fetch('MAIL_PASSWORD'),
+  authentication: 'login',
+  domain: ENV.fetch('APP_HOST')
+}
+</code></pre>
+<h2 id="sparkpost--mailtrap"><a class="header" href="#sparkpost--mailtrap">Sparkpost &amp; Mailtrap</a></h2>
+<p>Follow the <a href="#sparkpost--mailtrap-1">sparkpost</a> section to configure Sparkpost and Mailtrap on your production environment</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="sparkpost--mailtrap-1"><a class="header" href="#sparkpost--mailtrap-1">SparkPost &amp; Mailtrap</a></h1>
+<p>⚠️ Always use subaccounts in Sparkpost!</p>
+<blockquote>
+<p>Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.</p>
+</blockquote>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p><strong>Main (Sparkpost, sample-app@yourdomain.tld)</strong></p>
+<ul>
+<li>Each app is using a separate subaccount under the main account</li>
+<li>The Domain should be set up and verified under the subaccount’s sending domains</li>
+<li>Login: sparkpost+main@renuo.ch</li>
+</ul>
+<p><strong>Develop (Sparkpost, renuoapp.ch)</strong></p>
+<ul>
+<li>
+<p>Each app is using a separate subaccount under the main account</p>
+</li>
+<li>
+<p>The emails will be sent with <strong>*@renuoapp.ch</strong> as your mail sender</p>
+</li>
+<li>
+<p>Login: sparkpost+develop@renuo.ch</p>
+</li>
+<li>
+<p>If you want, you can also use Mailtrap for develop. Create a new Inbox <a href="https://mailtrap.io/inboxes">https://mailtrap.io/inboxes</a> and use this credentials</p>
+</li>
+</ul>
+<p><strong>Testing (Mailtrap)</strong></p>
+<ul>
+<li>Login: operations@renuo.ch</li>
+<li>The Email will be caught by Mailtrap and not forwarded to the intended receiver</li>
+<li>You can login to Mailtrap to see the sent email</li>
+</ul>
+<h2 id="sparkpost"><a class="header" href="#sparkpost">Sparkpost</a></h2>
+<p>:warning:
+Always use subaccounts for the project, so that the whole account doesn’t get suspended / blocked in case of compliance issues!</p>
+<ol>
+<li>Go to <a href="https://app.sparkpost.com/auth">https://app.sparkpost.com/auth</a> and log in with the credentials for
+sparkpost+<em>enviroment</em>@renuo.ch found in the credential store</li>
+<li>Create <a href="https://app.sparkpost.com/account/subaccounts">one new subaccount</a> and name it like your project</li>
+<li>Create <a href="https://app.sparkpost.com/account/api-keys/create">a new API-Key for your subaccount</a> and assign it to the new subaccount, with the following permissions: <em>Send via SMTP, Sending Domains: Read/Write</em></li>
+<li>Write down the API-key in the credential store (in a list under sparkpost+<em>enviroment</em>@renuo.ch), because it’s only showed once!</li>
+<li>Credentials for SMTP setup on your app can be found <a href="https://app.sparkpost.com/account/smtp">here</a>, password is your generated API-key</li>
+<li>(if domain is known) Add your sending domain
+<a href="https://app.sparkpost.com/domains/create?type=sending">here</a>. Assign it to
+the subaccount. Set up SPF, DKIM and DMARC with TXT DNS records (only use
+<code>renuoapp.ch</code> within the <code>sparkpost+develop@renuo.ch</code>)</li>
+<li>Verify your Email DNS configuration with <a href="https://mxtoolbox.com/SuperTool.aspx">https://mxtoolbox.com/SuperTool.aspx</a></li>
+<li>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.new.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver!</code></li>
+<li>Send a test email to <a href="https://www.mail-tester.com/">https://www.mail-tester.com/</a> or <a href="https://www.experte.com/spam-checker">https://www.experte.com/spam-checker</a> and check the result</li>
+</ol>
+<p>For DNS setup also see <a href="#go-live">Go Live</a></p>
+<p>ENV-variables example:</p>
+<pre><code>MAIL_USERNAME: 'SMTP_Injection'
+MAIL_PASSWORD:  'YOUR API KEY'
+MAIL_HOST: 'smtp.sparkpostmail.com'
+MAIL_SENDER: 'Sample App &lt;sample-app@renuoapp.ch&gt;'
+</code></pre>
+<p>Or with a custom domain:</p>
+<pre><code>MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
+</code></pre>
+<h2 id="mailtrap"><a class="header" href="#mailtrap">Mailtrap</a></h2>
+<p>ENV-variables example:</p>
+<pre><code>MAIL_USERNAME: 'found in credential store'
+MAIL_PASSWORD:  'found in credential store'
+MAIL_HOST: 'smtp.mailtrap.io'
+MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
+</code></pre>
+<p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="devise"><a class="header" href="#devise">Devise</a></h1>
+<p>:warning: If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first. :warning:</p>
+<ul>
+<li>Add the following gem <code>gem 'devise'</code> and install it</li>
+</ul>
+<pre><code class="language-sh">bundle install
+rails generate devise:install
+</code></pre>
+<ul>
+<li>update <code>config/initializers/devise.rb</code> and set</li>
+</ul>
+<pre><code class="language-rb">config.secret_key = ENV['DEVISE_SECRET_KEY']
+config.mailer_sender = ENV['MAIL_SENDER']
+config.pepper = ENV['DEVISE_PEPPER']
+</code></pre>
+<ul>
+<li>add the two variables to the <code>.env.example</code></li>
+</ul>
+<pre><code class="language-bash">DEVISE_SECRET_KEY="rake secret"
+DEVISE_PEPPER="rake secret"
+</code></pre>
+<p>Open a pull request! 🎉</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="object-storage"><a class="header" href="#object-storage">Object Storage</a></h1>
+<h2 id="deploio-2"><a class="header" href="#deploio-2">Deploio</a></h2>
+<h3 id="command-generation"><a class="header" href="#command-generation">Command generation</a></h3>
+<p>The following command will generate command-line-commands to set up object storage on Deploio.
+You’ll need to run them by yourself after reviewing the output.</p>
+<ol>
+<li>
+<p>Run <code>renuo create-deploio-object-storage</code></p>
+</li>
+<li>
+<p>Follow the steps and answer the questions</p>
+</li>
+<li>
+<p>Now it will print you out a series of commands e.g.:</p>
+<pre><code class="language-sh"># Deploio main
+
+    nctl create bucketuser main --project &lt;&lt;your-project&gt;&gt; --location &lt;&lt;location&gt;&gt;
+    [...]
+    nctl get bucketuser main --project &lt;&lt;your-project&gt;&gt; --print-credentials
+    [...]
+
+# Deploio develop
+[...]
+</code></pre>
+</li>
+<li>
+<p>Review the commands carefully (e.g. make sure that you enable bucket versioning for the main branch)</p>
+</li>
+</ol>
+<p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
+<p>For further configuration and best practices, please refer to the <a href="https://guides.deplo.io/ruby/object-storage.html#setup-object-storage">Deploio documentation</a>.</p>
+<h2 id="aws"><a class="header" href="#aws">AWS</a></h2>
+<p>The following Amazon services are involved in our app setups</p>
+<ul>
+<li>Amazon <strong>S3</strong> is Amazon’s Simple Cloud Storage Service,
+and used in most of your projects to store images and files.</li>
+<li>Amazon <strong>CloudFront</strong> is a large scale, global, and feature rich CDN.
+We mostly use it together with S3 to provide a proper HTTP endpoint (caching, header forwarding, etc.).
+You could also host a Single Page Application (SPA).</li>
+<li>Amazon <strong>ACM</strong> issues certificates which can be used for custom Cloudfront distribution domains</li>
+<li>Amazon <strong>IAM</strong> issues resource policies.
+<ul>
+<li>We use a special “renuo-app-setup” user to setup our projects.</li>
+<li>Each app has an own user to separate tenants properly. The user belongs to “renuo-apps-v2”</li>
+<li>You can find a graphical overview in <a href="https://docs.google.com/presentation/d/1E-6hQB7ZezsVlkESEQVJmdZtdTUWRalT8XjkriurIQc/edit#slide=id.g3ba9e981d1_0_7">this lightning talk</a>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="setup-3"><a class="header" href="#setup-3">Setup</a></h2>
+<h3 id="preconditions"><a class="header" href="#preconditions">Preconditions</a></h3>
+<h4 id="renuo-cli"><a class="header" href="#renuo-cli">renuo-cli</a></h4>
+<p>You will need Renuo-CLI to be set up and at the newest version:</p>
+<p><code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
+<p>Make sure <code>renuo -v</code> shows the <a href="https://github.com/renuo/renuo-cli/tags">newest version</a></p>
+<h4 id="aws-cli"><a class="header" href="#aws-cli">aws-cli</a></h4>
+<p>Retrieve the credentials “AWS Profile ‘renuo-app-setup’ for s3 setup” from the password manager at first (or ask <em>wg-operations</em> for help).</p>
+<p>You’ll need to use <code>aws-cli</code>. You can either just continue with “Start the Setup”. The command will ensure that everything is set up properly.
+Or you can install it manually:</p>
+<pre><code>brew install awscli
+aws configure --profile renuo-app-setup
+</code></pre>
+<p>If you want to check your config, run <code>aws configure --profile renuo-app-setup list</code>.</p>
+<p>We would recommend setting default region name to <code>eu-central-1</code>. The default output format is json and should not be changed.</p>
+<h3 id="aws-command-generation"><a class="header" href="#aws-command-generation">AWS Command generation</a></h3>
+<p>The following command will generate command-line-commands to set up S3 and CloudFront.
+You’ll need to run them by yourself after reviewing the output.</p>
+<ol>
+<li>
+<p>Run <code>renuo create-aws-project</code></p>
+</li>
+<li>
+<p>Follow the steps and answer the questions</p>
+</li>
+<li>
+<p>Now it will print you out a series of commands e.g.:</p>
+<pre><code class="language-sh"># AWS main
+
+    aws --profile renuo-app-setup iam create-user --user-name &lt;&lt;your-project&gt;&gt;
+    [...]
+
+# AWS develop
+[...]
+</code></pre>
+</li>
+<li>
+<p>Review the commands carefully (e.g. make sure that you enable bucket versioning)</p>
+</li>
+</ol>
+<h3 id="executing-the-commands"><a class="header" href="#executing-the-commands">Executing the commands</a></h3>
+<p>Running the commands will print some JSON pages to your screen.
+<strong>Copy each <code>SecretAccessKey</code> and <code>AccessKeyId</code> to your credentials store!</strong></p>
+<p>Once you have worked through the commands, you are ready to use S3 for Active Storage within your Rails app by configuring the storage.yml file (as below) and setting <code>config.active_storage.service = :amazon</code> in your production.rb file.</p>
+<h3 id="custom-cloudfront-distribution-cname-aliases"><a class="header" href="#custom-cloudfront-distribution-cname-aliases">Custom Cloudfront Distribution CNAME Aliases</a></h3>
+<p>If you want to serve your S3 bucket via a custom domain, you need to add the CNAMEs to
+your Cloudfront Distibution manually.</p>
+<ol>
+<li>Visit <a href="https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=eu-central-1#/distributions">https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=eu-central-1#/distributions</a> and edit
+your distribution.</li>
+<li>Enter the CNAMEs as aliases</li>
+<li>Click “Request certificate” (this opens a new tab with Amazon ACM, make sure it’s region is us-east-1)</li>
+<li>Enter all the CNAMEs you want to have as aliases (normally only one)</li>
+<li>Enter the domain ownership verification records into Cloudflare (CNAME with cryptic values)</li>
+<li>Submit the ACM form and wait for the certificate to being issued.</li>
+<li>Go back to the Cloudfront distribution, refresh the certifactes drop down and choose your new certificate.</li>
+<li>Save the changes to the Cloudfront distribution.</li>
+</ol>
+<h3 id="rails-configuration"><a class="header" href="#rails-configuration">Rails Configuration</a></h3>
+<p>You then can use an <em>ActiveStorage</em> configuration like this:</p>
+<pre><code class="language-yaml">amazon:
+  service: S3
+  access_key_id: &lt;%= ENV['AWS_S3_ACCESS_KEY_ID'] %&gt;
+  secret_access_key: &lt;%= ENV['AWS_S3_SECRET_ACCESS_KEY'] %&gt;
+  bucket: &lt;%= ENV['AWS_S3_BUCKET'] %&gt;
+  region: "eu-central-1"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="run-javascript-tests-with-jest"><a class="header" href="#run-javascript-tests-with-jest">Run Javascript tests with Jest</a></h1>
+<p>When you start writing Javascript code, you have to test it. Webpacker doesn’t come (yet) with a default test tool.
+Here is a configuration suggestion to start testing using Jest.</p>
+<ul>
+<li>Install Jest</li>
+</ul>
+<pre><code class="language-bash">./bin/yarn add --dev jest
+</code></pre>
+<ul>
+<li>Add the following to the <code>package.json</code></li>
+</ul>
+<pre><code class="language-json">  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "roots": [
+      "spec/javascripts"
+    ],
+    "setupFiles": [
+      "./spec/javascripts/setup-jest.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100.0,
+        "functions": 100.0,
+        "lines": 100.0,
+        "statements": 100.0
+      }
+    },
+    "coverageDirectory": "./coverage/jest"
+  }
+</code></pre>
+<p>This creates a <code>yarn test</code> command which runs your tests, including coverage.
+It also configures the root of your tests into spec/javascripts folder and the coverage thresholds.</p>
+<ul>
+<li>Create the file <code>spec/javascripts/setup-jest.js</code> and, if you are using JQuery, add:</li>
+</ul>
+<pre><code class="language-js">import $ from 'jquery';
+global.$ = global.jQuery = $;
+</code></pre>
+<p>In this file you create the configuration that is necessary before running the tests.</p>
+<ul>
+<li>Add the following to your <code>.babelrc</code> configuration file:</li>
+</ul>
+<pre><code>"env": {
+  "test": {
+    "plugins": ["@babel/plugin-transform-modules-commonjs"]
+  }
+}
+</code></pre>
+<p>Now you can run your tests with <code>yarn test</code> and they should fail because you don’t have any test.</p>
+<p>Add your Javascript tests check run to <code>bin/check</code>:</p>
+<pre><code>bin/yarn test
+if [ $? -ne 0 ]; then
+  echo 'Javascript tests did not run successfully, commit aborted'
+  exit 1
+fi
+</code></pre>
+<p>Add your tests to the <code>spec/javascripts</code> folder,
+naming them <code>yourtest.spec.js</code> to be automatically recognised by Jest as tests.</p>
+<p>A template for a test could be the following:</p>
+<pre><code class="language-js">// spec/javascripts/my_class.spec.js
+
+import MyClass from '../../app/webpacker/src/javascripts/my_class';
+
+describe('MyClass', () =&gt; {
+
+  beforeEach(() =&gt; {
+    ...
+  });
+
+  describe('#amethod', () =&gt; {
+    it('runs a test', () =&gt; {
+      new MyClass();
+      expect(1).toEqual(2);
+    });
+  });
+});
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="cucumber"><a class="header" href="#cucumber">Cucumber</a></h1>
+<p><a href="https://cucumber.io">Cucumber</a> is a testing framework which allows us to specify feature tests using plain language.
+We use Cucumber for e2e tests in some of our projects. We integrate it using the <code>cucumber-rails</code> gem.</p>
+<h2 id="installing-cucumber-rails"><a class="header" href="#installing-cucumber-rails">Installing <code>cucumber-rails</code></a></h2>
+<p>The installation process of <code>cucumber-rails</code> is also documented on its
+<a href="https://github.com/cucumber/cucumber-rails">Github page</a>.</p>
+<p>To install <code>cucumber-rails</code>, add the following gems to your Gemfile:</p>
+<pre><code class="language-rb">group :test do
+    gem 'capybara', require: false
+    gem 'cucumber-rails', require: false
+    gem 'database_cleaner'
+end
+</code></pre>
+<p>Run <code>bundle install</code> to install the gems.</p>
+<p>Finally, set up Cucumber with</p>
+<pre><code class="language-sh">rails generate cucumber:install
+</code></pre>
+<p>At this time, it is recommended to inspect the generated files and commit. Before committing, make sure, Rubocop does
+not raise any issues. Therefore, you will have to add the following exception to <code>.rubocop.yml</code>:</p>
+<pre><code class="language-yaml">AllCops:
+  Exclude:
+    - 'lib/tasks/cucumber.rake'
+</code></pre>
+<h2 id="running-your-first-cucumber-test"><a class="header" href="#running-your-first-cucumber-test">Running your first Cucumber test</a></h2>
+<p>If you add Cucumber to an existing project, test a real page instead of using the given example test.</p>
+<p>Add the following files:</p>
+<ul>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/home_check.feature"><code>features/home_check.feature</code></a></li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/step_definitions/home_check_steps.rb"><code>features/step_definitions/home_check_steps.rb</code></a></li>
+</ul>
+<p>Now, you can run Cucumber in your terminal:</p>
+<pre><code class="language-sh">cucumber
+</code></pre>
+<p>You may get a couple of deprecation warnings. There is currently an
+<a href="https://github.com/cucumber/cucumber-rails/issues/346">issue</a> about them on the Github page of <code>rspec-rails</code></p>
+<h2 id="adding-cucumber-tests-to-bincheck"><a class="header" href="#adding-cucumber-tests-to-bincheck">Adding Cucumber tests to <code>bin/check</code></a></h2>
+<p>Add the following code to <code>bin/check</code>, so the Cucumber tests are run on CI:</p>
+<pre><code class="language-sh">NO_COVERAGE=true bundle exec cucumber --format progress
+if [ $? -ne 0 ]; then
+  echo 'Cucumber did not run successfully, commit aborted'
+  exit 1
+fi
+</code></pre>
+<p>Assure that <code>bin/check</code> fails, if you have a broken Cucumber test.</p>
+<h2 id="custom-environment"><a class="header" href="#custom-environment">Custom environment</a></h2>
+<p>Probably, you are going to need the following configuration files in <code>/features/env</code>:</p>
+<ul>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/capybara.rb"><code>capybara.rb</code></a> enables headless Chrome. This is needed in Cucumber tests
+which require Javascript (i.e. scenarios tagged with <code>@javascript</code>).</li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/database_cleaner.rb"><code>database_cleaner.rb</code></a> sets up <code>database_cleaner</code> for Cucumber tests.</li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/factory_bot.rb"><code>factory_bot.rb</code></a> makes FactoryBot’s methods (like <code>build</code> and <code>create</code>)
+accessible in the step definition file.</li>
+<li><a href="https://github.com/renuo/application-setup-guide/blob/main/templates/features/env/warden.rb"><code>warden.rb</code></a> sets up the test environment, if you are using Warden (i.e. if you
+are using Devise).</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
+<p>You can use the npm package of the latest version of Bootstrap.</p>
+<p><code>yarn add bootstrap</code></p>
+<p>and include it in your stylesheet pack with:</p>
+<pre><code class="language-scss">@import '~bootstrap/scss/bootstrap';
+</code></pre>
+<p>If you want to use also the javascript part of Bootstrap you need both popper.js and jquery.
+Add them with:</p>
+<p><code>yarn add jquery popper.js</code></p>
+<p>and configure them in <code>environment.js</code>:</p>
+<pre><code class="language-js">const webpack = require('webpack')
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery',
+  Popper: ['popper.js', 'default']
+}));
+</code></pre>
+<p>Change <code>extract_css: false</code> to <code>extract_css: true</code> in <code>config/webpacker.yml</code></p>
+<p>and finally, import bootstrap library in <code>application.js</code> with</p>
+<pre><code class="language-js">import 'bootstrap/dist/js/bootstrap';
+</code></pre>
+<h2 id="simple-form"><a class="header" href="#simple-form">Simple Form</a></h2>
+<p>If you use the gem <a href="https://github.com/plataformatec/simple_form">Simple Form</a>,
+you need to adjust the configuration in the <code>config/initializers/simple_form.rb</code> file.</p>
+<p>Here are some recommended options:</p>
+<pre><code class="language-ruby">config.wrappers :default, class: 'form-group',
+                hint_class: :field_with_hint, error_class: 'has-danger' do |b|
+</code></pre>
+<pre><code class="language-ruby">config.error_notification_class = 'alert alert-danger'
+</code></pre>
+<pre><code class="language-ruby">b.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
+</code></pre>
+<pre><code class="language-ruby">config.label_class = 'form-control-label'
+</code></pre>
+<pre><code class="language-ruby">config.input_class = 'form-control'
+</code></pre>
+<p>To make the error highlighting work you need to add some css to your application</p>
+<pre><code class="language-scss">.invalid-feedback {
+  display: block;
+}
+
+.has-danger {
+  .form-control {
+    border-color: $form-feedback-invalid-color;
+  }
+}
+</code></pre>
+<p>Please note that this is a workaround, as there is yet no way to add an error class directly onto an input.
+However, there is an open issue on Simple Form: <a href="https://github.com/plataformatec/simple_form/pull/147">https://github.com/plataformatec/simple_form/pull/147</a>
+Once this feature is added, please remove the css.</p>
+<p>For the styling of the pull down date selectors or checkboxes, you need to write some wrappers, that you can add
+to the input element.
+It is best to create a separate config file for this.</p>
+<p>Once the issue <a href="https://github.com/plataformatec/simple_form/pull/1337">https://github.com/plataformatec/simple_form/pull/1337</a> is done, you can also configure simple form
+with the command <code>rails generate simple_form:install --bootstrap4</code>.</p>
+<pre><code class="language-ruby"># config/initializers/simple_form_bootstrap.rb
+
+SimpleForm.setup do |config|
+  config.wrappers :inline_date, tag: 'div', error_class: 'has-danger' do |b|
+    b.use :html5
+    b.use :label, class: 'control-label'
+    b.wrapper tag: 'div', class: 'form-inline row' do |ba|
+      ba.use :input, class: 'form-control form-inline', wrap_with: { class: 'col-md-6' }
+      ba.use :error, wrap_with: { tag: 'span', class: 'invalid-feedback' }
+      ba.use :hint, wrap_with:  { tag: 'p', class: 'help-block' }
+    end
+  end
+
+  config.wrappers :inline_checkbox, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.wrapper tag: 'div', class: 'controls' do |ba|
+      ba.use :label_input, wrap_with: { class: 'checkbox inline' }
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
+      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+
+  config.wrapper_mappings = {
+    check_boxes: :inline_checkbox,
+    date: :inline_date,
+    datatime: :inline_date
+  }
+end
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="font-awesome"><a class="header" href="#font-awesome">Font Awesome</a></h1>
+<p>You can either include Font Awesome through their CDN or install it via npm/yarn.</p>
+<h2 id="installation-with-yarn"><a class="header" href="#installation-with-yarn">Installation with yarn</a></h2>
+<h3 id="pro-version"><a class="header" href="#pro-version">Pro version</a></h3>
+<ol>
+<li>Look up the auth token which can be found <a href="https://fontawesome.com/account">here</a>. The credentials can be found on 1Password.</li>
+<li>Follow <a href="https://docs.fontawesome.com/web/setup/packages#installing-pro">these steps</a> to set up <em>font-awesome</em> pro either per project or globally.</li>
+</ol>
+<h3 id="free"><a class="header" href="#free">Free</a></h3>
+<p>For the free version of <em>font-awesome 5</em> just run <code>yarn add @fortawesome/fontawesome-free</code></p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<ol>
+<li>Navigate to the <a href="https://fontawesome.com/icons?d=gallery">Font Awesome gallery list</a></li>
+<li>Search for the icon that you wish to include and copy paste the <code>&lt;i&gt;</code> tag into your application:
+For example for the Angular symbol I can just use this tag: <code>&lt;i class="fab fa-angular"&gt;&lt;/i&gt;</code></li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="bullet"><a class="header" href="#bullet">Bullet</a></h1>
+<p>We don’t like N+1 queries. Nobody does.
+If you don’t know what we are talking about,
+please read <a href="https://www.sitepoint.com/silver-bullet-n1-problem/">this article</a> that explains it pretty well.</p>
+<p>In order to identify possible N+1 queries, we use the gem <a href="https://github.com/flyerhzm/bullet"><code>bullet</code></a>.</p>
+<p>Please add the gem to both <code>development</code> and <code>test</code> group of the Gemfile since we’ll use it also in our tests.</p>
+<p>Those are our favourite configurations:</p>
+<ul>
+<li>in development we enable it and we see the issues both a footer in the page and also in the logs</li>
+</ul>
+<pre><code class="language-ruby"># config/environments/development.rb
+
+config.after_initialize do
+  Bullet.enable = true
+  Bullet.bullet_logger = true
+  Bullet.add_footer = true
+end
+</code></pre>
+<ul>
+<li>in test we enable it and raise an exception in case a N+1 is identified (or an unused eager loading)</li>
+</ul>
+<pre><code class="language-ruby"># config/environments/test.rb
+
+config.after_initialize do
+  Bullet.enable = true
+  Bullet.bullet_logger = true
+  Bullet.raise = true
+end
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="-hotjar"><a class="header" href="#-hotjar">🔥 Hotjar</a></h1>
 <ul>
@@ -2256,7 +2189,7 @@ end
 <pre><code class="language-rb">render pdf: &lt;&lt;filename&gt;&gt;, print_media_type: true, layout: 'pdf', disposition: 'attachment'
 </code></pre>
 <p>:warning: Consider using a job-runner to not block the server during creation of PDFs.</p>
-<h2 id="heroku-3"><a class="header" href="#heroku-3">Heroku</a></h2>
+<h2 id="heroku-2"><a class="header" href="#heroku-2">Heroku</a></h2>
 <p>Ensure that fonts are installed on Heroku, otherwise the PDF will look different compared to the one generated locally. The fonts need to be installed with a buildpack and put in the <code>~/.fonts</code> folder.
 If you need Arial, you can add the following buildpack on Heroku:</p>
 <dl>
@@ -2299,6 +2232,705 @@ which then returns a score based on which it will be decided if the request (to 
 the <code>.env</code>. If your integration worked, then you will see a small container in the bottom right
 corner of your chosen page, something like this:
 <label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="https://user-images.githubusercontent.com/31915276/55479133-ae4f8c80-561d-11e9-9df2-d94cbc5f92d3.png" alt="reCAPTCHA demonstration"><span class="img-wrapper"><img src="https://user-images.githubusercontent.com/31915276/55479133-ae4f8c80-561d-11e9-9df2-d94cbc5f92d3.png" alt="reCAPTCHA demonstration"></span></label></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="wallee"><a class="header" href="#wallee">Wallee</a></h1>
+<h2 id="payment-page"><a class="header" href="#payment-page">Payment Page</a></h2>
+<h3 id="setup-wallee"><a class="header" href="#setup-wallee">Setup Wallee</a></h3>
+<ol>
+<li>Visit <a href="https://app-wallee.com/">Wallee</a>.</li>
+<li>Go to <code>Account</code> -&gt; <code>Application User</code>, create a new user and store the credentials.</li>
+<li>Go to <code>Space</code> -&gt; <code>Settings</code> -&gt; <code>Payment</code> and setup a new processor. Choose <code>Bogus Processor</code> for testing.</li>
+</ol>
+<h3 id="configure-rails"><a class="header" href="#configure-rails">Configure Rails</a></h3>
+<ol>
+<li>
+<p>Use the <a href="https://github.com/wallee-payment/ruby-sdk"><code>wallee-ruby-sdk</code></a> gem to interact with the Wallee API.</p>
+<pre><code class="language-ruby"># Gemfile
+
+gem 'wallee-ruby-sdk'
+</code></pre>
+</li>
+<li>
+<p>Configure the credentials</p>
+<pre><code class="language-ruby"># config/initializers/wallee.rb
+
+Wallee.configure do |config|
+  config.user_id = ENV.fetch("WALLEE_APP_USER_ID")
+  config.authentication_key = ENV.fetch("WALLEE_APP_AUTHENTICATION_KEY")
+end
+</code></pre>
+</li>
+<li>
+<p>Add a tool class to create a payment page URL.
+Be aware that this is very simple tooling.</p>
+<pre><code class="language-ruby"># app/models/wallee/payment_page.rb
+
+module Wallee
+  class PaymentPage
+    SPACE_ID = ENV.fetch("WALLEE_SPACE_ID")
+
+    # Simplest Payment integration I could think of.
+    # Attention: Check VAT, shipping address and shipping method
+    #
+    # @example
+    #   Wallee::PaymentPage.url_for(
+    #     cart: [
+    #       {name: "Eintritt Erwachsene", sku: "adult_entry", price: 30, quantity: 2}
+    #     ],
+    #     address: {
+    #       city: "Zürich",
+    #       country: "CH",
+    #       email_address: "customer@example.com",
+    #       family_name: "Muster",
+    #       given_name: "Hans",
+    #       postcode: "8000",
+    #       street: "Musterstrasse 1"
+    #     }
+    #   ) do |transaction|
+    #     # Save transaction.id to the order
+    #   end
+    def self.url_for(cart:, address:, reference:, success_url: nil, failed_url: nil, &amp;)
+      raise "Cart is empty" if cart.empty?
+      raise "Bad cart format" unless cart.all? { |item| item.keys == [:name, :sku, :price, :quantity] }
+
+      line_items = cart.map.with_index do |item, index|
+        Wallee::LineItemCreate.new({
+          amountIncludingTax: item[:price] * item[:quantity],
+          name: item[:name],
+          quantity: item[:quantity],
+          shippingRequired: true,
+          sku: item[:sku],
+          taxes: [Wallee::TaxCreate.new({rate: 0, title: "VAT"})],
+          type: Wallee::LineItemType::PRODUCT,
+          uniqueId: "#{item[:sku]}-#{index}"
+        })
+      end
+
+      billing_address = shipping_address = Wallee::AddressCreate.new(
+        city: address[:city],
+        country: address[:country],
+        emailAddress: address[:email_address],
+        familyName: address[:family_name],
+        givenName: address[:given_name],
+        postcode: address[:postcode],
+        street: address[:street]
+      )
+
+      transaction_create = Wallee::TransactionCreate.new({
+        billingAddress: billing_address,
+        currency: "CHF",
+        customerPresence: Wallee::CustomersPresence::VIRTUAL_PRESENT,
+        failedUrl: failed_url,
+        language: "de_CH",
+        lineItems: line_items,
+        merchantReference: reference,
+        shippingAddress: shipping_address,
+        shippingMethod: "Brief A-Post",
+        successUrl: success_url
+      })
+
+      transaction_service = Wallee::TransactionService.new
+      transaction = transaction_service.create(SPACE_ID, transaction_create)
+      Rails.logger.info "Wallee transaction created for #{reference}, see #{admin_url(transaction.id)}"
+
+      yield transaction.freeze if block_given?
+
+      transaction_payment_page_service = Wallee::TransactionPaymentPageService.new
+      transaction_payment_page_service.payment_page_url(SPACE_ID, transaction.id)
+    end
+
+    def self.admin_url(transaction_id)
+      "https://app-wallee.com/s/#{SPACE_ID}/payment/transaction/view/#{URI.encode_uri_component transaction_id}"
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Add the tests</p>
+<pre><code class="language-ruby"># spec/models/wallee/payment_page_spec.rb
+
+require "rails_helper"
+
+RSpec.describe Wallee::PaymentPage do
+  describe ".url_for" do
+    subject(:url_for) { described_class.url_for(cart: cart, address: address, reference: "my-transaction") }
+
+    context "when cart is empty" do
+      let(:cart) { [] }
+      let(:address) { double }
+
+      it "raises an error" do
+        expect { url_for }.to raise_error("Cart is empty")
+      end
+    end
+
+    context "when cart is in bad format" do
+      let(:cart) { [{blub: 30, quantity: 2}] }
+      let(:address) { double }
+
+      it "raises an error" do
+        expect { url_for }.to raise_error("Bad cart format")
+      end
+    end
+
+    context "when cart is valid", vcr: "wallee/payment_url_success" do
+      let(:cart) do
+        [
+          {name: "Eintritt Erwachsene", sku: "adult_entry", price: 30, quantity: 2},
+          {name: "Eintritt 16-24 J.", sku: "child_6_10_entry", price: 24, quantity: 1},
+          {name: "Eintritt 11-15 J.", sku: "child_11_15_entry", price: 18, quantity: 0},
+          {name: "Eintritt 3-10 J.", sku: "child_16_24_entry", price: 10, quantity: 1},
+          {name: "Gutscheinkarte", sku: "free_coupon", price: 50, quantity: 1}
+        ]
+      end
+
+      let(:address) do
+        {
+          city: "Zürich",
+          country: "CH",
+          email_address: "customer@example.com",
+          family_name: "Muster",
+          given_name: "Hans",
+          postcode: "8000",
+          street: "Musterstrasse 1"
+        }
+      end
+
+      it { is_expected.to match(URI::DEFAULT_PARSER.make_regexp(["https"])) }
+
+      context "when given a block" do
+        it "yields a transaction" do
+          expect { |b| described_class.url_for(cart: cart, address: address, reference: "1", &amp;b) }.to yield_with_args(Wallee::Transaction)
+        end
+      end
+    end
+  end
+
+  describe ".admin_url" do
+    it "generates an admin url for a transaction" do
+      expect(described_class.admin_url("1337")).to match(URI::DEFAULT_PARSER.make_regexp(["https"]))
+    end
+
+    it "escapes transaction id" do
+      expect(described_class.admin_url("#")).to include("%23")
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Redirect to the payment page in your controller</p>
+<pre><code class="language-ruby">redirect_to Wallee::PaymentPage.url_for(…) do |transaction|
+  # Save transaction.id to the order or whatever you need
+end
+</code></pre>
+</li>
+<li>
+<p><strong>You’re done.</strong> You can receive money now if you setup a real payment processor.
+Customers can receive emails directly from Wallee and you can print shipping labels from the Wallee backend.</p>
+</li>
+</ol>
+<h2 id="fulfillment-via-webhook-in-rails"><a class="header" href="#fulfillment-via-webhook-in-rails">Fulfillment via Webhook in Rails</a></h2>
+<p>Often a payment page is not enough. You need to know the payment state in your Rails app.
+You can either poll the Wallee API or use a webhook. Here’s an example of a webhook controller.
+Be aware that this is quite integrated with the business logic of your app, e.g. see the <code>ShopOrder</code> model.</p>
+<ol>
+<li>
+<p>Add the route</p>
+<pre><code class="language-ruby"># config/routes.rb
+
+post "shop/wallee_webhook", to: "shop#wallee_webhook"
+</code></pre>
+</li>
+<li>
+<p>Add the controller</p>
+<pre><code class="language-ruby"># app/controllers/shop_controller.rb
+
+class ShopController &lt; ApplicationController
+  def wallee_webhook
+    request_payload = request.body.read
+    signature = request.env["HTTP_X_SIGNATURE"]
+
+    if signature.blank?
+      Rails.logger.info "Signature missing"
+      head :bad_request and return
+    end
+
+    webhook_encryption_service = Wallee::WebhookEncryptionService.new
+    unless webhook_encryption_service.is_content_valid(signature, request_payload)
+      Rails.logger.info "Webhook signature invalid"
+      head :bad_request and return
+    end
+
+    entity_type, entity_id = JSON.parse(request_payload).slice("listenerEntityTechnicalName", "entityId").values
+    if entity_type == "Transaction"
+      transaction_service = Wallee::TransactionService.new
+      transaction = transaction_service.read(ENV.fetch("WALLEE_SPACE_ID"), entity_id)
+
+      order = ShopOrder.find_by!(wallee_transaction_id: transaction.id)
+      order.update!(wallee_transaction_state: transaction.state)
+    else
+      Rails.logger.info "Unknown entity type: #{entity_type}"
+      head :bad_request
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Add the tests</p>
+<pre><code class="language-ruby">require "rails_helper"
+
+RSpec.describe ShopController do
+  describe "#wallee_webhook" do
+    context "when signature is not valid" do
+      it "returns http bad request" do
+        post wallee_webhook_path, as: :json
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+    # Set wallee_transaction_id to something which exists on Wallee before rerecording this cassette
+    context "when signature is valid", vcr: "wallee/webhook_success" do
+      before do
+        allow_any_instance_of(Wallee::WebhookEncryptionService).to receive(:is_content_valid).and_return(true)
+      end
+
+      let(:wallee_transaction_id) { "194681414" }
+
+      it "goes the 😊 path" do
+        create(:shop_order,  wallee_transaction_id: wallee_transaction_id)
+        post wallee_webhook_path,
+          env: {"HTTP_X_SIGNATURE" =&gt; "fake"},
+          params: {listenerEntityTechnicalName: "Transaction", entityId: wallee_transaction_id},
+          as: :json
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "order update" do
+      before do
+        allow_any_instance_of(Wallee::WebhookEncryptionService).to receive(:is_content_valid).and_return(true)
+        allow_any_instance_of(Wallee::TransactionService).to receive(:read).and_return(instance_double(Wallee::Transaction, id: "194681414", state: wallee_transaction_state))
+        create(:shop_order, wallee_transaction_id: wallee_transaction_id, wallee_transaction_state: "PENDING")
+      end
+
+      let(:order) { ShopOrder.find_by(wallee_transaction_id: "194681414") }
+      let(:webhook_request) do
+        post wallee_webhook_path,
+          env: {"HTTP_X_SIGNATURE" =&gt; "fake"},
+          params: {listenerEntityTechnicalName: "Transaction", entityId: "194681414"},
+          as: :json
+      end
+
+      context "when transaction has failed" do
+        let(:wallee_transaction_state) { Wallee::TransactionState::FAILED }
+
+        it "updates the order" do
+          expect { webhook_request }.to change { order.reload.wallee_transaction_state }.from("PENDING").to("FAILED")
+        end
+
+        it "does not fulfill" do
+          expect(ApplicationMailer).not_to receive(:order_confirmation_mail).and_call_original
+          webhook_request
+        end
+      end
+
+      context "when transaction is complete" do
+        let(:wallee_transaction_state) { Wallee::TransactionState::FULFILL }
+
+        it "updates the order" do
+          expect { webhook_request }.to change { order.reload.wallee_transaction_state }.from("PENDING").to("FULFILL")
+        end
+
+        it "does fulfill" do
+          expect(ApplicationMailer).to receive(:order_confirmation_mail).and_call_original
+          webhook_request
+        end
+      end
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>… and you’re far from done. You need to handle errors, other state changes, and so on. But this is a good start.</p>
+</li>
+<li>
+<p>Oh, and you need to setup the webhook in the Wallee backend, so that it actually sends requests to your Rails app.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="content-security-policy"><a class="header" href="#content-security-policy">Content Security Policy</a></h1>
+<p>By default, the Content Security Policy (CSP) should be enabled in every new project,
+since it is an added layer of security that helps in detecting and mitigating attacks,
+such as Cross Site Scripting (XSS) or Data Injection Attacks.</p>
+<p>It works by telling the browser which sources are trustworthy. Everything that does not
+come from a trusted source is blocked and a violation is reported to the report-uri (You
+can also opt-in for reporting only. However, this is not recommended since it is not
+effective when it comes to actually preventing an attack. One possible scenario, where
+reporting only would be useful would be, when CSP should be introduced to a new project,
+but blocking would possibly cause the site to malfunction).</p>
+<h2 id="setup-4"><a class="header" href="#setup-4">Setup</a></h2>
+<p>Content Security Policy can be enabled by uncommenting the code given in
+<code>config/initializers/content_security_policy.rb</code>. This file has the following structure
+after configuration:</p>
+<pre><code class="language-ruby">Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, ...
+  policy.img_src     ...
+  policy.object_src  ...
+  policy.script_src  ...
+  policy.style_src   ...
+  policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035' if Rails.env.development?
+  policy.connect_src :self, :https if Rails.env.production?
+
+  policy.report_uri ENV['CSP_REPORT_URI'] if ENV['CSP_REPORT_URI']
+end
+</code></pre>
+<p>Details on how to setup Sentry reporting can be found in the <a href="https://github.com/renuo/application-setup-guide/blob/main/ruby_on_rails/sentry.md#backend-rails">Sentry guide</a>.</p>
+<h2 id="common-rules"><a class="header" href="#common-rules">Common Rules</a></h2>
+<p><strong>Warning:</strong> This list may be incomplete. Please feel free to modify or add if you see something missing!</p>
+<h3 id="sentry-1"><a class="header" href="#sentry-1">Sentry</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>connect-src</td><td><code>https://sentry.io</code></td></tr>
+<tr><td>script-src</td><td><code>https://cdn.ravenjs.com</code> (if loaded from CDN)</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="google-tag-manager"><a class="header" href="#google-tag-manager">Google Tag Manager</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>script-src</td><td><code>'nonce-{generated_nonce}'</code></td></tr>
+<tr><td>img-src</td><td><code>www.googletagmanager.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Where the tracking script looks like:</p>
+<pre><code class="language-html">&lt;script nonce="{generated_nonce}"&gt;&lt;!-- Google Tag Manager Tracking Code --&gt;&lt;/script&gt;
+</code></pre>
+<p>Alternatively, if <code>'unsafe-inline'</code> is already set, the nonce can be left out.</p>
+<p>Starting from Rails 6 on, the <code>javascript_tag</code> view helper also accepts a nonce option:</p>
+<pre><code class="language-erbruby">&lt;%= javascript_tag nonce: true do %&gt;
+  // code
+&lt;% end %&gt;
+</code></pre>
+<h4 id="with-preview-mode-enabled"><a class="header" href="#with-preview-mode-enabled">With Preview Mode Enabled</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>script-src</td><td><code>https://tagmanager.google.com</code></td></tr>
+<tr><td>style-src</td><td><code>https://tagmanager.google.com https://fonts.googleapis.com</code></td></tr>
+<tr><td>img-src</td><td><code>https://ssl.gstatic.com https://www.gstatic.com</code></td></tr>
+<tr><td>font-src</td><td><code>https://fonts.gstatic.com data:</code></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="universal-analytics-google-analytics"><a class="header" href="#universal-analytics-google-analytics">Universal Analytics (Google Analytics)</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>script-src</td><td><code>https://www.google-analytics.com https://ssl.google-analytics.com</code></td></tr>
+<tr><td>img-src</td><td><code>https://www.google-analytics.com</code></td></tr>
+<tr><td>connect-src</td><td><code>https://www.google-analytics.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>For a more details list, see https://developers.google.com/tag-manager/web/csp</p>
+<h3 id="facebook-tracking-pixel"><a class="header" href="#facebook-tracking-pixel">Facebook Tracking Pixel</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>script-src</td><td><code>'unsafe-inline' connect.facebook.net</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="google-fonts"><a class="header" href="#google-fonts">Google Fonts</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>style-src</td><td><code>https://fonts.googleapis.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="stripe"><a class="header" href="#stripe">Stripe</a></h3>
+<h4 id="checkout"><a class="header" href="#checkout">Checkout</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>connect-src</td><td><code>https://checkout.stripe.com g.stripe.com</code></td></tr>
+<tr><td>frame-src</td><td><code>https://checkout.stripe.com</code></td></tr>
+<tr><td>script-src</td><td><code>https://checkout.stripe.com</code></td></tr>
+<tr><td>img-src</td><td><code>https://*.stripe.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<h4 id="stripejs"><a class="header" href="#stripejs">Stripe.js</a></h4>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>connect-src</td><td><code>https://api.stripe.com</code></td></tr>
+<tr><td>frame-src</td><td><code>https://js.stripe.com https://hooks.stripe.com</code></td></tr>
+<tr><td>script-src</td><td><code>https://js.stripe.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="aiaibot"><a class="header" href="#aiaibot">Aiaibot</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Rule</th></tr>
+</thead>
+<tbody>
+<tr><td>connect-src</td><td><code>https://api.aiaibot.com https://sentry.aiaibot.com</code></td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="i18n"><a class="header" href="#i18n">I18n</a></h1>
+<h2 id="switching-language"><a class="header" href="#switching-language">Switching language</a></h2>
+<p>The following determines the used locale by the following priorities:</p>
+<ol>
+<li><code>locale</code> parameter</li>
+<li><code>Http-Accept</code> header</li>
+<li>application default locale</li>
+</ol>
+<pre><code class="language-ruby"># app/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  around_action :switch_locale
+
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge(options)
+  end
+
+  private
+
+  def switch_locale(&amp;action)
+    locale = extract_params_locale || extract_accept_header_locale || I18n.default_locale
+    I18n.with_locale(locale, &amp;action)
+  end
+
+  def extract_params_locale
+    I18n.locale_available?(params[:locale]) ? params[:locale] : nil
+  end
+
+  def extract_accept_header_locale
+    accepting_locales = (request.env['HTTP_ACCEPT_LANGUAGE'] || '').split(',').map do |part|
+      part.strip.scan(/^[a-z]{2}/).first
+    end
+
+    accepting_locales.find { |locale| I18n.locale_available?(locale) }
+  end
+end
+
+# spec/controllers/application_controller_spec.rb
+RSpec.describe ApplicationController do
+  controller do
+    def fake_action
+      render plain: 'fake'
+    end
+  end
+
+  before do
+    custom_routes = proc do
+      scope '(:locale)' do
+        get 'fake_action' =&gt; 'anonymous#fake_action'
+      end
+    end
+
+    routes.draw(&amp;custom_routes)
+  end
+
+  describe '#set_locale' do
+    before do
+      allow(I18n).to receive(:with_locale)
+    end
+
+    context 'when locale param AND header are specified' do
+      let(:params) { { locale: 'fr' } }
+
+      before do
+        request.headers['HTTP_ACCEPT_LANGUAGE'] = 'it-CH, it;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5'
+      end
+
+      it 'locale param takes precedence' do
+        get :fake_action, params: params
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when only the locale param is specified' do
+      let(:params) { { locale: 'fr' } }
+
+      it 'uses it' do
+        get :fake_action, params: params
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when only the header is specified' do
+      before do
+        request.headers['HTTP_ACCEPT_LANGUAGE'] = 'en, fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5'
+      end
+
+      it 'the first supported locale from the header is taken' do
+        get :fake_action
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when neither locale param nor header are specified' do
+      it 'uses the default one' do
+        get :fake_action
+        expect(I18n).to have_received(:with_locale).with(I18n.default_locale)
+      end
+    end
+  end
+end
+</code></pre>
+<p>Don’t forget to add a system (or request) spec to glue together the abstraction you just added with
+the real world:</p>
+<pre><code class="language-ruby">require 'rails_helper'
+
+RSpec.describe 'Multilanguage support' do
+  it 'can switch the locale per navigation link' do
+    visit root_path(locale: 'fr')
+    expect(page).to have_content(I18n.t('lobby.start_button', locale: 'fr'))
+    click_link('IT', class: 'nav-link')
+    expect(page).to have_content(I18n.t('lobby.start_button', locale: 'it'))
+  end
+end
+</code></pre>
+<h2 id="simple-canonical-headers"><a class="header" href="#simple-canonical-headers">Simple Canonical headers</a></h2>
+<p>Add our <a href="https://github.com/renuo/rack-canonical-header"><code>rack-canonical-header</code> gem</a>
+to your <code>Gemfile</code> in production to automatically patch the HTTP header tag <code>Link</code>.</p>
+<pre><code class="language-rb">group :production do
+  gem 'rack-canonical-header'
+end
+</code></pre>
+<p>This requires you to provide an env variable <code>CANONICAL_HOST</code> in production.</p>
+<h2 id="advanced-headers-for-multi-language-support"><a class="header" href="#advanced-headers-for-multi-language-support">Advanced headers for multi-language support.</a></h2>
+<p>The following sets <code>Content-Language</code> and <code>Link</code> headers (<code>canonical</code> and <code>hreflang</code>):</p>
+<pre><code class="language-ruby"># app/controllers/concerns/set_response_headers_concern.rb
+module SetResponseHeadersConcern
+  extend ActiveSupport::Concern
+
+  def set_response_headers
+    set_content_language_header
+    set_link_header
+  end
+
+  private
+
+  def set_content_language_header
+    response.set_header('Content-Language', I18n.available_locales.join(', '))
+  end
+
+  def set_link_header
+    hreflangs = I18n.available_locales.map(&amp;method(:hreflang_link_value))
+    canonical = params[:locale].present? ? nil : canonical_link_value(I18n.locale)
+    response.set_header('Link', [*hreflangs, canonical].compact.join(', '))
+  end
+
+  def hreflang_link_value(locale)
+    "&lt;#{url_for(locale: locale, only_path: false)}&gt;; rel=\"alternate\"; hreflang=\"#{locale}\""
+  end
+
+  def canonical_link_value(locale)
+    "&lt;#{url_for(locale: locale, only_path: false)}&gt;; rel=\"canonical\""
+  end
+end
+
+# app/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  include SetResponseHeadersConcern
+  after_action :set_response_headers
+end
+
+# spec/controllers/application_controller_spec.rb
+RSpec.describe ApplicationController do
+  controller do
+    def fake_action
+      render plain: 'fake'
+    end
+  end
+
+  before do
+    custom_routes = proc do
+      scope '(:locale)' do
+        get 'fake_action' =&gt; 'anonymous#fake_action'
+      end
+    end
+
+    Rails.application.routes.draw(&amp;custom_routes) # needed for url_for in SetResponseHeadersConcern
+    routes.draw(&amp;custom_routes) # needed for RSpec
+  end
+
+  after do
+    Rails.application.reload_routes!
+  end
+
+  describe '#set_response_headers' do
+    it { expect(described_class.ancestors).to include(SetResponseHeadersConcern) }
+
+    it 'sets the canonical header for unlocalized requests' do
+      get :fake_action, params: {}
+      expect(response.headers['Link']).to match(/canonical/)
+    end
+
+    it 'sets the canonical header for explicitly unlocalized requests' do
+      get :fake_action, params: { locale: nil }
+      expect(response.headers['Link']).to match(/canonical/)
+    end
+
+    it 'does NOT set the canonical header for localized requests' do
+      get :fake_action, params: { locale: 'de' }
+      expect(response.headers['Link']).not_to match(/canonical/)
+    end
+
+    it 'sets the hreflang headers', :aggregate_failures do
+      get :fake_action
+      expect(response.headers['Link']).to match(/hreflang="de"/)
+      expect(response.headers['Link']).to match(/hreflang="fr"/)
+    end
+
+    it 'sets content language header', :aggregate_failures do
+      get :fake_action
+      expect(response.headers['Content-Language']).to match(/de/)
+      expect(response.headers['Content-Language']).to match(/fr/)
+    end
+  end
+end
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="google-analytics"><a class="header" href="#google-analytics">Google Analytics</a></h1>
 <p>Google Analytics is only set up for the main branch (since *.renuoapp.ch domains are tracked via Cloudflare injection).</p>
@@ -2423,6 +3055,74 @@ If you used Renuo CLI to configure SemaphoreCI, the notifications should be alre
 <li>Send to Slack channel: <code>#project-[project-name]-notifications</code></li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="checklist"><a class="header" href="#checklist">Checklist</a></h1>
+<ul>
+<li><input disabled="" type="checkbox"> Application name chosen</li>
+<li><input disabled="" type="checkbox"> Rails Application created</li>
+<li><input disabled="" type="checkbox"> Git Repository created and configured</li>
+<li><input disabled="" type="checkbox"> CI configured</li>
+<li><input disabled="" type="checkbox"> Server created</li>
+<li><input disabled="" type="checkbox"> CD configured</li>
+<li><input disabled="" type="checkbox"> App running</li>
+<li><input disabled="" type="checkbox"> Linting tools installed</li>
+<li><input disabled="" type="checkbox"> RSpec installed</li>
+<li><input disabled="" type="checkbox"> Suggested gems included</li>
+<li><input disabled="" type="checkbox"> Sentry, Appsignal and/or NewRelic configured depending on your choice.</li>
+<li><input disabled="" type="checkbox"> Logs on Appsignal configured</li>
+<li><input disabled="" type="checkbox"> Cloudflare configured</li>
+<li><input disabled="" type="checkbox"> README written and complete</li>
+<li><input disabled="" type="checkbox"> Uptime Monitor configured</li>
+<li><input disabled="" type="checkbox"> robots.txt configured</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="go-live"><a class="header" href="#go-live">Go Live</a></h1>
+<h2 id="dns-ssl--smtp"><a class="header" href="#dns-ssl--smtp">DNS, SSL &amp; SMTP</a></h2>
+<ul>
+<li>Check your DNS records, for example
+<ul>
+<li><code>CNAME</code> to Heroku (<a href="https://devcenter.heroku.com/articles/custom-domains">see their docs</a>)</li>
+<li><code>TXT</code> records for <a href="https://support.sparkpost.com/docs/getting-started/setting-up-domains">SparkPost sending domains</a></li>
+<li><code>CAA</code> records (<a href="https://developers.cloudflare.com/ssl/edge-certificates/caa-records/#create-caa-records">see Cloudflare</a>)</li>
+</ul>
+</li>
+<li>If SparkPost has been set up with the renuoapp.ch domain and the project has its own domain now, set up SparkPost again with its own domain</li>
+<li>Verify that SparkPost mails are working and the <a href="https://app.sparkpost.com/domains/list/sending">sending domain is validated</a>.</li>
+<li>Verify that SSL is working correctly</li>
+</ul>
+<p>If the final domain isn’t already in use, you can configure it also already:
+Add a CNAME DNS record pointing to the app (<code>[project-name]-main.renuoapp.ch</code>).</p>
+<h3 id="url-rewriting-on-cloudflare"><a class="header" href="#url-rewriting-on-cloudflare">URL rewriting on Cloudflare</a></h3>
+<p>For user comfort we redirect HTTP calls to <a href="https://example.com">https://example.com</a> to <a href="https://www.example.com">https://www.example.com</a>.
+This is done via page rules in Cloudflare.</p>
+<ol>
+<li>Add a new page rule</li>
+<li>Enter <code>example.com/*</code></li>
+<li>Choose “Forwarding URL”</li>
+<li>Choose “301 - Permanent Redirect”</li>
+<li>Enter <code>https://www.example.com/$1</code></li>
+<li>Click “Save and Deploy”</li>
+</ol>
+<h2 id="deploio-preferred-deployment-method"><a class="header" href="#deploio-preferred-deployment-method">Deploio (Preferred Deployment Method)</a></h2>
+<p>We now recommend deploying applications using <a href="https://deplo.io">Deploio</a>, moving away from Heroku.</p>
+<p>When preparing your app for production on Deploio, ensure the following:</p>
+<ul>
+<li>Verify the machine type of the PostgreSQL database in the PostgreSQL resource view.</li>
+<li>Confirm the configured application size in the application configuration tab.</li>
+<li>Ensure the application replica count is correctly set in the application configuration tab.</li>
+</ul>
+<p>For detailed instructions and best practices, including quick start guides for a variety of frameworks, please refer to the <a href="https://guides.deplo.io/user-guide/network-and-deployment.html#network-deployment">Deploio deployment documentation</a>.</p>
+<h2 id="heroku-3"><a class="header" href="#heroku-3">Heroku</a></h2>
+<ul>
+<li>Check the size and amount of dynos on Heroku</li>
+<li>Check the database size plan on Heroku and upgrade if it is foreseeable that 10’000 rows are exceeded in a short time</li>
+<li>Check additional addons and according plans on Heroku</li>
+</ul>
+<h2 id="other"><a class="header" href="#other">Other</a></h2>
+<ul>
+<li>Reset admin credentials, seeds, … if necessary</li>
+<li>Test the whole application by hand if everything is working as it should</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="project-title"><a class="header" href="#project-title">Project Title</a></h1>
 <p>Short project description</p>
 <h2 id="environments"><a class="header" href="#environments">Environments</a></h2>
@@ -2437,7 +3137,7 @@ If you used Renuo CLI to configure SemaphoreCI, the notifications should be alre
 </tbody>
 </table>
 </div>
-<h2 id="setup-2"><a class="header" href="#setup-2">Setup</a></h2>
+<h2 id="setup-5"><a class="header" href="#setup-5">Setup</a></h2>
 <pre><code class="language-sh">git clone git@github.com:renuo/[project-name].git
 cd [project-name]
 bin/setup

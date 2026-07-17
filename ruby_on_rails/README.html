@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Getting started - Renuo - Application Setup Guide</title>
+        <title>Getting Started - Renuo - Application Setup Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-5ab0665e.js";
+            window.path_to_searchindex_js = "../searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-bfba33f3.js"></script>
+        <script src="../toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -189,24 +189,33 @@ As a rule of thumb: for customers we always use two environments, for internal p
 Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.
 Decide with your team if you want one or two branches.</p>
 </blockquote>
+<blockquote>
+<p>:bulb: <strong>Tip:</strong> Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.</p>
+</blockquote>
+<hr>
+<h2 id="step-1-create-the-app"><a class="header" href="#step-1-create-the-app">Step 1: Create the App</a></h2>
 <ol>
 <li><a href="app_initialisation.html">Initialise the Rails Application</a></li>
 <li><a href="first_git_push.html">Push to Git Repository</a></li>
 <li><a href="initialise_gitflow.html">Initialise Gitflow</a></li>
-<li><a href="../configure_git_repository.html">Configure Github Repository</a></li>
+<li><a href="../configure_github_repository.html">Configure Github Repository</a></li>
+</ol>
+<h2 id="step-2-deploy-the-app"><a class="header" href="#step-2-deploy-the-app">Step 2: Deploy the App</a></h2>
+<ol>
 <li><a href="create_application_server_deploio.html">Create an Application Server for Deploio</a> or <a href="create_application_server_heroku.html">Create an Application Server for Heroku</a></li>
 <li><a href="configure_ci.html">Configure the CI / CD</a></li>
 </ol>
 <p>Once here, your app should be up and running on all environments.</p>
+<h2 id="step-3-quality-tools"><a class="header" href="#step-3-quality-tools">Step 3: Quality Tools</a></h2>
 <p>It’s now time to introduce some more tools which will help you and the team to keep a high quality during the project development.</p>
 <ol>
 <li><a href="rspec.html">RSpec</a></li>
 <li><a href="linting_and_automatic_check.html">Linting and automatic checks</a></li>
 <li><a href="suggested_libraries.html">Gems and libraries :gem:</a></li>
 <li><a href="cloudflare.html">Cloudflare</a></li>
-<li><a href="compile_readme.html">README</a></li>
 </ol>
 <p>:tada: Finally you are ready to start working on you new project! :tada:</p>
+<h2 id="step-4-monitoring--protection"><a class="header" href="#step-4-monitoring--protection">Step 4: Monitoring &amp; Protection</a></h2>
 <p>While everyone starts working there are some more things which you should setup.
 Most are not optional, but the rest of the team can start working even if those are not in place yet.</p>
 <ol>
@@ -217,21 +226,20 @@ Most are not optional, but the rest of the team can start working even if those 
 <li><a href="configure_percy.html">Percy</a> (optional)</li>
 <li><a href="environment_protection.html">Protect develop environment</a></li>
 </ol>
-<p>Some services should be configured accordingly to the packages bought by the customer.
-Once the new application is created, please add the project to the
-<a href="https://docs.google.com/spreadsheets/d/1FY4jqByO-aI5sDan0hD7ULu6a2-eLsmO6kgdCFlPmuY/edit#gid=0">monitoring list</a>
-and discuss with the PO how the service should be configured.</p>
+<h2 id="step-5-customer-plan-services"><a class="header" href="#step-5-customer-plan-services">Step 5: Customer Plan Services</a></h2>
+<p>Bookmark the project on <a href="https://dashboard.renuo.ch/redmine_projects">Redmine</a> and configure the services listed there.</p>
 <ol>
 <li><a href="uptimerobot.html">Uptimerobot</a></li>
-<li>Depending on the monitoring list, also <a href="sentry.html">Sentry notifications</a> need to be configured.</li>
+<li><a href="sentry.html">Sentry notifications</a>, if requested</li>
 <li><a href="depfu.html">Depfu security monitoring</a></li>
-<li>Depending on the monitoring list, also <a href="papertrail.html">Papertrail alerts</a> need to be configured.</li>
+<li><a href="papertrail.html">Papertrail alerts</a>, if requested</li>
 </ol>
-<p>Here you will find a series of chapters and guides on how to setup some of the gems we use most often and some other
-useful services:</p>
-<ol>
+<hr>
+<h2 id="guides--recipes"><a class="header" href="#guides--recipes">Guides &amp; Recipes</a></h2>
+<p>The following are not part of the sequential setup. Use them as needed for your project.</p>
+<ul>
 <li><a href="jest.html">Run Javascript tests with Jest</a></li>
-<li><a href="../pull_requests_template.html">Pull Requests Template</a></li>
+<li><a href="../templates/pull_requests_template.html">Pull Requests Template</a></li>
 <li><a href="../slack_and_notifications.html">Slack and Project Notifications</a></li>
 <li><a href="send_emails.html">Send emails</a></li>
 <li><a href="../sparkpost_and_mailtrap.html">Sparkpost &amp; Mailtrap</a></li>
@@ -242,7 +250,7 @@ useful services:</p>
 <li><a href="bootstrap.html">bootstrap</a></li>
 <li><a href="font_awesome.html">font-awesome</a></li>
 <li><a href="bullet.html">bullet</a> <code>gem 'bullet'</code></li>
-<li><a href="appsignal.html">lograge</a> <code>gem 'lograge'</code></li>
+<li><a href="appsignal.html#lograge">lograge</a> <code>gem 'lograge'</code></li>
 <li>Rack Tracker (Google Analytics) <code>gem 'rack-tracker'</code> –&gt; see <a href="../google_analytics.html">Google Analytics</a></li>
 <li>Favicons</li>
 <li><a href="https://github.com/cyu/rack-cors">Rack CORS</a></li>
@@ -257,14 +265,13 @@ useful services:</p>
 <li><a href="wicked_pdf.html">wicked pdf</a> <code>gem wicked_pdf</code></li>
 <li><a href="recaptcha.html">Recaptcha v3</a></li>
 <li><a href="wallee.html">Wallee Payment Integration</a></li>
-<li><a href="https://gist.github.com/sislr/fb7f6d8f05c96c199d9525706561902d">Sign in with Redmine</a></li>
-</ol>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../checklist.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../security.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -278,7 +285,7 @@ useful services:</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../checklist.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../security.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 

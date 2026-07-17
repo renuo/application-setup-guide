@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Bootstrap - Renuo - Application Setup Guide</title>
+        <title>I18n - Renuo - Application Setup Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-e96d0476.css">
-        <link rel="stylesheet" href="../css/chrome-d279d366.css">
-        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../";
+            const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-57445ef8.js";
+            window.path_to_searchindex_js = "searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-daf8421b.js"></script>
+        <script src="toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -105,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Renuo - Application Setup Guide</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,101 +174,231 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
-<p>You can use the npm package of the latest version of Bootstrap.</p>
-<p><code>yarn add bootstrap</code></p>
-<p>and include it in your stylesheet pack with:</p>
-<pre><code class="language-scss">@import '~bootstrap/scss/bootstrap';
-</code></pre>
-<p>If you want to use also the javascript part of Bootstrap you need both popper.js and jquery.
-Add them with:</p>
-<p><code>yarn add jquery popper.js</code></p>
-<p>and configure them in <code>environment.js</code>:</p>
-<pre><code class="language-js">const webpack = require('webpack')
-environment.plugins.append('Provide', new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
-  Popper: ['popper.js', 'default']
-}));
-</code></pre>
-<p>Change <code>extract_css: false</code> to <code>extract_css: true</code> in <code>config/webpacker.yml</code></p>
-<p>and finally, import bootstrap library in <code>application.js</code> with</p>
-<pre><code class="language-js">import 'bootstrap/dist/js/bootstrap';
-</code></pre>
-<h2 id="simple-form"><a class="header" href="#simple-form">Simple Form</a></h2>
-<p>If you use the gem <a href="https://github.com/plataformatec/simple_form">Simple Form</a>,
-you need to adjust the configuration in the <code>config/initializers/simple_form.rb</code> file.</p>
-<p>Here are some recommended options:</p>
-<pre><code class="language-ruby">config.wrappers :default, class: 'form-group',
-                hint_class: :field_with_hint, error_class: 'has-danger' do |b|
-</code></pre>
-<pre><code class="language-ruby">config.error_notification_class = 'alert alert-danger'
-</code></pre>
-<pre><code class="language-ruby">b.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
-</code></pre>
-<pre><code class="language-ruby">config.label_class = 'form-control-label'
-</code></pre>
-<pre><code class="language-ruby">config.input_class = 'form-control'
-</code></pre>
-<p>To make the error highlighting work you need to add some css to your application</p>
-<pre><code class="language-scss">.invalid-feedback {
-  display: block;
-}
+                        <h1 id="i18n"><a class="header" href="#i18n">I18n</a></h1>
+<h2 id="switching-language"><a class="header" href="#switching-language">Switching language</a></h2>
+<p>The following determines the used locale by the following priorities:</p>
+<ol>
+<li><code>locale</code> parameter</li>
+<li><code>Http-Accept</code> header</li>
+<li>application default locale</li>
+</ol>
+<pre><code class="language-ruby"># app/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  around_action :switch_locale
 
-.has-danger {
-  .form-control {
-    border-color: $form-feedback-invalid-color;
-  }
-}
-</code></pre>
-<p>Please note that this is a workaround, as there is yet no way to add an error class directly onto an input.
-However, there is an open issue on Simple Form: <a href="https://github.com/plataformatec/simple_form/pull/147">https://github.com/plataformatec/simple_form/pull/147</a>
-Once this feature is added, please remove the css.</p>
-<p>For the styling of the pull down date selectors or checkboxes, you need to write some wrappers, that you can add
-to the input element.
-It is best to create a separate config file for this.</p>
-<p>Once the issue <a href="https://github.com/plataformatec/simple_form/pull/1337">https://github.com/plataformatec/simple_form/pull/1337</a> is done, you can also configure simple form
-with the command <code>rails generate simple_form:install --bootstrap4</code>.</p>
-<pre><code class="language-ruby"># config/initializers/simple_form_bootstrap.rb
-
-SimpleForm.setup do |config|
-  config.wrappers :inline_date, tag: 'div', error_class: 'has-danger' do |b|
-    b.use :html5
-    b.use :label, class: 'control-label'
-    b.wrapper tag: 'div', class: 'form-inline row' do |ba|
-      ba.use :input, class: 'form-control form-inline', wrap_with: { class: 'col-md-6' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'invalid-feedback' }
-      ba.use :hint, wrap_with:  { tag: 'p', class: 'help-block' }
-    end
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge(options)
   end
 
-  config.wrappers :inline_checkbox, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.wrapper tag: 'div', class: 'controls' do |ba|
-      ba.use :label_input, wrap_with: { class: 'checkbox inline' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
-    end
+  private
+
+  def switch_locale(&amp;action)
+    locale = extract_params_locale || extract_accept_header_locale || I18n.default_locale
+    I18n.with_locale(locale, &amp;action)
   end
 
-  config.wrapper_mappings = {
-    check_boxes: :inline_checkbox,
-    date: :inline_date,
-    datatime: :inline_date
-  }
+  def extract_params_locale
+    I18n.locale_available?(params[:locale]) ? params[:locale] : nil
+  end
+
+  def extract_accept_header_locale
+    accepting_locales = (request.env['HTTP_ACCEPT_LANGUAGE'] || '').split(',').map do |part|
+      part.strip.scan(/^[a-z]{2}/).first
+    end
+
+    accepting_locales.find { |locale| I18n.locale_available?(locale) }
+  end
 end
 
+# spec/controllers/application_controller_spec.rb
+RSpec.describe ApplicationController do
+  controller do
+    def fake_action
+      render plain: 'fake'
+    end
+  end
+
+  before do
+    custom_routes = proc do
+      scope '(:locale)' do
+        get 'fake_action' =&gt; 'anonymous#fake_action'
+      end
+    end
+
+    routes.draw(&amp;custom_routes)
+  end
+
+  describe '#set_locale' do
+    before do
+      allow(I18n).to receive(:with_locale)
+    end
+
+    context 'when locale param AND header are specified' do
+      let(:params) { { locale: 'fr' } }
+
+      before do
+        request.headers['HTTP_ACCEPT_LANGUAGE'] = 'it-CH, it;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5'
+      end
+
+      it 'locale param takes precedence' do
+        get :fake_action, params: params
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when only the locale param is specified' do
+      let(:params) { { locale: 'fr' } }
+
+      it 'uses it' do
+        get :fake_action, params: params
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when only the header is specified' do
+      before do
+        request.headers['HTTP_ACCEPT_LANGUAGE'] = 'en, fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5'
+      end
+
+      it 'the first supported locale from the header is taken' do
+        get :fake_action
+        expect(I18n).to have_received(:with_locale).with('fr')
+      end
+    end
+
+    context 'when neither locale param nor header are specified' do
+      it 'uses the default one' do
+        get :fake_action
+        expect(I18n).to have_received(:with_locale).with(I18n.default_locale)
+      end
+    end
+  end
+end
+</code></pre>
+<p>Don’t forget to add a system (or request) spec to glue together the abstraction you just added with
+the real world:</p>
+<pre><code class="language-ruby">require 'rails_helper'
+
+RSpec.describe 'Multilanguage support' do
+  it 'can switch the locale per navigation link' do
+    visit root_path(locale: 'fr')
+    expect(page).to have_content(I18n.t('lobby.start_button', locale: 'fr'))
+    click_link('IT', class: 'nav-link')
+    expect(page).to have_content(I18n.t('lobby.start_button', locale: 'it'))
+  end
+end
+</code></pre>
+<h2 id="simple-canonical-headers"><a class="header" href="#simple-canonical-headers">Simple Canonical headers</a></h2>
+<p>Add our <a href="https://github.com/renuo/rack-canonical-header"><code>rack-canonical-header</code> gem</a>
+to your <code>Gemfile</code> in production to automatically patch the HTTP header tag <code>Link</code>.</p>
+<pre><code class="language-rb">group :production do
+  gem 'rack-canonical-header'
+end
+</code></pre>
+<p>This requires you to provide an env variable <code>CANONICAL_HOST</code> in production.</p>
+<h2 id="advanced-headers-for-multi-language-support"><a class="header" href="#advanced-headers-for-multi-language-support">Advanced headers for multi-language support.</a></h2>
+<p>The following sets <code>Content-Language</code> and <code>Link</code> headers (<code>canonical</code> and <code>hreflang</code>):</p>
+<pre><code class="language-ruby"># app/controllers/concerns/set_response_headers_concern.rb
+module SetResponseHeadersConcern
+  extend ActiveSupport::Concern
+
+  def set_response_headers
+    set_content_language_header
+    set_link_header
+  end
+
+  private
+
+  def set_content_language_header
+    response.set_header('Content-Language', I18n.available_locales.join(', '))
+  end
+
+  def set_link_header
+    hreflangs = I18n.available_locales.map(&amp;method(:hreflang_link_value))
+    canonical = params[:locale].present? ? nil : canonical_link_value(I18n.locale)
+    response.set_header('Link', [*hreflangs, canonical].compact.join(', '))
+  end
+
+  def hreflang_link_value(locale)
+    "&lt;#{url_for(locale: locale, only_path: false)}&gt;; rel=\"alternate\"; hreflang=\"#{locale}\""
+  end
+
+  def canonical_link_value(locale)
+    "&lt;#{url_for(locale: locale, only_path: false)}&gt;; rel=\"canonical\""
+  end
+end
+
+# app/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  include SetResponseHeadersConcern
+  after_action :set_response_headers
+end
+
+# spec/controllers/application_controller_spec.rb
+RSpec.describe ApplicationController do
+  controller do
+    def fake_action
+      render plain: 'fake'
+    end
+  end
+
+  before do
+    custom_routes = proc do
+      scope '(:locale)' do
+        get 'fake_action' =&gt; 'anonymous#fake_action'
+      end
+    end
+
+    Rails.application.routes.draw(&amp;custom_routes) # needed for url_for in SetResponseHeadersConcern
+    routes.draw(&amp;custom_routes) # needed for RSpec
+  end
+
+  after do
+    Rails.application.reload_routes!
+  end
+
+  describe '#set_response_headers' do
+    it { expect(described_class.ancestors).to include(SetResponseHeadersConcern) }
+
+    it 'sets the canonical header for unlocalized requests' do
+      get :fake_action, params: {}
+      expect(response.headers['Link']).to match(/canonical/)
+    end
+
+    it 'sets the canonical header for explicitly unlocalized requests' do
+      get :fake_action, params: { locale: nil }
+      expect(response.headers['Link']).to match(/canonical/)
+    end
+
+    it 'does NOT set the canonical header for localized requests' do
+      get :fake_action, params: { locale: 'de' }
+      expect(response.headers['Link']).not_to match(/canonical/)
+    end
+
+    it 'sets the hreflang headers', :aggregate_failures do
+      get :fake_action
+      expect(response.headers['Link']).to match(/hreflang="de"/)
+      expect(response.headers['Link']).to match(/hreflang="fr"/)
+    end
+
+    it 'sets content language header', :aggregate_failures do
+      get :fake_action
+      expect(response.headers['Content-Language']).to match(/de/)
+      expect(response.headers['Content-Language']).to match(/fr/)
+    end
+  end
+end
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ruby_on_rails/cucumber.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ruby_on_rails/content_security_policy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="google_analytics.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -278,11 +408,11 @@ end
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ruby_on_rails/cucumber.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ruby_on_rails/content_security_policy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="google_analytics.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -302,13 +432,13 @@ end
         </script>
 
 
-        <script src="../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-09f2665d.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
-        <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-609e4cb8.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

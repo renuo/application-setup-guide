@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Bootstrap - Renuo - Application Setup Guide</title>
+        <title>Wallee Payment - Renuo - Application Setup Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -174,101 +174,345 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
-<p>You can use the npm package of the latest version of Bootstrap.</p>
-<p><code>yarn add bootstrap</code></p>
-<p>and include it in your stylesheet pack with:</p>
-<pre><code class="language-scss">@import '~bootstrap/scss/bootstrap';
-</code></pre>
-<p>If you want to use also the javascript part of Bootstrap you need both popper.js and jquery.
-Add them with:</p>
-<p><code>yarn add jquery popper.js</code></p>
-<p>and configure them in <code>environment.js</code>:</p>
-<pre><code class="language-js">const webpack = require('webpack')
-environment.plugins.append('Provide', new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
-  Popper: ['popper.js', 'default']
-}));
-</code></pre>
-<p>Change <code>extract_css: false</code> to <code>extract_css: true</code> in <code>config/webpacker.yml</code></p>
-<p>and finally, import bootstrap library in <code>application.js</code> with</p>
-<pre><code class="language-js">import 'bootstrap/dist/js/bootstrap';
-</code></pre>
-<h2 id="simple-form"><a class="header" href="#simple-form">Simple Form</a></h2>
-<p>If you use the gem <a href="https://github.com/plataformatec/simple_form">Simple Form</a>,
-you need to adjust the configuration in the <code>config/initializers/simple_form.rb</code> file.</p>
-<p>Here are some recommended options:</p>
-<pre><code class="language-ruby">config.wrappers :default, class: 'form-group',
-                hint_class: :field_with_hint, error_class: 'has-danger' do |b|
-</code></pre>
-<pre><code class="language-ruby">config.error_notification_class = 'alert alert-danger'
-</code></pre>
-<pre><code class="language-ruby">b.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
-</code></pre>
-<pre><code class="language-ruby">config.label_class = 'form-control-label'
-</code></pre>
-<pre><code class="language-ruby">config.input_class = 'form-control'
-</code></pre>
-<p>To make the error highlighting work you need to add some css to your application</p>
-<pre><code class="language-scss">.invalid-feedback {
-  display: block;
-}
+                        <h1 id="wallee"><a class="header" href="#wallee">Wallee</a></h1>
+<h2 id="payment-page"><a class="header" href="#payment-page">Payment Page</a></h2>
+<h3 id="setup-wallee"><a class="header" href="#setup-wallee">Setup Wallee</a></h3>
+<ol>
+<li>Visit <a href="https://app-wallee.com/">Wallee</a>.</li>
+<li>Go to <code>Account</code> -&gt; <code>Application User</code>, create a new user and store the credentials.</li>
+<li>Go to <code>Space</code> -&gt; <code>Settings</code> -&gt; <code>Payment</code> and setup a new processor. Choose <code>Bogus Processor</code> for testing.</li>
+</ol>
+<h3 id="configure-rails"><a class="header" href="#configure-rails">Configure Rails</a></h3>
+<ol>
+<li>
+<p>Use the <a href="https://github.com/wallee-payment/ruby-sdk"><code>wallee-ruby-sdk</code></a> gem to interact with the Wallee API.</p>
+<pre><code class="language-ruby"># Gemfile
 
-.has-danger {
-  .form-control {
-    border-color: $form-feedback-invalid-color;
-  }
-}
+gem 'wallee-ruby-sdk'
 </code></pre>
-<p>Please note that this is a workaround, as there is yet no way to add an error class directly onto an input.
-However, there is an open issue on Simple Form: <a href="https://github.com/plataformatec/simple_form/pull/147">https://github.com/plataformatec/simple_form/pull/147</a>
-Once this feature is added, please remove the css.</p>
-<p>For the styling of the pull down date selectors or checkboxes, you need to write some wrappers, that you can add
-to the input element.
-It is best to create a separate config file for this.</p>
-<p>Once the issue <a href="https://github.com/plataformatec/simple_form/pull/1337">https://github.com/plataformatec/simple_form/pull/1337</a> is done, you can also configure simple form
-with the command <code>rails generate simple_form:install --bootstrap4</code>.</p>
-<pre><code class="language-ruby"># config/initializers/simple_form_bootstrap.rb
+</li>
+<li>
+<p>Configure the credentials</p>
+<pre><code class="language-ruby"># config/initializers/wallee.rb
 
-SimpleForm.setup do |config|
-  config.wrappers :inline_date, tag: 'div', error_class: 'has-danger' do |b|
-    b.use :html5
-    b.use :label, class: 'control-label'
-    b.wrapper tag: 'div', class: 'form-inline row' do |ba|
-      ba.use :input, class: 'form-control form-inline', wrap_with: { class: 'col-md-6' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'invalid-feedback' }
-      ba.use :hint, wrap_with:  { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrappers :inline_checkbox, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.wrapper tag: 'div', class: 'controls' do |ba|
-      ba.use :label_input, wrap_with: { class: 'checkbox inline' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrapper_mappings = {
-    check_boxes: :inline_checkbox,
-    date: :inline_date,
-    datatime: :inline_date
-  }
+Wallee.configure do |config|
+  config.user_id = ENV.fetch("WALLEE_APP_USER_ID")
+  config.authentication_key = ENV.fetch("WALLEE_APP_AUTHENTICATION_KEY")
 end
-
 </code></pre>
+</li>
+<li>
+<p>Add a tool class to create a payment page URL.
+Be aware that this is very simple tooling.</p>
+<pre><code class="language-ruby"># app/models/wallee/payment_page.rb
+
+module Wallee
+  class PaymentPage
+    SPACE_ID = ENV.fetch("WALLEE_SPACE_ID")
+
+    # Simplest Payment integration I could think of.
+    # Attention: Check VAT, shipping address and shipping method
+    #
+    # @example
+    #   Wallee::PaymentPage.url_for(
+    #     cart: [
+    #       {name: "Eintritt Erwachsene", sku: "adult_entry", price: 30, quantity: 2}
+    #     ],
+    #     address: {
+    #       city: "Zürich",
+    #       country: "CH",
+    #       email_address: "customer@example.com",
+    #       family_name: "Muster",
+    #       given_name: "Hans",
+    #       postcode: "8000",
+    #       street: "Musterstrasse 1"
+    #     }
+    #   ) do |transaction|
+    #     # Save transaction.id to the order
+    #   end
+    def self.url_for(cart:, address:, reference:, success_url: nil, failed_url: nil, &amp;)
+      raise "Cart is empty" if cart.empty?
+      raise "Bad cart format" unless cart.all? { |item| item.keys == [:name, :sku, :price, :quantity] }
+
+      line_items = cart.map.with_index do |item, index|
+        Wallee::LineItemCreate.new({
+          amountIncludingTax: item[:price] * item[:quantity],
+          name: item[:name],
+          quantity: item[:quantity],
+          shippingRequired: true,
+          sku: item[:sku],
+          taxes: [Wallee::TaxCreate.new({rate: 0, title: "VAT"})],
+          type: Wallee::LineItemType::PRODUCT,
+          uniqueId: "#{item[:sku]}-#{index}"
+        })
+      end
+
+      billing_address = shipping_address = Wallee::AddressCreate.new(
+        city: address[:city],
+        country: address[:country],
+        emailAddress: address[:email_address],
+        familyName: address[:family_name],
+        givenName: address[:given_name],
+        postcode: address[:postcode],
+        street: address[:street]
+      )
+
+      transaction_create = Wallee::TransactionCreate.new({
+        billingAddress: billing_address,
+        currency: "CHF",
+        customerPresence: Wallee::CustomersPresence::VIRTUAL_PRESENT,
+        failedUrl: failed_url,
+        language: "de_CH",
+        lineItems: line_items,
+        merchantReference: reference,
+        shippingAddress: shipping_address,
+        shippingMethod: "Brief A-Post",
+        successUrl: success_url
+      })
+
+      transaction_service = Wallee::TransactionService.new
+      transaction = transaction_service.create(SPACE_ID, transaction_create)
+      Rails.logger.info "Wallee transaction created for #{reference}, see #{admin_url(transaction.id)}"
+
+      yield transaction.freeze if block_given?
+
+      transaction_payment_page_service = Wallee::TransactionPaymentPageService.new
+      transaction_payment_page_service.payment_page_url(SPACE_ID, transaction.id)
+    end
+
+    def self.admin_url(transaction_id)
+      "https://app-wallee.com/s/#{SPACE_ID}/payment/transaction/view/#{URI.encode_uri_component transaction_id}"
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Add the tests</p>
+<pre><code class="language-ruby"># spec/models/wallee/payment_page_spec.rb
+
+require "rails_helper"
+
+RSpec.describe Wallee::PaymentPage do
+  describe ".url_for" do
+    subject(:url_for) { described_class.url_for(cart: cart, address: address, reference: "my-transaction") }
+
+    context "when cart is empty" do
+      let(:cart) { [] }
+      let(:address) { double }
+
+      it "raises an error" do
+        expect { url_for }.to raise_error("Cart is empty")
+      end
+    end
+
+    context "when cart is in bad format" do
+      let(:cart) { [{blub: 30, quantity: 2}] }
+      let(:address) { double }
+
+      it "raises an error" do
+        expect { url_for }.to raise_error("Bad cart format")
+      end
+    end
+
+    context "when cart is valid", vcr: "wallee/payment_url_success" do
+      let(:cart) do
+        [
+          {name: "Eintritt Erwachsene", sku: "adult_entry", price: 30, quantity: 2},
+          {name: "Eintritt 16-24 J.", sku: "child_6_10_entry", price: 24, quantity: 1},
+          {name: "Eintritt 11-15 J.", sku: "child_11_15_entry", price: 18, quantity: 0},
+          {name: "Eintritt 3-10 J.", sku: "child_16_24_entry", price: 10, quantity: 1},
+          {name: "Gutscheinkarte", sku: "free_coupon", price: 50, quantity: 1}
+        ]
+      end
+
+      let(:address) do
+        {
+          city: "Zürich",
+          country: "CH",
+          email_address: "customer@example.com",
+          family_name: "Muster",
+          given_name: "Hans",
+          postcode: "8000",
+          street: "Musterstrasse 1"
+        }
+      end
+
+      it { is_expected.to match(URI::DEFAULT_PARSER.make_regexp(["https"])) }
+
+      context "when given a block" do
+        it "yields a transaction" do
+          expect { |b| described_class.url_for(cart: cart, address: address, reference: "1", &amp;b) }.to yield_with_args(Wallee::Transaction)
+        end
+      end
+    end
+  end
+
+  describe ".admin_url" do
+    it "generates an admin url for a transaction" do
+      expect(described_class.admin_url("1337")).to match(URI::DEFAULT_PARSER.make_regexp(["https"]))
+    end
+
+    it "escapes transaction id" do
+      expect(described_class.admin_url("#")).to include("%23")
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Redirect to the payment page in your controller</p>
+<pre><code class="language-ruby">redirect_to Wallee::PaymentPage.url_for(…) do |transaction|
+  # Save transaction.id to the order or whatever you need
+end
+</code></pre>
+</li>
+<li>
+<p><strong>You’re done.</strong> You can receive money now if you setup a real payment processor.
+Customers can receive emails directly from Wallee and you can print shipping labels from the Wallee backend.</p>
+</li>
+</ol>
+<h2 id="fulfillment-via-webhook-in-rails"><a class="header" href="#fulfillment-via-webhook-in-rails">Fulfillment via Webhook in Rails</a></h2>
+<p>Often a payment page is not enough. You need to know the payment state in your Rails app.
+You can either poll the Wallee API or use a webhook. Here’s an example of a webhook controller.
+Be aware that this is quite integrated with the business logic of your app, e.g. see the <code>ShopOrder</code> model.</p>
+<ol>
+<li>
+<p>Add the route</p>
+<pre><code class="language-ruby"># config/routes.rb
+
+post "shop/wallee_webhook", to: "shop#wallee_webhook"
+</code></pre>
+</li>
+<li>
+<p>Add the controller</p>
+<pre><code class="language-ruby"># app/controllers/shop_controller.rb
+
+class ShopController &lt; ApplicationController
+  def wallee_webhook
+    request_payload = request.body.read
+    signature = request.env["HTTP_X_SIGNATURE"]
+
+    if signature.blank?
+      Rails.logger.info "Signature missing"
+      head :bad_request and return
+    end
+
+    webhook_encryption_service = Wallee::WebhookEncryptionService.new
+    unless webhook_encryption_service.is_content_valid(signature, request_payload)
+      Rails.logger.info "Webhook signature invalid"
+      head :bad_request and return
+    end
+
+    entity_type, entity_id = JSON.parse(request_payload).slice("listenerEntityTechnicalName", "entityId").values
+    if entity_type == "Transaction"
+      transaction_service = Wallee::TransactionService.new
+      transaction = transaction_service.read(ENV.fetch("WALLEE_SPACE_ID"), entity_id)
+
+      order = ShopOrder.find_by!(wallee_transaction_id: transaction.id)
+      order.update!(wallee_transaction_state: transaction.state)
+    else
+      Rails.logger.info "Unknown entity type: #{entity_type}"
+      head :bad_request
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>Add the tests</p>
+<pre><code class="language-ruby">require "rails_helper"
+
+RSpec.describe ShopController do
+  describe "#wallee_webhook" do
+    context "when signature is not valid" do
+      it "returns http bad request" do
+        post wallee_webhook_path, as: :json
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+    # Set wallee_transaction_id to something which exists on Wallee before rerecording this cassette
+    context "when signature is valid", vcr: "wallee/webhook_success" do
+      before do
+        allow_any_instance_of(Wallee::WebhookEncryptionService).to receive(:is_content_valid).and_return(true)
+      end
+
+      let(:wallee_transaction_id) { "194681414" }
+
+      it "goes the 😊 path" do
+        create(:shop_order,  wallee_transaction_id: wallee_transaction_id)
+        post wallee_webhook_path,
+          env: {"HTTP_X_SIGNATURE" =&gt; "fake"},
+          params: {listenerEntityTechnicalName: "Transaction", entityId: wallee_transaction_id},
+          as: :json
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "order update" do
+      before do
+        allow_any_instance_of(Wallee::WebhookEncryptionService).to receive(:is_content_valid).and_return(true)
+        allow_any_instance_of(Wallee::TransactionService).to receive(:read).and_return(instance_double(Wallee::Transaction, id: "194681414", state: wallee_transaction_state))
+        create(:shop_order, wallee_transaction_id: wallee_transaction_id, wallee_transaction_state: "PENDING")
+      end
+
+      let(:order) { ShopOrder.find_by(wallee_transaction_id: "194681414") }
+      let(:webhook_request) do
+        post wallee_webhook_path,
+          env: {"HTTP_X_SIGNATURE" =&gt; "fake"},
+          params: {listenerEntityTechnicalName: "Transaction", entityId: "194681414"},
+          as: :json
+      end
+
+      context "when transaction has failed" do
+        let(:wallee_transaction_state) { Wallee::TransactionState::FAILED }
+
+        it "updates the order" do
+          expect { webhook_request }.to change { order.reload.wallee_transaction_state }.from("PENDING").to("FAILED")
+        end
+
+        it "does not fulfill" do
+          expect(ApplicationMailer).not_to receive(:order_confirmation_mail).and_call_original
+          webhook_request
+        end
+      end
+
+      context "when transaction is complete" do
+        let(:wallee_transaction_state) { Wallee::TransactionState::FULFILL }
+
+        it "updates the order" do
+          expect { webhook_request }.to change { order.reload.wallee_transaction_state }.from("PENDING").to("FULFILL")
+        end
+
+        it "does fulfill" do
+          expect(ApplicationMailer).to receive(:order_confirmation_mail).and_call_original
+          webhook_request
+        end
+      end
+    end
+  end
+end
+</code></pre>
+</li>
+<li>
+<p>… and you’re far from done. You need to handle errors, other state changes, and so on. But this is a good start.</p>
+</li>
+<li>
+<p>Oh, and you need to setup the webhook in the Wallee backend, so that it actually sends requests to your Rails app.</p>
+</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ruby_on_rails/cucumber.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ruby_on_rails/recaptcha.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../ruby_on_rails/content_security_policy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -278,11 +522,11 @@ end
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ruby_on_rails/cucumber.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ruby_on_rails/recaptcha.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../ruby_on_rails/content_security_policy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

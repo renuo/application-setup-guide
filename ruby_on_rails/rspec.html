@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-5ab0665e.js";
+            window.path_to_searchindex_js = "../searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-bfba33f3.js"></script>
+        <script src="../toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -175,6 +175,10 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="setup-rspec"><a class="header" href="#setup-rspec">Setup RSpec</a></h1>
+<blockquote>
+<p><strong>Note:</strong> The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
+Rails 8.1 does ship <code>capybara</code> and <code>selenium-webdriver</code> in the <code>:test</code> group by default. There is no need to add those manually when using the template.</p>
+</blockquote>
 <p>Even though Rails uses Minitest per default, RSpec is the <em>de-facto</em> standard at Renuo.</p>
 <p>Add the following gems to your Gemfile:</p>
 <pre><code class="language-ruby">group :development, :test do
@@ -294,10 +298,7 @@ end
 SELENIUM_DRIVER="selenium_chrome_headless"
 </code></pre>
 <h3 id="configenvironmentsdevelopmentrb"><a class="header" href="#configenvironmentsdevelopmentrb">config/environments/development.rb</a></h3>
-<pre><code class="language-rb">config.generators do |g|
-  g.test_framework :rspec
-end
-
+<pre><code class="language-rb">config.generators { |g| g.test_framework :rspec }
 </code></pre>
 <ul>
 <li>Add the line <code>bundle exec parallel_rspec</code> to <code>bin/check</code></li>

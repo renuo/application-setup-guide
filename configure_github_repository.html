@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Bootstrap - Renuo - Application Setup Guide</title>
+        <title>Configure GitHub Repository - Renuo - Application Setup Guide</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-e96d0476.css">
-        <link rel="stylesheet" href="../css/chrome-d279d366.css">
-        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../";
+            const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-57445ef8.js";
+            window.path_to_searchindex_js = "searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-daf8421b.js"></script>
+        <script src="toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -105,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Renuo - Application Setup Guide</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,101 +174,118 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
-<p>You can use the npm package of the latest version of Bootstrap.</p>
-<p><code>yarn add bootstrap</code></p>
-<p>and include it in your stylesheet pack with:</p>
-<pre><code class="language-scss">@import '~bootstrap/scss/bootstrap';
-</code></pre>
-<p>If you want to use also the javascript part of Bootstrap you need both popper.js and jquery.
-Add them with:</p>
-<p><code>yarn add jquery popper.js</code></p>
-<p>and configure them in <code>environment.js</code>:</p>
-<pre><code class="language-js">const webpack = require('webpack')
-environment.plugins.append('Provide', new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
-  Popper: ['popper.js', 'default']
-}));
-</code></pre>
-<p>Change <code>extract_css: false</code> to <code>extract_css: true</code> in <code>config/webpacker.yml</code></p>
-<p>and finally, import bootstrap library in <code>application.js</code> with</p>
-<pre><code class="language-js">import 'bootstrap/dist/js/bootstrap';
-</code></pre>
-<h2 id="simple-form"><a class="header" href="#simple-form">Simple Form</a></h2>
-<p>If you use the gem <a href="https://github.com/plataformatec/simple_form">Simple Form</a>,
-you need to adjust the configuration in the <code>config/initializers/simple_form.rb</code> file.</p>
-<p>Here are some recommended options:</p>
-<pre><code class="language-ruby">config.wrappers :default, class: 'form-group',
-                hint_class: :field_with_hint, error_class: 'has-danger' do |b|
-</code></pre>
-<pre><code class="language-ruby">config.error_notification_class = 'alert alert-danger'
-</code></pre>
-<pre><code class="language-ruby">b.use :error, wrap_with: { tag: :span, class: 'invalid-feedback' }
-</code></pre>
-<pre><code class="language-ruby">config.label_class = 'form-control-label'
-</code></pre>
-<pre><code class="language-ruby">config.input_class = 'form-control'
-</code></pre>
-<p>To make the error highlighting work you need to add some css to your application</p>
-<pre><code class="language-scss">.invalid-feedback {
-  display: block;
-}
+                        <h1 id="configure-the-github-repository"><a class="header" href="#configure-the-github-repository">Configure the GitHub Repository</a></h1>
+<p>These are the suggested configurations for our GitHub repositories.
+Please stick to it unless you have special needs.</p>
+<ul>
+<li>General Settings
+<ul>
+<li>Features: Remove <em>Wikis</em>, <em>Issues</em> and <em>Projects</em></li>
+<li>Pull Requests
+<ul>
+<li>Disable <em>Allow merge commits</em> and <em>Allow rebase merging</em></li>
+<li>Allow auto-merge</li>
+<li>Automatically delete head branches</li>
+<li>Always suggest updating pull request branches</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Manage access
+<ul>
+<li>Add <em>staff</em> team as a collaborator with Admin access</li>
+<li>Add <em>security</em> team as collaborator with Write access</li>
+</ul>
+</li>
+<li>Branches
+<ul>
+<li>Default branch: either <code>main</code> or <code>develop</code> depending on whether you want one or two environments.</li>
+</ul>
+</li>
+<li>Rules/Rulesets
+<ul>
+<li>We use two rulesets: one for <code>main</code> and one for everything else. This ensures that long-lived branches like <code>redesign</code> and feature branches like <code>feat/my-feature</code> share the same protection rules as <code>develop</code>.</li>
+<li><code>non-main</code>
+<ul>
+<li>Enforcement status: <code>Active</code></li>
+<li>Branch targeting criteria:
+<ul>
+<li>Include all branches</li>
+<li>Exclude by pattern: <code>main</code></li>
+</ul>
+</li>
+<li>Bypass list: add <code>Repository Admin</code> Role with <em>allow for pull requests only</em> option</li>
+<li>Restrict deletions</li>
+<li>Require linear history</li>
+<li>Require a pull request before merging</li>
+<li>Require status checks to pass
+<ul>
+<li>Select <code>ci/semaphore/push</code></li>
+</ul>
+</li>
+<li>Block force pushes</li>
+</ul>
+</li>
+<li><code>main</code> (same as non-main but…)
+<ul>
+<li>Branch targeting criteria: <code>main</code></li>
+<li>❌ Require a pull request before merging</li>
+<li>❌ Require status checks to pass</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Autolink references
+<ul>
+<li>Add a new Autolink reference with:
+<ul>
+<li>Reference prefix: <code>TICKET-</code></li>
+<li>Target URL: <code>https://redmine.renuo.ch/issues/&lt;num&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="team"><a class="header" href="#team">Team</a></h2>
+<p>Each project has a team owning it. The team is named after the project: <code>[team-name] = [project-name]</code>.
+Thanks to this we can:</p>
+<ul>
+<li>
+<p>see who is responsible for a project;</p>
+</li>
+<li>
+<p>assign issues to the right team;</p>
+</li>
+<li>
+<p>assign pull requests to the right team.</p>
+</li>
+<li>
+<p>Create a team with the name of the project and add all the developers working on it;</p>
+</li>
+<li>
+<p>Give to each team member the role “maintainer”;</p>
+</li>
+<li>
+<p>Add the team to the repository with the “administrator” role;</p>
+</li>
+<li>
+<p>Add a CODEOWNERS file with the team name in it:</p>
+</li>
+</ul>
+<pre><code class="language-markdown"># .github/CODEOWNERS
 
-.has-danger {
-  .form-control {
-    border-color: $form-feedback-invalid-color;
-  }
-}
-</code></pre>
-<p>Please note that this is a workaround, as there is yet no way to add an error class directly onto an input.
-However, there is an open issue on Simple Form: <a href="https://github.com/plataformatec/simple_form/pull/147">https://github.com/plataformatec/simple_form/pull/147</a>
-Once this feature is added, please remove the css.</p>
-<p>For the styling of the pull down date selectors or checkboxes, you need to write some wrappers, that you can add
-to the input element.
-It is best to create a separate config file for this.</p>
-<p>Once the issue <a href="https://github.com/plataformatec/simple_form/pull/1337">https://github.com/plataformatec/simple_form/pull/1337</a> is done, you can also configure simple form
-with the command <code>rails generate simple_form:install --bootstrap4</code>.</p>
-<pre><code class="language-ruby"># config/initializers/simple_form_bootstrap.rb
-
-SimpleForm.setup do |config|
-  config.wrappers :inline_date, tag: 'div', error_class: 'has-danger' do |b|
-    b.use :html5
-    b.use :label, class: 'control-label'
-    b.wrapper tag: 'div', class: 'form-inline row' do |ba|
-      ba.use :input, class: 'form-control form-inline', wrap_with: { class: 'col-md-6' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'invalid-feedback' }
-      ba.use :hint, wrap_with:  { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrappers :inline_checkbox, tag: 'div', class: 'control-group', error_class: 'has-error' do |b|
-    b.use :html5
-    b.wrapper tag: 'div', class: 'controls' do |ba|
-      ba.use :label_input, wrap_with: { class: 'checkbox inline' }
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
-      ba.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
-    end
-  end
-
-  config.wrapper_mappings = {
-    check_boxes: :inline_checkbox,
-    date: :inline_date,
-    datatime: :inline_date
-  }
-end
-
+* @renuo/[team-name]
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ruby_on_rails/cucumber.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ruby_on_rails/initialise_gitflow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ruby_on_rails/create_application_server_deploio.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -278,11 +295,11 @@ end
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ruby_on_rails/cucumber.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ruby_on_rails/initialise_gitflow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../ruby_on_rails/font_awesome.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ruby_on_rails/create_application_server_deploio.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -302,13 +319,13 @@ end
         </script>
 
 
-        <script src="../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-09f2665d.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
-        <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-609e4cb8.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
 

@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-5ab0665e.js";
+            window.path_to_searchindex_js = "searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-bfba33f3.js"></script>
+        <script src="toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,10 +179,6 @@
 We are a <a href="https://rubyonrails.org/foundation">Rails company</a>, so the most value probably
 will be found in the parts concerning Rails. But anyways you’ll also find a lot about the
 inner workings of Renuo.</p>
-<ul>
-<li><a href="./ruby_on_rails/README.html">Ruby on Rails – Application Setup Guide</a></li>
-</ul>
-<h2 id="some-notes-on-the-side"><a class="header" href="#some-notes-on-the-side">Some Notes on the Side</a></h2>
 <p>If you are reading this document, it means that you have to setup a new application.
 A new project started and it’s now time to set everything up so that <strong>everyone</strong>,
 in your team, <strong>can start working on it</strong>.</p>
@@ -190,26 +186,32 @@ in your team, <strong>can start working on it</strong>.</p>
 fast as possible. There are things, in Renuo projects, which are mandatory, other that are suggested.
 This guide is the result of more than ten years of experience, so this means three things: it’s very robust, very opinionated, and possibly very outdated.</p>
 <p><strong>You are always welcome to challenge the guide and improve it with a Pull Request.</strong></p>
-<p>The basic things that need to be ready before the team can start working on a project are:</p>
+<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
+If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
+<p>Thank you for your work and have fun! :tada:</p>
+<h2 id="how-to-use-this-guide"><a class="header" href="#how-to-use-this-guide">How to Use This Guide</a></h2>
+<p>The guide is structured as a linear walkthrough. Follow it from top to bottom when setting up a new project.</p>
+<ol>
+<li><strong>Before You Start</strong> — Read <a href="naming_conventions.html">Naming Conventions</a>, <a href="gitflow.html">GitFlow</a>, and <a href="security.html">Security</a> to understand the ground rules.</li>
+<li><strong>Rails Application Setup</strong> — Follow the <a href="ruby_on_rails/README.html">step-by-step setup</a> to create, deploy, and configure your app.</li>
+<li><strong>Guides &amp; Recipes</strong> — Pick the ones you need (emails, authentication, payment, etc.).</li>
+<li><strong>Reference</strong> — Use the <a href="checklist.html">Checklist</a> to verify you haven’t missed anything, and the <a href="go_live.html">Go Live!</a> page when you’re ready to launch.</li>
+</ol>
+<h2 id="what-needs-to-be-ready"><a class="header" href="#what-needs-to-be-ready">What Needs to Be Ready</a></h2>
+<p>Before the team can start working on a project, you need:</p>
 <ul>
 <li>An existing <em>git</em> repository containing the project</li>
-<li>Two branches: <em>main</em> and <em>develop</em></li>
+<li>Two branches: <em>main</em> and <em>develop</em> (or just <em>main</em> for internal projects)</li>
 <li>A README with essential information about the application</li>
 <li>Convenience-scripts: <code>bin/setup</code>, <code>bin/check</code>, <code>bin/fastcheck</code>, <code>bin/run</code></li>
 <li>One running, green test</li>
-<li>Continuous integration (<em>CI</em>) ready, running and green for both branches</li>
-<li>Continuous deployment (<em>CD</em>) ready and running for both branches</li>
-<li>The application deployed for both branches</li>
+<li>Continuous integration (<em>CI</em>) ready, running and green for all branches</li>
+<li>Continuous deployment (<em>CD</em>) ready and running for all branches</li>
+<li>The application deployed for all branches</li>
 </ul>
-<p>As an appendix, you’ll find a <a href="checklist.html">checklist</a> you can use to follow the guide.</p>
-<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
-If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
-<p>We want you to know exactly the reason behind each single step of this guide.</p>
-<p>Thank you for your work and have fun! :tada:</p>
 <h2 id="serving-the-documentation-locally"><a class="header" href="#serving-the-documentation-locally">Serving the Documentation Locally</a></h2>
-<p>To view this documentation on your machine, run the following commands:</p>
-<pre><code class="language-sh">brew install mdbook
-mdbook serve
+<p>To view this documentation on your machine, run the following command:</p>
+<pre><code class="language-sh">mdbook serve
 </code></pre>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p><a href="https://creativecommons.org/licenses/by/4.0/legalcode">Attribution 4.0 International (CC BY 4.0)</a></p>
@@ -219,7 +221,7 @@ mdbook serve
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next prefetch" href="create_git_repository.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="naming_conventions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -230,7 +232,7 @@ mdbook serve
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next prefetch" href="create_git_repository.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="naming_conventions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

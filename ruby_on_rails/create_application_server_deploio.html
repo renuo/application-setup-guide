@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-5ab0665e.js";
+            window.path_to_searchindex_js = "../searchindex-57445ef8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-bfba33f3.js"></script>
+        <script src="../toc-daf8421b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,8 +176,6 @@
                     <main>
                         <h1 id="setup-application-server-for-deploio"><a class="header" href="#setup-application-server-for-deploio">Setup Application Server for Deploio</a></h1>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>Before setting up your application, ensure you have completed the following for Deploio.</p>
-<h3 id="prerequisites-for-deploio"><a class="header" href="#prerequisites-for-deploio">Prerequisites for Deploio</a></h3>
 <ul>
 <li>You’ve <a href="https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio">read about what Deploio is</a>.</li>
 <li>You have a Deploio account.</li>
@@ -185,9 +183,7 @@
 <li>You have installed the <code>nctl</code> command.</li>
 <li>You have logged in using <code>nctl</code>.</li>
 </ul>
-<h2 id="setup-your-application"><a class="header" href="#setup-your-application">Setup Your Application</a></h2>
-<h3 id="setup-deploio-application"><a class="header" href="#setup-deploio-application">Setup Deploio Application</a></h3>
-<h4 id="remote-configuration"><a class="header" href="#remote-configuration">Remote Configuration</a></h4>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
 <p>Run <a href="https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb">the command to generate a script</a> which will create and configure all Deploio apps. <code>[project-name]</code> string length is limited to 63 characters:</p>
 <pre><code class="language-sh">renuo create-deploio-app [project-name] [git-url]
 </code></pre>
@@ -198,7 +194,7 @@ In particular, you might need only one of the two environments if you decided to
 If you think that the production database will soon reach the 10 GB, please consider using the Business tier.</p>
 <p><strong>If you don’t know what a command does: read the documentation and then execute it.</strong></p>
 <p>If you think that the script is outdated, please open a Pull Request on the <a href="https://github.com/renuo/renuo-cli">renuo-cli</a> project.</p>
-<p>For further configuration and best practices, please refer to the <a href="https://guides.deplo.io">Deploio documentation</a>. You can also view a Ruby on Rails specific guide <a href="https://guides.deplo.io/ruby/quick-start.html">here</a>.</p>
+<p>For further configuration, see the <a href="https://guides.deplo.io/ruby/quick-start.html">Rails on Deploio guide</a>. For general Deploio docs, see <a href="https://guides.deplo.io">guides.deplo.io</a>.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>That’s it! You have now configured your application with Deploio. No more configuration is needed.</p>
 
@@ -206,11 +202,11 @@ If you think that the production database will soon reach the 10 GB, please cons
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ruby_on_rails/create_application_server_heroku.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../configure_github_repository.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../ruby_on_rails/configure_ci.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../ruby_on_rails/create_application_server_heroku.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -220,11 +216,11 @@ If you think that the production database will soon reach the 10 GB, please cons
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ruby_on_rails/create_application_server_heroku.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../configure_github_repository.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../ruby_on_rails/configure_ci.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../ruby_on_rails/create_application_server_heroku.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

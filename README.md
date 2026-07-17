@@ -18,6 +18,8 @@ This guide is the result of more than ten years of experience, so this means thr
 **:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
 If you think something is wrong or simply outdated, improve this guide with a Pull Request.**
 
+Thank you for your work and have fun! :tada:
+
 ## How to Use This Guide
 
 The guide is structured as a linear walkthrough. Follow it from top to bottom when setting up a new project.

@@ -62,3 +62,12 @@ monitors.each do |monitor|
   puts cmd
 end
 ```
+
+## Slack Integration
+
+In order to receive uptime messages on a project specific `-notifications` channel you need to:
+
+* Add a webhook on the Uptimerobot Slack App: https://api.slack.com/apps/A06PKA5ENRJ/incoming-webhooks
+  * You might have to request access as a collaborator first
+* Configure the webhook in Uptimerobot https://dashboard.uptimerobot.com/integrations
+* Add the channel integration on the monitor under `Edit` -> `Integrations & Team`

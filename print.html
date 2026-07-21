@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-57445ef8.js";
+            window.path_to_searchindex_js = "searchindex-633db131.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-daf8421b.js"></script>
@@ -1556,6 +1556,17 @@ monitors.each do |monitor|
   puts cmd
 end
 </code></pre>
+<h2 id="slack-integration"><a class="header" href="#slack-integration">Slack Integration</a></h2>
+<p>In order to receive uptime messages on a project specific <code>-notifications</code> channel you need to:</p>
+<ul>
+<li>Add a webhook on the Uptimerobot Slack App: https://api.slack.com/apps/A06PKA5ENRJ/incoming-webhooks
+<ol>
+<li>You might have to request access as a collaborator first</li>
+</ol>
+</li>
+<li>Configure the webhook in Uptimerobot https://dashboard.uptimerobot.com/integrations</li>
+<li>Add the channel integration on the monitor under <code>Edit</code> -&gt; <code>Integrations &amp; Team</code></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="depfu"><a class="header" href="#depfu">Depfu</a></h1>
 <p>Depfu is a service which checks out the Gemfile / yarn.lock of a project for problematic

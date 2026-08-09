@@ -6,8 +6,7 @@ Please include them or find a good reason not to.
 > [!IMPORTANT]
 > Please follow the guide of each of these libraries to know how to properly install them.
 
-> [!TIP]
-> Do you know all of them? Do you know why we'd like them to be included?
+Before adding these libraries, make sure you understand why each one is included.
 
 ```rb
 gem 'simple_form'

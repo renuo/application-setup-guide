@@ -19,7 +19,7 @@ This guide is the result of more than ten years of experience, so this means thr
 > Do not blindly follow this guide, always think about what you are doing and why.
 > If you think something is wrong or simply outdated, improve this guide with a Pull Request.
 
-Thank you for your work and have fun! :tada:
+Thank you for your work and have fun! 🎉
 
 ## How to Use This Guide
 

@@ -1,11 +1,11 @@
-# Linting and automatic checks :white_check_mark:
+# Linting and automatic checks ✅
 
 All Renuo projects contain (and your project must contain as well) the following linters.
 Every linter consists of a gem (usually) and a command to add to our `bin/fastcheck` script.
 
 Check out the `bin/fastcheck` [fastcheck](../templates/bin/fastcheck) for the final version of it.
 
-## Renuocop :cop:
+## Renuocop 👮
 
 > ✨ Installed by the Renuo Rails template (replaces `rubocop-rails-omakase`).
 
@@ -24,18 +24,6 @@ Add it to the `bin/fastcheck` script:
 ```sh
 bundle exec brakeman -q -z --no-summary --no-pager
 ```
-
-## Bundler-audit
-
-> ✨ Ships with Rails 8.1 by default.
-
-Scans `Gemfile.lock` for gems with known security vulnerabilities. Add it to the `bin/fastcheck` script:
-
-```sh
-bundle exec bundler-audit check --update
-```
-
-Use `config/bundler-audit.yml` to ignore specific advisories if needed.
 
 ## Mdl
 
@@ -171,4 +159,4 @@ The templates folder contains a template for the eslint configuration.
 
 ## All Good!
 
-Now your `bin/fastcheck` is not that fast anymore :smile:
+Now your `bin/fastcheck` is not that fast anymore 😄

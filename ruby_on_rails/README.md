@@ -38,7 +38,7 @@ Set up the tools that help your team maintain high quality throughout developmen
 
 1. [RSpec](rspec.md)
 1. [Linting and automatic checks](linting_and_automatic_check.md)
-1. [Gems and libraries :gem:](suggested_libraries.md)
+1. [Gems and libraries 💎](suggested_libraries.md)
 1. [Cloudflare](cloudflare.md)
 
 Your team can now start working on the project.
@@ -86,10 +86,9 @@ The following are not part of the sequential setup. Use them as needed for your 
 * Favicons
 * [Rack CORS](https://github.com/cyu/rack-cors)
 * [Rack Attack](https://github.com/rack/rack-attack#installing)
-* [:fire: Hotjar](hotjar.md)
+* [🔥 Hotjar](hotjar.md)
 * SEO
   * redirect non-www to www
   * Header tags
-* [Wicked PDF](wicked_pdf.md) `gem wicked_pdf`
 * [Recaptcha v3](recaptcha.md)
 * [Wallee Payment Integration](wallee.md)

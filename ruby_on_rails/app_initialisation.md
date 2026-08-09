@@ -30,7 +30,7 @@ where the `project-name` is exactly the one you chose before.
 * Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
 * Run `bin/setup`
 
-* Then check your default Rails setup by running `bin/run` and visiting [http://[project-name].localhost:3000](http://[project-name].localhost:3000).
+* Then check your default Rails setup by running `bin/run` and visiting `[project-name].localhost:3000`.
   You should be on Rails now, yay!
 * Finally check if [http://localhost:3000/up](http://localhost:3000/up) is green.
 
@@ -79,8 +79,8 @@ Check existing projects for an example of the usage.
 * Update `config/application.rb` and set the default language and timezone
 
   ```ruby
-  config.time_zone = 'Zurich' # may vary
-  config.i18n.default_locale = :de # may vary
+  config.time_zone = 'Zurich'
+  config.i18n.default_locale = :de
   ```
 
 * Update your `config/environments/production.rb` settings:
@@ -130,4 +130,4 @@ Check existing projects for an example of the usage.
 ## Finalising
 
 * Check if the following scripts run successfully: `bin/setup`, `bin/check`, `bin/run`
-* If they do, you're ready for the next step.
+* If they do, commit all your changes to the main branch with Git.

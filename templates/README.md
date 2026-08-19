@@ -4,10 +4,10 @@ Short project description
 
 ## Environments
 
-| Branch  | Domain                                | Deployment     |
-| ------- | ------------------------------------- | ---------------|
-| develop | https://`[project-name]`-develop.renuoapp.ch | auto    |
-| main    | https://`[project-name]`-main.renuoapp.ch    | release |
+| Branch  | Domain                                     | Deployment     |
+| ------- | ------------------------------------------ | ---------------|
+| develop | https://[project-name]-develop.renuoapp.ch | auto           |
+| main    | https://[project-name]-main.renuoapp.ch    | release        |
 
 ## Setup
 

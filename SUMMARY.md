@@ -50,7 +50,6 @@
 - [FontAwesome](ruby_on_rails/font_awesome.md)
 - [Bullet](ruby_on_rails/bullet.md)
 - [Hotjar](ruby_on_rails/hotjar.md)
-- [Wicked PDF](ruby_on_rails/wicked_pdf.md)
 - [Recaptcha v3](ruby_on_rails/recaptcha.md)
 - [Wallee Payment](ruby_on_rails/wallee.md)
 - [Content Security Policy](ruby_on_rails/content_security_policy.md)

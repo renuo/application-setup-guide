@@ -1,8 +1,7 @@
 # SparkPost & Mailtrap
 
-⚠️ Always use subaccounts in Sparkpost!
-
-> Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.
+> [!WARNING]
+> Always use subaccounts in Sparkpost! Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.
 
 ## Introduction
 
@@ -28,8 +27,8 @@
 
 ## Sparkpost
 
-:warning:
-Always use subaccounts for the project, so that the whole account doesn't get suspended / blocked in case of compliance issues!
+> [!WARNING]
+> Always use subaccounts for the project, so that the whole account doesn't get suspended / blocked in case of compliance issues!
 
 1. Go to <https://app.sparkpost.com/auth> and log in with the credentials for
    sparkpost+_enviroment_@renuo.ch found in the credential store

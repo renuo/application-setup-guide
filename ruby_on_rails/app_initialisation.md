@@ -18,20 +18,25 @@ rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-act
 ```
 where the `project-name` is exactly the one you chose before.
 
-> ⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.\
+> [!WARNING]
+> You may want to choose a different database than Postgres, but most of the time this will be your choice.
 > You might also need actionmailbox of course, so always double-check the parameters that you are using.
 
-> ⭐️ This setup does not include either js-bundling nor css-bundling by default.\
-> It will start with the simplest possible Rails setup and will use sprockets and importmaps.\
-> If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.\
+> [!TIP]
+> ⭐️ This setup does not include either js-bundling nor css-bundling by default.
+>
+> It will start with the simplest possible Rails setup and will use sprockets and importmaps.
+>
+> If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.
+>
 > We want to go ["no build"](https://www.youtube.com/watch?v=iqXjGiQ_D-A) whenever possible.
 
 * Run `bundle exec rails db:migrate` to generate an empty `schema.rb` file.
 * Run `bin/setup`
 
-* Then check your default Rails setup by running `bin/run` and visiting http://[project-name].localhost:3000.
+* Then check your default Rails setup by running `bin/run` and visiting `[project-name].localhost:3000`.
   You should be on Rails now, yay!
-* Finally check if http://localhost:3000/up is green.
+* Finally check if [http://localhost:3000/up](http://localhost:3000/up) is green.
 
 ## Adjustments
 
@@ -40,27 +45,15 @@ Some other adjustments must be performed manually.
 
 ### Automatic adjustments
 
-> ⭐️The `config/database.yml` is updated to have a `collation: C.UTF-8` setting.
-> This ensures deterministic, locale-independent sorting and avoids inconsistencies between local and production
-> environments.
+⭐️ This setup includes the following automatic adjustments:
 
-> ⭐The Gemfile reads the required ruby version from the `.ruby-version` file.
-> [This is used by Heroku to determine what version to use.](https://devcenter.heroku.com/articles/ruby-versions)
-> Deploio reads the ruby version from the Gemfile, with the .ruby-version file inlined into it. https://paketo.io/docs/howto/ruby/#override-the-detected-ruby-version
-
-> ⭐️renuocop replaces the default rubocop-rails-omakase. We have our own set of rules at Renuo.
-> You can discuss them at https://github.com/renuo/renuocop and you can also contribute to them.
-
-> ⭐️a bin/check script is added to the project. This script will run all the tests of the project.
-> It is used in our CI and can be used locally to check if everything is fine. You can customize it to your needs.
-
-> ⭐️a bin/fastcheck script is added to the project.
-> This script will run all the linters of the project. It is used in our CI and can be customized to your needs.
-> It will be used as a hook before pushing to quickly check for linting issues.
-
-> ⭐️a bin/run script is added to the project. This script will start the application.
-
-> ⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.
+* `config/database.yml` uses `collation: C.UTF-8` for deterministic, locale-independent sorting across local and production environments.
+* The Gemfile reads the required Ruby version from `.ruby-version`. [Heroku uses this to determine the Ruby version](https://devcenter.heroku.com/articles/ruby-versions); Deploio reads the version from the Gemfile.
+* Renuocop replaces `rubocop-rails-omakase` with Renuo's rules. You can discuss or contribute to them at <https://github.com/renuo/renuocop>.
+* `bin/check` runs the project tests and is used in CI.
+* `bin/fastcheck` runs linters in CI and before pushing.
+* `bin/run` starts the application.
+* `bin/check`, `bin/fastcheck`, and `bin/run` are standardized Renuo convenience tools.
 
 ### Secrets
 

@@ -46,9 +46,9 @@ end
 ```
 
 Some considerations:
-* Do you really want/need VCR? A fake may be better: https://thoughtbot.com/blog/how-to-stub-external-services-in-tests#create-a-fake-hello-sinatra
+* Do you really want/need VCR? A fake may be better: <https://thoughtbot.com/blog/how-to-stub-external-services-in-tests#create-a-fake-hello-sinatra>
 * Do you test so specifically that WebMock would be the better tool?
-* Does your project have special needs for tweaks: https://blog.arkency.com/3-tips-to-tune-your-vcr-in-tests/
+* Does your project have special needs for tweaks: <https://blog.arkency.com/3-tips-to-tune-your-vcr-in-tests/>
 * How often do you want to re-record your cassettes? Out-of-date replays may give you a false sense of safety.
 * Where do you want to re-record your cassettes? Maybe nightly on the CI?
 

@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-db4dac82.js";
+            window.path_to_searchindex_js = "searchindex-2209065b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-daf8421b.js"></script>
+        <script src="toc-170943b7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,7 +176,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="renuo-application-setup-guide"><a class="header" href="#renuo-application-setup-guide">Renuo Application Setup Guide</a></h1>
-<p>This repo is the <a href="https://www.renuo.ch">Renuo</a> collection of best-practices to set-up apps.
+<p>This repo is the <a href="https://www.renuo.ch">Renuo</a> collection of best-practices to set up apps.
 We are a <a href="https://rubyonrails.org/foundation">Rails company</a>, so the most value probably
 will be found in the parts concerning Rails. But anyways you’ll also find a lot about the
 inner workings of Renuo.</p>
@@ -187,9 +187,12 @@ in your team, <strong>can start working on it</strong>.</p>
 fast as possible. There are things, in Renuo projects, which are mandatory, other that are suggested.
 This guide is the result of more than ten years of experience, so this means three things: it’s very robust, very opinionated, and possibly very outdated.</p>
 <p><strong>You are always welcome to challenge the guide and improve it with a Pull Request.</strong></p>
-<p><strong>:exclamation: Do not blindly follow this guide, always think about what you are doing and why.
-If you think something is wrong or simply outdated, improve this guide with a Pull Request.</strong></p>
-<p>Thank you for your work and have fun! :tada:</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p>Do not blindly follow this guide, always think about what you are doing and why.
+If you think something is wrong or simply outdated, improve this guide with a Pull Request.</p>
+</blockquote>
+<p>Thank you for your work and have fun! 🎉</p>
 <h2 id="how-to-use-this-guide"><a class="header" href="#how-to-use-this-guide">How to Use This Guide</a></h2>
 <p>The guide is structured as a linear walkthrough. Follow it from top to bottom when setting up a new project.</p>
 <ol>
@@ -201,13 +204,13 @@ If you think something is wrong or simply outdated, improve this guide with a Pu
 <h2 id="what-needs-to-be-ready"><a class="header" href="#what-needs-to-be-ready">What Needs to Be Ready</a></h2>
 <p>Before the team can start working on a project, you need:</p>
 <ul>
-<li>An existing <em>git</em> repository containing the project</li>
+<li>A git repository containing the project</li>
 <li>Two branches: <em>main</em> and <em>develop</em> (or just <em>main</em> for internal projects)</li>
 <li>A README with essential information about the application</li>
-<li>Convenience-scripts: <code>bin/setup</code>, <code>bin/check</code>, <code>bin/fastcheck</code>, <code>bin/run</code></li>
+<li>Convenience scripts: <code>bin/setup</code>, <code>bin/check</code>, <code>bin/fastcheck</code>, <code>bin/run</code></li>
 <li>One running, green test</li>
-<li>Continuous integration (<em>CI</em>) ready, running and green for all branches</li>
-<li>Continuous deployment (<em>CD</em>) ready and running for all branches</li>
+<li>CI ready, running and green for all branches</li>
+<li>CD ready and running for all branches</li>
 <li>The application deployed for all branches</li>
 </ul>
 <h2 id="serving-the-documentation-locally"><a class="header" href="#serving-the-documentation-locally">Serving the Documentation Locally</a></h2>
@@ -235,7 +238,10 @@ asked to do the same.</p>
 <li>Use <code>[project-name]-[purpose]-[branch]</code> for deployed projects (e.g. one11-web-main).</li>
 <li>Use <code>[project-name]-local-[user]-[rails_env]</code> for local names which interact with online services (e.g. S3).</li>
 </ul>
-<p><strong>Note:</strong> Previously on Heroku, the convention was to use <code>[project-name]-[branch]-[purpose]</code> for deployed projects (e.g. kingschair-main-assets). This has been updated due to deplo.io.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Previously on Heroku, the convention was to use <code>[project-name]-[branch]-[purpose]</code> for deployed projects (e.g. kingschair-main-assets). This has been updated due to deplo.io.</p>
+</blockquote>
 <h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
 <ul>
 <li>food-calendar, food-calendar-develop, food-calendar-develop-assets</li>
@@ -247,13 +253,13 @@ asked to do the same.</p>
 <h2 id="scope-of-application"><a class="header" href="#scope-of-application">Scope of Application</a></h2>
 <p>The naming conventions should be applied everywhere. Some examples:</p>
 <ul>
-<li>Amazon S3 (usually [project-name]-[branch])</li>
-<li>Github ([project-name])</li>
-<li>Heroku ([project-name]-[branch])</li>
-<li>Redmine ([project-name])</li>
-<li>Semaphore CI (servers are named [project-name]-[branch])</li>
-<li>Drive ([project-name])</li>
-<li>New Relic ([project-name]-[branch])</li>
+<li>Amazon S3 (usually <code>[project-name]-[branch]</code>)</li>
+<li>Github (<code>[project-name]</code>)</li>
+<li>Heroku (<code>[project-name]-[branch]</code>)</li>
+<li>Redmine (<code>[project-name]</code>)</li>
+<li>Semaphore CI (servers are named <code>[project-name]-[branch]</code>)</li>
+<li>Drive (<code>[project-name]</code>)</li>
+<li>New Relic (<code>[project-name]-[branch]</code>)</li>
 <li>Get Sentry</li>
 <li>App name in Rails</li>
 <li>Sparkpost Account</li>
@@ -320,9 +326,9 @@ To report a security vulnerability, please email security@renuo.ch.
 <p>Review your SSL/TLS configuration periodically: <a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="ruby-on-rails---application-setup-guide"><a class="header" href="#ruby-on-rails---application-setup-guide">Ruby On Rails - Application Setup Guide</a></h1>
-<p>This setup will cover a pure, monolithic Rails Applications.
-This is the most frequent type of application we have at <a href="https://renuo.ch">Renuo</a> and is probably also the easiest to setup.
-The application (and relative GitHub repo) will be named after the <code>[project-name]</code> you chose before.</p>
+<p>This setup covers a pure, monolithic Rails application.
+This is the most frequent type of application at <a href="https://renuo.ch">Renuo</a> and is probably the easiest to set up.
+The application (and its GitHub repo) will be named after the <code>[project-name]</code> you chose before.</p>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
 <p>Have you chosen a <code>[project-name]</code> yet? If not, please do so now. Check our <a href="#naming-conventions">Naming Conventions</a></p>
@@ -331,11 +337,12 @@ The application (and relative GitHub repo) will be named after the <code>[projec
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
 <p>Have you decided if you need two environments (develop and main) or just one?
 As a rule of thumb: for customers we always use two environments, for internal projects we usually only use one.
-Why the difference? Because we can bare the risk of having a bug in an internal project, but we cannot do that for a customer.
+Why the difference? Because we can bear the risk of having a bug in an internal project, but we cannot do that for a customer.
 Decide with your team if you want one or two branches.</p>
 </blockquote>
-<blockquote>
-<p>:bulb: <strong>Tip:</strong> Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>Sections marked with ✨ are already set up by the Renuo Rails template or ship with Rails 8.1 by default. You only need to verify them, not install them.</p>
 </blockquote>
 <hr>
 <h2 id="step-1-create-the-app"><a class="header" href="#step-1-create-the-app">Step 1: Create the App</a></h2>
@@ -343,26 +350,25 @@ Decide with your team if you want one or two branches.</p>
 <li><a href="#initialise-the-rails-application">Initialise the Rails Application</a></li>
 <li><a href="#push-to-git-repository">Push to Git Repository</a></li>
 <li><a href="#initialise-gitflow">Initialise Gitflow</a></li>
-<li><a href="#configure-the-github-repository">Configure Github Repository</a></li>
+<li><a href="#configure-the-github-repository">Configure GitHub Repository</a></li>
 </ol>
 <h2 id="step-2-deploy-the-app"><a class="header" href="#step-2-deploy-the-app">Step 2: Deploy the App</a></h2>
 <ol>
 <li><a href="#setup-application-server-for-deploio">Create an Application Server for Deploio</a> or <a href="#setup-application-server-for-heroku">Create an Application Server for Heroku</a></li>
-<li><a href="#configure-the-ci">Configure the CI / CD</a></li>
+<li><a href="#configure-the-ci">Configure the CI/CD</a></li>
 </ol>
-<p>Once here, your app should be up and running on all environments.</p>
+<p>Your app should now be up and running on all environments.</p>
 <h2 id="step-3-quality-tools"><a class="header" href="#step-3-quality-tools">Step 3: Quality Tools</a></h2>
-<p>It’s now time to introduce some more tools which will help you and the team to keep a high quality during the project development.</p>
+<p>Set up the tools that help your team maintain high quality throughout development.</p>
 <ol>
 <li><a href="#setup-rspec">RSpec</a></li>
 <li><a href="#linting-and-automatic-checks-">Linting and automatic checks</a></li>
-<li><a href="#suggested-gems">Gems and libraries :gem:</a></li>
+<li><a href="#suggested-gems">Gems and libraries 💎</a></li>
 <li><a href="#cloudflare">Cloudflare</a></li>
 </ol>
-<p>:tada: Finally you are ready to start working on you new project! :tada:</p>
+<p>Your team can now start working on the project.</p>
 <h2 id="step-4-monitoring--protection"><a class="header" href="#step-4-monitoring--protection">Step 4: Monitoring &amp; Protection</a></h2>
-<p>While everyone starts working there are some more things which you should setup.
-Most are not optional, but the rest of the team can start working even if those are not in place yet.</p>
+<p>Set these up while the rest of the team starts working. Most are not optional, but they don’t block other work.</p>
 <ol>
 <li><a href="#logs--error-monitoring-with-appsignal">AppSignal</a></li>
 <li><a href="#sentry">Sentry</a> (optional)</li>
@@ -383,7 +389,7 @@ Most are not optional, but the rest of the team can start working even if those 
 <h2 id="guides--recipes"><a class="header" href="#guides--recipes">Guides &amp; Recipes</a></h2>
 <p>The following are not part of the sequential setup. Use them as needed for your project.</p>
 <ul>
-<li><a href="#run-javascript-tests-with-jest">Run Javascript tests with Jest</a></li>
+<li><a href="#run-javascript-tests-with-jest">Run JavaScript tests with Jest</a></li>
 <li><a href="#pull-requests-template">Pull Requests Template</a></li>
 <li><a href="#slack-and-notifications">Slack and Project Notifications</a></li>
 <li><a href="#-send-emails">Send emails</a></li>
@@ -392,22 +398,21 @@ Most are not optional, but the rest of the team can start working even if those 
 <li><a href="#cucumber">Cucumber</a></li>
 <li><a href="#object-storage">Object storage</a></li>
 <li>awesome_print <code>gem 'awesome_print'</code></li>
-<li><a href="#bootstrap">bootstrap</a></li>
-<li><a href="#font-awesome">font-awesome</a></li>
-<li><a href="#bullet">bullet</a> <code>gem 'bullet'</code></li>
-<li><a href="#lograge">lograge</a> <code>gem 'lograge'</code></li>
-<li>Rack Tracker (Google Analytics) <code>gem 'rack-tracker'</code> –&gt; see <a href="#google-analytics">Google Analytics</a></li>
+<li><a href="#bootstrap">Bootstrap</a></li>
+<li><a href="#font-awesome">FontAwesome</a></li>
+<li><a href="#bullet">Bullet</a> <code>gem 'bullet'</code></li>
+<li><a href="#lograge">Lograge</a> <code>gem 'lograge'</code></li>
+<li>Rack Tracker (Google Analytics) <code>gem 'rack-tracker'</code> → see <a href="#google-analytics">Google Analytics</a></li>
 <li>Favicons</li>
 <li><a href="https://github.com/cyu/rack-cors">Rack CORS</a></li>
 <li><a href="https://github.com/rack/rack-attack#installing">Rack Attack</a></li>
-<li><a href="#-hotjar">:fire: Hotjar</a></li>
+<li><a href="#-hotjar">🔥 Hotjar</a></li>
 <li>SEO
 <ul>
 <li>redirect non-www to www</li>
 <li>Header tags</li>
 </ul>
 </li>
-<li><a href="#wicked-pdf">wicked pdf</a> <code>gem wicked_pdf</code></li>
 <li><a href="#recaptcha-v3">Recaptcha v3</a></li>
 <li><a href="#wallee">Wallee Payment Integration</a></li>
 </ul>
@@ -436,11 +441,17 @@ You can do this with <code>gem update rails</code>. Beware of beta versions.</p>
 <pre><code>rails new [project-name] --database=postgresql --skip-kamal --skip-ci --skip-action-mailbox --template https://raw.githubusercontent.com/renuo/application-setup-guide/main/ruby_on_rails/template.rb
 </code></pre>
 <p>where the <code>project-name</code> is exactly the one you chose before.</p>
-<blockquote>
-<p>⚠️ You may want to choose a different database than Postgres, but most of the time this will be your choice.<br>You might also need actionmailbox of course, so always double-check the parameters that you are using.</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>You may want to choose a different database than Postgres, but most of the time this will be your choice.
+You might also need actionmailbox of course, so always double-check the parameters that you are using.</p>
 </blockquote>
-<blockquote>
-<p>⭐️ This setup does not include either js-bundling nor css-bundling by default.<br>It will start with the simplest possible Rails setup and will use sprockets and importmaps.<br>If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.<br>We want to go <a href="https://www.youtube.com/watch?v=iqXjGiQ_D-A">“no build”</a> whenever possible.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>⭐️ This setup does not include either js-bundling nor css-bundling by default.</p>
+<p>It will start with the simplest possible Rails setup and will use sprockets and importmaps.</p>
+<p>If you need to do fancy stuff, discuss with your team the opportunity of including a js-bundling and css-bundling tool.</p>
+<p>We want to go <a href="https://www.youtube.com/watch?v=iqXjGiQ_D-A">“no build”</a> whenever possible.</p>
 </blockquote>
 <ul>
 <li>
@@ -450,46 +461,27 @@ You can do this with <code>gem update rails</code>. Beware of beta versions.</p>
 <p>Run <code>bin/setup</code></p>
 </li>
 <li>
-<p>Then check your default Rails setup by running <code>bin/run</code> and visiting http://[project-name].localhost:3000.
+<p>Then check your default Rails setup by running <code>bin/run</code> and visiting <code>[project-name].localhost:3000</code>.
 You should be on Rails now, yay!</p>
 </li>
 <li>
-<p>Finally check if http://localhost:3000/up is green.</p>
+<p>Finally check if <a href="http://localhost:3000/up">http://localhost:3000/up</a> is green.</p>
 </li>
 </ul>
 <h2 id="adjustments"><a class="header" href="#adjustments">Adjustments</a></h2>
 <p>Some adjustments are made automatically by the template, but you should check them.
 Some other adjustments must be performed manually.</p>
 <h3 id="automatic-adjustments"><a class="header" href="#automatic-adjustments">Automatic adjustments</a></h3>
-<blockquote>
-<p>⭐️The <code>config/database.yml</code> is updated to have a <code>collation: C.UTF-8</code> setting.
-This ensures deterministic, locale-independent sorting and avoids inconsistencies between local and production
-environments.</p>
-</blockquote>
-<blockquote>
-<p>⭐The Gemfile reads the required ruby version from the <code>.ruby-version</code> file.
-<a href="https://devcenter.heroku.com/articles/ruby-versions">This is used by Heroku to determine what version to use.</a>
-Deploio reads the ruby version from the Gemfile, with the .ruby-version file inlined into it. https://paketo.io/docs/howto/ruby/#override-the-detected-ruby-version</p>
-</blockquote>
-<blockquote>
-<p>⭐️renuocop replaces the default rubocop-rails-omakase. We have our own set of rules at Renuo.
-You can discuss them at https://github.com/renuo/renuocop and you can also contribute to them.</p>
-</blockquote>
-<blockquote>
-<p>⭐️a bin/check script is added to the project. This script will run all the tests of the project.
-It is used in our CI and can be used locally to check if everything is fine. You can customize it to your needs.</p>
-</blockquote>
-<blockquote>
-<p>⭐️a bin/fastcheck script is added to the project.
-This script will run all the linters of the project. It is used in our CI and can be customized to your needs.
-It will be used as a hook before pushing to quickly check for linting issues.</p>
-</blockquote>
-<blockquote>
-<p>⭐️a bin/run script is added to the project. This script will start the application.</p>
-</blockquote>
-<blockquote>
-<p>⭐️bin/check, bin/fastcheck and bin/run are standardized tools for more convenience at Renuo.</p>
-</blockquote>
+<p>⭐️ This setup includes the following automatic adjustments:</p>
+<ul>
+<li><code>config/database.yml</code> uses <code>collation: C.UTF-8</code> for deterministic, locale-independent sorting across local and production environments.</li>
+<li>The Gemfile reads the required Ruby version from <code>.ruby-version</code>. <a href="https://devcenter.heroku.com/articles/ruby-versions">Heroku uses this to determine the Ruby version</a>; Deploio reads the version from the Gemfile.</li>
+<li>Renuocop replaces <code>rubocop-rails-omakase</code> with Renuo’s rules. You can discuss or contribute to them at <a href="https://github.com/renuo/renuocop">https://github.com/renuo/renuocop</a>.</li>
+<li><code>bin/check</code> runs the project tests and is used in CI.</li>
+<li><code>bin/fastcheck</code> runs linters in CI and before pushing.</li>
+<li><code>bin/run</code> starts the application.</li>
+<li><code>bin/check</code>, <code>bin/fastcheck</code>, and <code>bin/run</code> are standardized Renuo convenience tools.</li>
+</ul>
 <h3 id="secrets"><a class="header" href="#secrets">Secrets</a></h3>
 <p>We store the secrets necessary to configure the project locally in a 1Password Item.
 Create a new Item for the project called <code>[project-name] project secrets</code> of type note.
@@ -701,15 +693,17 @@ Thanks to this we can:</p>
 <ul>
 <li>You’ve <a href="https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio">read about what Deploio is</a>.</li>
 <li>You have a Deploio account.</li>
-<li>You have installed the <code>renuo-cli</code> gem.</li>
-<li>You have installed the <code>nctl</code> command.</li>
+<li>You have installed the <a href="https://github.com/renuo/renuo-cli"><code>renuo-cli</code></a> gem.</li>
+<li>You have installed the <a href="https://github.com/ninech/nctl"><code>nctl</code></a> command.</li>
 <li>You have logged in using <code>nctl</code>.</li>
 </ul>
 <h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
 <p>Run <a href="https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb">the command to generate a script</a> which will create and configure all Deploio apps. <code>[project-name]</code> string length is limited to 63 characters:</p>
 <pre><code class="language-sh">renuo create-deploio-app [project-name] [git-url]
 </code></pre>
-<p>e.g. <code>renuo create-deploio-app my-app git@github.com:renuo/my-app.git</code></p>
+<p>e.g:</p>
+<pre><code class="language-sh">renuo create-deploio-app my-app git@github.com:renuo/my-app.git
+</code></pre>
 <p>Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
 <p>By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).
@@ -754,12 +748,15 @@ In particular, you might need only one of the two environments if you decided to
 <p>At Renuo we <strong>always</strong> use a CI (Continuous Integration) system to test our applications. It’s essential to guarantee
 that all the tests pass before building and releasing a new version through our CD system. Our projects use
 <a href="https://semaphoreci.com/">SemaphoreCI</a>.</p>
-<p>ℹ️ <em>Are you using <strong>Gitlab</strong>? Have a look at <a href="ruby_on_rails/gitlab_capybara_selenium.html">this example</a> instead (and elaborate).</em></p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Are you using <strong>Gitlab</strong>? Have a look at <a href="ruby_on_rails/gitlab_capybara_selenium.html">this example</a> instead (and elaborate).</p>
+</blockquote>
 <p>Before configuring the CI, you should already have a Git Repository with the code, a <code>bin/check</code> command to execute,
 and the main branches already pushed and ready to be tested.</p>
 <ol>
 <li>Proceed to <a href="https://renuo.semaphoreci.com/">https://renuo.semaphoreci.com/</a> and login through GitHub with renuobot@renuo.ch (<a href="https://start.1password.com/open/i?a=QZNJJCCDWVCGBGI73Z2L55KSGE&amp;v=crlutt26yprmp6thr573qxsxkq&amp;i=u7rirvnrf5fjxd25caiq7ib6vq&amp;h=renuo.1password.com">1Password</a>)</li>
-<li>Follow these instructions to install semaphore CLI https://docs.semaphoreci.com/reference/sem-command-line-tool/</li>
+<li>Follow these instructions to install semaphore CLI: <a href="https://docs.semaphoreci.com/reference/sem-command-line-tool/">https://docs.semaphoreci.com/reference/sem-command-line-tool/</a></li>
 <li>Create a project here: <a href="https://renuo.semaphoreci.com/new_project">https://renuo.semaphoreci.com/new_project</a></li>
 <li>Go to the project’s artifact settings: <code>Settings</code> &gt; <code>Artifacts</code></li>
 <li>Set the retention policy for project, workflow and job artifacts to <code>/**/*</code> and <code>2 weeks</code></li>
@@ -790,8 +787,9 @@ If this is not the <code>renuo.ch</code> address, you need to tell them (<code>s
 to change your contact email address manually.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="setup-rspec"><a class="header" href="#setup-rspec">Setup RSpec</a></h1>
-<blockquote>
-<p><strong>Note:</strong> The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>The Renuo Rails template does NOT set up RSpec. All steps on this page are manual.
 Rails 8.1 does ship <code>capybara</code> and <code>selenium-webdriver</code> in the <code>:test</code> group by default. There is no need to add those manually when using the template.</p>
 </blockquote>
 <p>Even though Rails uses Minitest per default, RSpec is the <em>de-facto</em> standard at Renuo.</p>
@@ -918,8 +916,9 @@ SELENIUM_DRIVER="selenium_chrome_headless"
 <ul>
 <li>Add the line <code>bundle exec parallel_rspec</code> to <code>bin/check</code></li>
 </ul>
-<blockquote>
-<p><strong>Note</strong>: If you want to debug a spec, you can simply uncomment the line <code>SELENIUM_DRIVER</code> in the .env to not run it headless:</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>If you want to debug a spec, you can simply uncomment the line <code>SELENIUM_DRIVER</code> in the .env to not run it headless:</p>
 </blockquote>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif" alt="CleanShot 2021-06-25 at 16 54 22"><span class="img-wrapper"><img src="https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif" alt="CleanShot 2021-06-25 at 16 54 22"></span></label></p>
 <h2 id="-our-first-green-test"><a class="header" href="#-our-first-green-test">✅ Our first (green) test</a></h2>
@@ -930,8 +929,11 @@ SELENIUM_DRIVER="selenium_chrome_headless"
 <li>Run <code>bin/check</code> and the test should pass and coverage is 100%.</li>
 </ul>
 <p>Commit and push your changes! 🎉</p>
-<blockquote>
-<p>⭐️ The default health check path for Rails is <code>/up</code>. <a href="https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html">Learn more in the Rails guides</a>.<br>To customize the health check and add additional checks, you can override the <code>Rails::HealthController</code> class.<br>You can find an example that also checks the database connection <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/rails/health_controller.rb">in this file</a>.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>The default health check path for Rails is <code>/up</code>. <a href="https://edgeapi.rubyonrails.org/classes/Rails/HealthController.html">Learn more in the Rails guides</a>.
+To customize the health check and add additional checks, you can override the <code>Rails::HealthController</code> class.
+You can find an example that also checks the database connection <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/app/controllers/rails/health_controller.rb">in this file</a>.</p>
 </blockquote>
 <h2 id="verify"><a class="header" href="#verify">Verify</a></h2>
 <p>Check that you see a green page in each app.</p>
@@ -958,17 +960,11 @@ SELENIUM_DRIVER="selenium_chrome_headless"
 Every linter consists of a gem (usually) and a command to add to our <code>bin/fastcheck</code> script.</p>
 <p>Check out the <code>bin/fastcheck</code> <a href="https://github.com/renuo/application-setup-guide/blob/main/templates/bin/fastcheck">fastcheck</a> for the final version of it.</p>
 <h2 id="renuocop-"><a class="header" href="#renuocop-">Renuocop 👮</a></h2>
-<blockquote>
-<p>✨ Installed by the Renuo Rails template (replaces <code>rubocop-rails-omakase</code>).</p>
-</blockquote>
 <p>Renuocop is based on Standard Ruby and is a set of rules that we use to lint our Ruby code.</p>
 <p>You can execute it and correct the issues you’ll find.</p>
 <p><code>bundle exec rubocop -A</code> will fix <del>most</del> all of them automatically.</p>
 <h2 id="brakeman"><a class="header" href="#brakeman">Brakeman</a></h2>
-<blockquote>
-<p>✨ Ships with Rails 8.1 by default.</p>
-</blockquote>
-<p>Add it to the <code>bin/fastcheck</code> script.</p>
+<p>Add it to the <code>bin/fastcheck</code> script:</p>
 <pre><code class="language-sh">bundle exec brakeman -q -z --no-summary --no-pager
 </code></pre>
 <h2 id="mdl"><a class="header" href="#mdl">Mdl</a></h2>
@@ -978,8 +974,9 @@ Every linter consists of a gem (usually) and a command to add to our <code>bin/f
 end
 </code></pre>
 <h2 id="scss-lint"><a class="header" href="#scss-lint">SCSS lint</a></h2>
-<blockquote>
-<p><em>Note</em>: Your Semaphore configuration might have to be adjusted if you decide to use <code>npm</code>.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Your Semaphore configuration might have to be adjusted if you decide to use <code>npm</code>.</p>
 </blockquote>
 <p>To lint the SASS/SCSS files in our project you can use the <code>stylelint</code> npm package.</p>
 <p><code>npm install stylelint stylelint-config-standard-scss</code></p>
@@ -1071,11 +1068,13 @@ npx eslint --init (Use a popular style guide -&gt; Airbnb)
 <h1 id="suggested-gems"><a class="header" href="#suggested-gems">Suggested gems</a></h1>
 <p>Here is an hopefully up-to-date version of gems which we strongly suggest to include in your project.
 Please include them or find a good reason not to.</p>
-<blockquote>
-<p>:exclamation: Please follow the guide of each of these libraries to know how to properly install them.</p>
+<blockquote class="blockquote-tag blockquote-tag-important">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
+<p>Please follow the guide of each of these libraries to know how to properly install them.</p>
 </blockquote>
-<blockquote>
-<p><strong>:bulb:</strong> Do you know all of them? Do you know why we’d like them to be included?</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Do you know all of them? Do you know why we’d like them to be included?</p>
 </blockquote>
 <pre><code class="language-rb">gem 'simple_form'
 
@@ -1093,8 +1092,9 @@ group :production do
   gem 'lograge'
 end
 </code></pre>
-<blockquote>
-<p><strong>:bulb:</strong> Note that to install <code>simple_form</code> you need to run <code>rails generate simple_form:install --bootstrap</code> (without option if not using Bootstrap) after adding it to your Gemfile.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>To install <code>simple_form</code>, run <code>rails generate simple_form:install --bootstrap</code> (omit the option if not using Bootstrap) after adding it to your Gemfile.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="cloudflare"><a class="header" href="#cloudflare">Cloudflare</a></h1>
@@ -1330,7 +1330,7 @@ end
 <h2 id="general-configuration"><a class="header" href="#general-configuration">General configuration</a></h2>
 <ul>
 <li>
-<p>Go to https://www.sentry.io and login as the renuo monitor user.</p>
+<p>Go to <a href="https://www.sentry.io">https://www.sentry.io</a> and login as the renuo monitor user.</p>
 </li>
 <li>
 <p>Create a project named <code>[project-name]</code>.</p>
@@ -1506,7 +1506,7 @@ the monitoring only for the <code>main</code> environment, which <em>must</em> h
 dyno.</p>
 <h2 id="setup-2"><a class="header" href="#setup-2">Setup</a></h2>
 <p>You will need Renuo-CLI to be set up and at the newest version:
-<code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
+<code>gem install renuo-cli</code> → see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
 <ol>
 <li>
 <p>Run the command <code>renuo setup-uptimerobot [url]</code></p>
@@ -1582,9 +1582,12 @@ repository.</li>
 <h2 id="engine-updates"><a class="header" href="#engine-updates">Engine Updates</a></h2>
 <p>Enable minor engine updates.</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"><span class="img-wrapper"><img src="images/depfu_engine_updates.png" alt="Depfu Engine Updates"></span></label></p>
-<p><strong>Note:</strong> If you are using Heroku, the latest Ruby / node version may not yet
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>If you are using Heroku, the latest Ruby / node version may not yet
 be available on their platform, so you may need to delay the upgrade. Check the
 following GitHub repositories to see if Heroku added support already:</p>
+</blockquote>
 <ul>
 <li><a href="https://github.com/heroku/heroku-buildpack-nodejs">https://github.com/heroku/heroku-buildpack-nodejs</a></li>
 <li><a href="https://github.com/heroku/heroku-buildpack-ruby">https://github.com/heroku/heroku-buildpack-ruby</a></li>
@@ -1677,9 +1680,9 @@ end
 <p>Follow the <a href="#sparkpost--mailtrap-1">sparkpost</a> section to configure Sparkpost and Mailtrap on your production environment</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="sparkpost--mailtrap-1"><a class="header" href="#sparkpost--mailtrap-1">SparkPost &amp; Mailtrap</a></h1>
-<p>⚠️ Always use subaccounts in Sparkpost!</p>
-<blockquote>
-<p>Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>Always use subaccounts in Sparkpost! Otherwise there may be compliance issues which can lead to the closing down of the whole Renuo account.</p>
 </blockquote>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p><strong>Main (Sparkpost, sample-app@yourdomain.tld)</strong></p>
@@ -1710,8 +1713,10 @@ end
 <li>You can login to Mailtrap to see the sent email</li>
 </ul>
 <h2 id="sparkpost"><a class="header" href="#sparkpost">Sparkpost</a></h2>
-<p>:warning:
-Always use subaccounts for the project, so that the whole account doesn’t get suspended / blocked in case of compliance issues!</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>Always use subaccounts for the project, so that the whole account doesn’t get suspended / blocked in case of compliance issues!</p>
+</blockquote>
 <ol>
 <li>Go to <a href="https://app.sparkpost.com/auth">https://app.sparkpost.com/auth</a> and log in with the credentials for
 sparkpost+<em>enviroment</em>@renuo.ch found in the credential store</li>
@@ -1747,7 +1752,10 @@ MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
 <p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="devise"><a class="header" href="#devise">Devise</a></h1>
-<p>:warning: If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first. :warning:</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>If you are going to use devise we suggest you to <a href="#-send-emails">send_emails</a> first.</p>
+</blockquote>
 <ul>
 <li>Add the following gem <code>gem 'devise'</code> and install it</li>
 </ul>
@@ -1821,7 +1829,7 @@ You could also host a Single Page Application (SPA).</li>
 <h3 id="preconditions"><a class="header" href="#preconditions">Preconditions</a></h3>
 <h4 id="renuo-cli"><a class="header" href="#renuo-cli">renuo-cli</a></h4>
 <p>You will need Renuo-CLI to be set up and at the newest version:</p>
-<p><code>gem install renuo-cli</code> –&gt; see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
+<p><code>gem install renuo-cli</code> → see <a href="https://github.com/renuo/renuo-cli">renuo-cli</a></p>
 <p>Make sure <code>renuo -v</code> shows the <a href="https://github.com/renuo/renuo-cli/tags">newest version</a></p>
 <h4 id="aws-cli"><a class="header" href="#aws-cli">aws-cli</a></h4>
 <p>Retrieve the credentials “AWS Profile ‘renuo-app-setup’ for s3 setup” from the password manager at first (or ask <em>wg-operations</em> for help).</p>
@@ -2179,38 +2187,6 @@ end
 end
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="wicked-pdf"><a class="header" href="#wicked-pdf">Wicked PDF</a></h1>
-<dl>
-<dt id="can-be-used-to-generate-pdfs-and-supports-html-to-pdf"><a class="header" href="#can-be-used-to-generate-pdfs-and-supports-html-to-pdf">Can be used to generate PDFs and supports HTML to PDF.</a></dt>
-<dd>
-<p>warning: Up to now, Wicked PDF does not support Bootstrap 4, so if you want to use Bootstrap 4 Templates, use another library :warning:</p>
-</dd>
-</dl>
-<ul>
-<li>Add <code>gem 'wicked_pdf'</code> to the main section of <code>Gemfile</code></li>
-<li>Add <code>gem 'wkhtmltopdf-binary'</code> to <code>group :development, :test</code></li>
-<li>Add <code>gem 'wkhtmltopdf-heroku'</code> to <code>group :production</code></li>
-</ul>
-<p>By default, it adds no layout, you you may want to add a layout:</p>
-<ul>
-<li>Create a <code>pdf.pdf.erb</code></li>
-<li>Use the method to add stylesheets : <code>wicked_pdf_stylesheet_link_tag 'pdf', media: 'all'</code></li>
-<li>Use the method <code>wicked_pdf_image_tag</code> to insert images to the layout.</li>
-</ul>
-<p><em>Usage:</em></p>
-<pre><code class="language-rb">render pdf: &lt;&lt;filename&gt;&gt;, print_media_type: true, layout: 'pdf', disposition: 'attachment'
-</code></pre>
-<p>:warning: Consider using a job-runner to not block the server during creation of PDFs.</p>
-<h2 id="heroku-2"><a class="header" href="#heroku-2">Heroku</a></h2>
-<p>Ensure that fonts are installed on Heroku, otherwise the PDF will look different compared to the one generated locally. The fonts need to be installed with a buildpack and put in the <code>~/.fonts</code> folder.
-If you need Arial, you can add the following buildpack on Heroku:</p>
-<dl>
-<dt id="httpsgithubcompropertybaseheroku-buildpack-fonts"><a class="header" href="#httpsgithubcompropertybaseheroku-buildpack-fonts"><code>https://github.com/propertybase/heroku-buildpack-fonts</code></a></dt>
-<dd>
-<p>warning: Make sure you add this as a first buildpack before <code>heroku/ruby</code>!</p>
-</dd>
-</dl>
-<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="recaptcha-v3"><a class="header" href="#recaptcha-v3">reCAPTCHA v3</a></h1>
 <p>Here you will learn how to implement reCAPTCHA v3 into a project. It is pretty simple to use and doesn’t
 hinder the users at all, as it all runs in the background.</p>
@@ -2511,7 +2487,7 @@ RSpec.describe ShopController do
 
       let(:wallee_transaction_id) { "194681414" }
 
-      it "goes the 😊 path" do
+      it "goes the happy path" do
         create(:shop_order,  wallee_transaction_id: wallee_transaction_id)
         post wallee_webhook_path,
           env: {"HTTP_X_SIGNATURE" =&gt; "fake"},
@@ -2665,7 +2641,7 @@ end
 </tbody>
 </table>
 </div>
-<p>For a more details list, see https://developers.google.com/tag-manager/web/csp</p>
+<p>For a more details list, see <a href="https://developers.google.com/tag-manager/web/csp">https://developers.google.com/tag-manager/web/csp</a>.</p>
 <h3 id="facebook-tracking-pixel"><a class="header" href="#facebook-tracking-pixel">Facebook Tracking Pixel</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2971,7 +2947,10 @@ script which you can find <a href="https://developers.google.com/analytics/devgu
 &lt;/script&gt;
 </code></pre>
 <p>Make sure you insert this script at the end of the <code>&lt;head&gt;</code> tag of the page (not in the <code>&lt;body&gt;</code>).</p>
-<p>NOTE: There is a default IP anonymization feature in GA4. We no longer need to perform this step manually.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>There is a default IP anonymization feature in GA4. We no longer need to perform this step manually.</p>
+</blockquote>
 <h2 id="b-ruby-rack-tracker"><a class="header" href="#b-ruby-rack-tracker">b) Ruby rack-tracker</a></h2>
 <p>There’s a gem which can be used for a lot of trackers: <a href="https://github.com/railslove/rack-tracker#installation">https://github.com/railslove/rack-tracker#installation</a></p>
 <pre><code class="language-rb">group :production do
@@ -3034,15 +3013,14 @@ we suggest you to use <a href="https://renuo.slack.com/">Slack</a>.</p>
 <code>#project-gifcoins</code>, etc..).</p>
 <p>Invite all team members involved in the project to the channel.</p>
 <h2 id="deploy-notifications"><a class="header" href="#deploy-notifications">Deploy Notifications</a></h2>
-<dl>
-<dt id="one-notification-you-may-want-to-receive-on-this-channel-is-about-when-a-new-deployment-on-main-has-been-performed-in-order-to-do-that-you-must-be-an-admin-of-the-renuo-slack-organisation-if-you-are-not-an-admin-ask-wg-operations-to-do-it-for-you-communicating-the-project-name"><a class="header" href="#one-notification-you-may-want-to-receive-on-this-channel-is-about-when-a-new-deployment-on-main-has-been-performed-in-order-to-do-that-you-must-be-an-admin-of-the-renuo-slack-organisation-if-you-are-not-an-admin-ask-wg-operations-to-do-it-for-you-communicating-the-project-name">One notification you may want to receive on this channel is about when a new deployment on main has been performed. In
+<p>One notification you may want to receive on this channel is about when a new deployment on main has been performed. In
 order to do that you must be an admin of the Renuo Slack Organisation. If you are not an admin, ask wg-operations to do
-it for you communicating the <code>[project-name]</code>.</a></dt>
-<dd>
-<p>warning: <strong>You must have already setup <a href="#configure-the-ci">Automatic Deployment through SemaphoreCI</a></strong> :warning:
-If you used Renuo CLI to configure SemaphoreCI, the notifications should be already created. For manual setup, follow these steps:</p>
-</dd>
-</dl>
+it for you communicating the <code>[project-name]</code>.</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>You must have already setup <a href="#configure-the-ci">Automatic Deployment through SemaphoreCI</a>.</p>
+</blockquote>
+<p>If you used Renuo CLI to configure SemaphoreCI, the notifications should be already created. For manual setup, follow these steps:</p>
 <ol>
 <li>Open the global Notifications settings (<code>https://renuo.semaphoreci.com/notifications</code>)</li>
 <li>Create New Notification</li>
@@ -3123,7 +3101,7 @@ This is done via page rules in Cloudflare.</p>
 <li>Ensure the application replica count is correctly set in the application configuration tab.</li>
 </ul>
 <p>For detailed instructions and best practices, including quick start guides for a variety of frameworks, please refer to the <a href="https://guides.deplo.io/user-guide/network-and-deployment.html#network-deployment">Deploio deployment documentation</a>.</p>
-<h2 id="heroku-3"><a class="header" href="#heroku-3">Heroku</a></h2>
+<h2 id="heroku-2"><a class="header" href="#heroku-2">Heroku</a></h2>
 <ul>
 <li>Check the size and amount of dynos on Heroku</li>
 <li>Check the database size plan on Heroku and upgrade if it is foreseeable that 10’000 rows are exceeded in a short time</li>
@@ -3144,8 +3122,8 @@ This is done via page rules in Cloudflare.</p>
 <tr><th>Branch</th><th>Domain</th><th>Deployment</th></tr>
 </thead>
 <tbody>
-<tr><td>develop</td><td>https://<code>[project-name]</code>-develop.renuoapp.ch</td><td>auto</td></tr>
-<tr><td>main</td><td>https://<code>[project-name]</code>-main.renuoapp.ch</td><td>release</td></tr>
+<tr><td>develop</td><td>https://[project-name]-develop.renuoapp.ch</td><td>auto</td></tr>
+<tr><td>main</td><td>https://[project-name]-main.renuoapp.ch</td><td>release</td></tr>
 </tbody>
 </table>
 </div>

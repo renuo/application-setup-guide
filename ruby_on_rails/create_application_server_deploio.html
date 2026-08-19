@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-db4dac82.js";
+            window.path_to_searchindex_js = "../searchindex-2209065b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-daf8421b.js"></script>
+        <script src="../toc-170943b7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,15 +179,17 @@
 <ul>
 <li>You’ve <a href="https://docs.nine.ch/docs/deplo-io/getting-started-with-deploio">read about what Deploio is</a>.</li>
 <li>You have a Deploio account.</li>
-<li>You have installed the <code>renuo-cli</code> gem.</li>
-<li>You have installed the <code>nctl</code> command.</li>
+<li>You have installed the <a href="https://github.com/renuo/renuo-cli"><code>renuo-cli</code></a> gem.</li>
+<li>You have installed the <a href="https://github.com/ninech/nctl"><code>nctl</code></a> command.</li>
 <li>You have logged in using <code>nctl</code>.</li>
 </ul>
 <h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
 <p>Run <a href="https://github.com/renuo/renuo-cli/blob/main/lib/renuo/cli/commands/create_deploio_app.rb">the command to generate a script</a> which will create and configure all Deploio apps. <code>[project-name]</code> string length is limited to 63 characters:</p>
 <pre><code class="language-sh">renuo create-deploio-app [project-name] [git-url]
 </code></pre>
-<p>e.g. <code>renuo create-deploio-app my-app git@github.com:renuo/my-app.git</code></p>
+<p>e.g:</p>
+<pre><code class="language-sh">renuo create-deploio-app my-app git@github.com:renuo/my-app.git
+</code></pre>
 <p>Please review the script before running it and execute only the commands you need and understand.
 In particular, you might need only one of the two environments if you decided to not use <code>develop</code>.</p>
 <p>By default, we setup an Economy database. This comes with a storage capacity limitation of 10 GB. Upgrading to Business is currently not straight-forward (WIP).

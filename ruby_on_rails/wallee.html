@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-db4dac82.js";
+            window.path_to_searchindex_js = "../searchindex-2209065b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-daf8421b.js"></script>
+        <script src="../toc-170943b7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -440,7 +440,7 @@ RSpec.describe ShopController do
 
       let(:wallee_transaction_id) { "194681414" }
 
-      it "goes the 😊 path" do
+      it "goes the happy path" do
         create(:shop_order,  wallee_transaction_id: wallee_transaction_id)
         post wallee_webhook_path,
           env: {"HTTP_X_SIGNATURE" =&gt; "fake"},

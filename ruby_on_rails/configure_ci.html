@@ -35,10 +35,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-db4dac82.js";
+            window.path_to_searchindex_js = "../searchindex-2209065b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-daf8421b.js"></script>
+        <script src="../toc-170943b7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -178,12 +178,15 @@
 <p>At Renuo we <strong>always</strong> use a CI (Continuous Integration) system to test our applications. It’s essential to guarantee
 that all the tests pass before building and releasing a new version through our CD system. Our projects use
 <a href="https://semaphoreci.com/">SemaphoreCI</a>.</p>
-<p>ℹ️ <em>Are you using <strong>Gitlab</strong>? Have a look at <a href="./gitlab_capybara_selenium.html">this example</a> instead (and elaborate).</em></p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Are you using <strong>Gitlab</strong>? Have a look at <a href="./gitlab_capybara_selenium.html">this example</a> instead (and elaborate).</p>
+</blockquote>
 <p>Before configuring the CI, you should already have a Git Repository with the code, a <code>bin/check</code> command to execute,
 and the main branches already pushed and ready to be tested.</p>
 <ol>
 <li>Proceed to <a href="https://renuo.semaphoreci.com/">https://renuo.semaphoreci.com/</a> and login through GitHub with renuobot@renuo.ch (<a href="https://start.1password.com/open/i?a=QZNJJCCDWVCGBGI73Z2L55KSGE&amp;v=crlutt26yprmp6thr573qxsxkq&amp;i=u7rirvnrf5fjxd25caiq7ib6vq&amp;h=renuo.1password.com">1Password</a>)</li>
-<li>Follow these instructions to install semaphore CLI https://docs.semaphoreci.com/reference/sem-command-line-tool/</li>
+<li>Follow these instructions to install semaphore CLI: <a href="https://docs.semaphoreci.com/reference/sem-command-line-tool/">https://docs.semaphoreci.com/reference/sem-command-line-tool/</a></li>
 <li>Create a project here: <a href="https://renuo.semaphoreci.com/new_project">https://renuo.semaphoreci.com/new_project</a></li>
 <li>Go to the project’s artifact settings: <code>Settings</code> &gt; <code>Artifacts</code></li>
 <li>Set the retention policy for project, workflow and job artifacts to <code>/**/*</code> and <code>2 weeks</code></li>

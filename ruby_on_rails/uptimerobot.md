@@ -13,8 +13,7 @@ dyno.
 You will need Renuo-CLI to be set up and at the newest version:
 `gem install renuo-cli` → see [renuo-cli](https://github.com/renuo/renuo-cli)
 
-Run the command `renuo setup-uptimerobot [url]`
-`url` is the address you want to monitor. e.g. `https://[project-name]-main.renuoapp.ch/up` or `https://customdomain.ch/up`
+Run the command `renuo setup-uptimerobot [url]` (`url` is the address you want to monitor. e.g. `https://[project-name]-main.renuoapp.ch/up` or `https://customdomain.ch/up`)
 
 The command will setup the project in a paused state. You can start it once your app has a paid dyno.
 

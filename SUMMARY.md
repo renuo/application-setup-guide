@@ -42,6 +42,7 @@
 
 - [Send Emails](ruby_on_rails/send_emails.md)
 - [Sparkpost & Mailtrap](sparkpost_and_mailtrap.md)
+- [Domain bouncing](domain_bouncing.md)
 - [Devise](ruby_on_rails/devise.md)
 - [Object Storage](ruby_on_rails/object_storage.md)
 - [Jest](ruby_on_rails/jest.md)

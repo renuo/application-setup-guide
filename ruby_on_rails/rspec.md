@@ -158,9 +158,7 @@ config.generators { |g| g.test_framework :rspec }
 * Add the line `bundle exec parallel_rspec` to `bin/check`
 
 > [!NOTE]
-> If you want to debug a spec, you can simply uncomment the line `SELENIUM_DRIVER` in the .env to not run it headless:
-
-![CleanShot 2021-06-25 at 16 54 22](https://user-images.githubusercontent.com/1319150/123443347-1bbcae80-d5d6-11eb-8ba5-0d2c9ae4a37c.gif)
+> If you want to debug a spec, you can simply uncomment the line `SELENIUM_DRIVER` in the .env to not run it headless.
 
 ## ✅ Our first (green) test
 

@@ -75,6 +75,7 @@ MAIL_SENDER: 'Sample App <sample-app@yourdomain.tld>'
 Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): `ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!`
 
 ## Bounce Domain
+
 ### What is a bounce domain?
 
 A bounce domain (also called a Return-Path domain, MAIL FROM domain, or envelope-from domain) is the domain designated to collect undeliverable message notifications (bounces). It is normally visible in the email's Return-Path header.

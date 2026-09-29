@@ -134,11 +134,11 @@ SparkPost will provide a CNAME record that you need to add to your DNS provider.
 > Use a dedicated **subdomain** for the bounce domain. The domain's mail handling is intended for SparkPost, so you
 should **not** use a domain that you also need for normal incoming email.
 
-1. Add the record name and value to your DNS provider
-2. Select type CNAME and turn off the proxy. This prevents traffic from diverting to Cloudflare instead of the mail
+4. Add the record name and value to your DNS provider
+5. Select type CNAME and turn off the proxy. This prevents traffic from diverting to Cloudflare instead of the mail
    server
-3. Click "save"
-4. Go to the DNS page on SparkPost and click "Verify Domain".
+6. Click "save"
+7. Go to the DNS page on SparkPost and click "Verify Domain".
 
 ### DNS authentication
 

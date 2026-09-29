@@ -131,8 +131,7 @@ SparkPost will provide a CNAME record that you need to add to your DNS provider.
 3. Enter a subdomain instead of your root domain, click "Save and Continue"
 
 > [!Warning]
-> Use a dedicated **subdomain** for the bounce domain. The domain's mail handling is intended for SparkPost, so you
-should **not** use a domain that you also need for normal incoming email.
+> Use a dedicated subdomain for the bounce domain. Bounce domains are used to collect undeliverable message notifications. Using a subdomain avoids interfering with the root domain's existing mail configuration.
 
 4. Add the record name and value to your DNS provider
 5. Select type CNAME and turn off the proxy. This prevents traffic from diverting to Cloudflare instead of the mail

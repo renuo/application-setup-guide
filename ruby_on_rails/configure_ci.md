@@ -22,17 +22,33 @@ and the main branches already pushed and ready to be tested.
 renuo configure-semaphore
 ```
 
-The command will copy the necessary templates to `.semaphore` folder using the renuo-cli. These files need to be maintained on the [renuo-cli repository](https://github.com/renuo/renuo-cli/tree/main).
-Adapt the files and remove the `develop` related ones if you don't use the `develop` branch.
+The command copies the necessary templates to the `.semaphore` folder and creates the Semaphore secret,
+the Slack notifications and the `main` and `develop` deployment targets. The templates are maintained in the
+[renuo-cli repository](https://github.com/renuo/renuo-cli/tree/main/lib/renuo/cli/templates/semaphore).
+If you think they are outdated, please open a Pull Request there.
 
-1. Add a file called `.nvmrc` to the project root, where you specify the latest node version
-1. Commit the files to both branches, push and watch the CI run.
+Adapt the files to your project:
+
+* Remove `develop-deploy.yml`, the `develop` promotion and the `develop` deployment target
+  (`sem delete dt develop -p [project-name]`) if you don't use the `develop` branch.
+* The deploy pipelines expect the Deploio project to be called `renuo-[project-name]`
+  and the apps to be named after the branch (`main`, `develop`), as created by
+  [`renuo create-deploio-app`](create_application_server_deploio.md). Adjust the `-p` option otherwise.
+* Match the Postgres version in `sem-service start postgres` with the one of your Deploio database.
+* If your app needs Node.js, add `nvm install` and `bin/yarn install` to the prologue and
+  a `.nvmrc` file to the project root, where you specify the latest node version.
+
+The deploy pipelines use the organization-wide `nctl` Semaphore secret to log in to Deploio.
+`renuo ci update-deploio-app` deploys the current revision and `renuo ci check-deploio-status` waits until
+the build and the release have succeeded, streaming the build logs into the job output.
+
+Commit the files to both branches, push and watch the CI run.
 
 When all builds are green, then you have properly configured your CI and CD.
 
 ![semaphoreci_2](../images/semaphore_ci.png)
 
-You should now see a third block where your deployment runs to Heroku.
+You should now see a third block where your deployment runs to Deploio.
 Make sure it is green and deploys correctly:
 
 ![semaphoreci_2](../images/semaphore_cd.png)

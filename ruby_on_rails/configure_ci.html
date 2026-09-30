@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a2a599ef.js";
+            window.path_to_searchindex_js = "../searchindex-56399e8e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-170943b7.js"></script>
@@ -194,15 +194,28 @@ and the main branches already pushed and ready to be tested.</p>
 <h2 id="rails-specific-configuration"><a class="header" href="#rails-specific-configuration">Rails specific configuration</a></h2>
 <pre><code class="language-sh">renuo configure-semaphore
 </code></pre>
-<p>The command will copy the necessary templates to <code>.semaphore</code> folder using the renuo-cli. These files need to be maintained on the <a href="https://github.com/renuo/renuo-cli/tree/main">renuo-cli repository</a>.
-Adapt the files and remove the <code>develop</code> related ones if you don’t use the <code>develop</code> branch.</p>
-<ol>
-<li>Add a file called <code>.nvmrc</code> to the project root, where you specify the latest node version</li>
-<li>Commit the files to both branches, push and watch the CI run.</li>
-</ol>
+<p>The command copies the necessary templates to the <code>.semaphore</code> folder and creates the Semaphore secret,
+the Slack notifications and the <code>main</code> and <code>develop</code> deployment targets. The templates are maintained in the
+<a href="https://github.com/renuo/renuo-cli/tree/main/lib/renuo/cli/templates/semaphore">renuo-cli repository</a>.
+If you think they are outdated, please open a Pull Request there.</p>
+<p>Adapt the files to your project:</p>
+<ul>
+<li>Remove <code>develop-deploy.yml</code>, the <code>develop</code> promotion and the <code>develop</code> deployment target
+(<code>sem delete dt develop -p [project-name]</code>) if you don’t use the <code>develop</code> branch.</li>
+<li>The deploy pipelines expect the Deploio project to be called <code>renuo-[project-name]</code>
+and the apps to be named after the branch (<code>main</code>, <code>develop</code>), as created by
+<a href="create_application_server_deploio.html"><code>renuo create-deploio-app</code></a>. Adjust the <code>-p</code> option otherwise.</li>
+<li>Match the Postgres version in <code>sem-service start postgres</code> with the one of your Deploio database.</li>
+<li>If your app needs Node.js, add <code>nvm install</code> and <code>bin/yarn install</code> to the prologue and
+a <code>.nvmrc</code> file to the project root, where you specify the latest node version.</li>
+</ul>
+<p>The deploy pipelines use the organization-wide <code>nctl</code> Semaphore secret to log in to Deploio.
+<code>renuo ci update-deploio-app</code> deploys the current revision and <code>renuo ci check-deploio-status</code> waits until
+the build and the release have succeeded, streaming the build logs into the job output.</p>
+<p>Commit the files to both branches, push and watch the CI run.</p>
 <p>When all builds are green, then you have properly configured your CI and CD.</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../images/semaphore_ci.png" alt="semaphoreci_2"><span class="img-wrapper"><img src="../images/semaphore_ci.png" alt="semaphoreci_2"></span></label></p>
-<p>You should now see a third block where your deployment runs to Heroku.
+<p>You should now see a third block where your deployment runs to Deploio.
 Make sure it is green and deploys correctly:</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../images/semaphore_cd.png" alt="semaphoreci_2"><span class="img-wrapper"><img src="../images/semaphore_cd.png" alt="semaphoreci_2"></span></label></p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>

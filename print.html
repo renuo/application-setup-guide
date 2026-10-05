@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-56399e8e.js";
+            window.path_to_searchindex_js = "searchindex-90af047c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-170943b7.js"></script>
@@ -1751,6 +1751,65 @@ MAIL_HOST: 'smtp.mailtrap.io'
 MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
 </code></pre>
 <p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
+<h2 id="bounce-domain"><a class="header" href="#bounce-domain">Bounce Domain</a></h2>
+<h3 id="what-is-a-bounce-domain"><a class="header" href="#what-is-a-bounce-domain">What is a bounce domain?</a></h3>
+<p>A bounce domain (also called a Return-Path domain, MAIL FROM domain, or envelope-from domain) is the domain designated to collect undeliverable message notifications (bounces). It is normally visible in the email’s Return-Path header.</p>
+<pre><code class="language-text">From:           notifications@mail.renuo.ch
+Return-Path:    something@bounce.renuo.ch
+</code></pre>
+<p><code>From:</code> Shows the sender to the recipient.</p>
+<p><code>Return-Path:</code> Tells the receiving mail server where it should send the bounces.</p>
+<p>When an email can’t be delivered, the receiving mail server sends a bounce to the envelope sender.</p>
+<h3 id="how-it-works"><a class="header" href="#how-it-works">How it works</a></h3>
+<ol>
+<li>Your application sends an email through SparkPost.</li>
+<li>The recipient’s mail server tries to deliver the email.</li>
+<li>If delivery fails, the mail server sends a bounce to the
+envelope sender (Return-Path).</li>
+<li>The Return-Path uses your bounce domain.</li>
+<li>SparkPost receives the bounce and records the delivery failure.</li>
+</ol>
+<h3 id="why-is-a-bounce-domain-needed"><a class="header" href="#why-is-a-bounce-domain-needed">Why is a bounce domain needed?</a></h3>
+<p>Bounce domains are useful for automated or high-volume email sending, such as newsletters or notifications.
+Some emails will fail to be delivered because the recipient does not exist or their mailbox is full etc. The receiving
+mail server sends these bounces to the <code>Return-Path</code>.</p>
+<p>For further information visit <a href="https://docs.sparkpost.com/docs/tech-resources/custom-bounce-domain/#setting-up-a-bounce-domain">here</a></p>
+<h3 id="configuration-2"><a class="header" href="#configuration-2">Configuration</a></h3>
+<p>For a normal SparkPost setup, use a subdomain for the bounce domain:</p>
+<pre><code class="language-text">Sending domain:     mail.renuo.ch
+Bounce domain:      bounce.renuo.ch
+</code></pre>
+<p>Do not use the root domain if it is also used for normal incoming email. Using a dedicated subdomain avoids interfering
+with your existing email configuration.</p>
+<h3 id="dns-records"><a class="header" href="#dns-records">DNS records</a></h3>
+<p>SparkPost will provide a CNAME record that you need to add to your DNS provider.</p>
+<h3 id="verify-bounce-domain"><a class="header" href="#verify-bounce-domain">Verify bounce domain</a></h3>
+<ol>
+<li>In the domains tab, select Bounce Domains</li>
+<li>Click “Add Bounce Domain”</li>
+<li>Enter a subdomain instead of your root domain, click “Save and Continue”</li>
+</ol>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>Use a dedicated subdomain for the bounce domain. Bounce domains are used to collect undeliverable message notifications. Using a subdomain avoids interfering with the root domain’s existing mail configuration.</p>
+</blockquote>
+<ol start="4">
+<li>Add the record name and value to your DNS provider</li>
+<li>Select type CNAME and turn off the proxy. This prevents traffic from diverting to Cloudflare instead of the mail
+server</li>
+<li>Click “save”</li>
+<li>Go to the DNS page on SparkPost and click “Verify Domain”.</li>
+</ol>
+<h3 id="dns-authentication"><a class="header" href="#dns-authentication">DNS authentication</a></h3>
+<h4 id="spf"><a class="header" href="#spf">SPF</a></h4>
+<p>Sender Policy Framework proves that an authorized server is allowed to send emails for your domain. In other
+words, it says “This email came from a server my domain authorized to send mail.”</p>
+<h4 id="dkim"><a class="header" href="#dkim">DKIM</a></h4>
+<p>DomainKey Identified Mail allows owners to automatically sign emails from their domain. This proves the mail really came
+from the domain.</p>
+<h4 id="dmarc"><a class="header" href="#dmarc">DMARC</a></h4>
+<p>Domain-based Message Authentication Reporting and Conformance tells the receiving mail server what to do after checking
+SPF and DKIM. For example marking the email as “spam”, deliver it anyway or dropping it entirely.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="devise"><a class="header" href="#devise">Devise</a></h1>
 <blockquote class="blockquote-tag blockquote-tag-warning">
@@ -3133,7 +3192,7 @@ This is done via page rules in Cloudflare.</p>
 cd [project-name]
 bin/setup
 </code></pre>
-<h3 id="configuration-2"><a class="header" href="#configuration-2">Configuration</a></h3>
+<h3 id="configuration-3"><a class="header" href="#configuration-3">Configuration</a></h3>
 <p>Configure the following:</p>
 <ul>
 <li>.env</li>

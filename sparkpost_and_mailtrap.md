@@ -74,7 +74,7 @@ MAIL_SENDER: 'Sample App <sample-app@yourdomain.tld>'
 
 Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): `ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!`
 
-## Bounce Domain
+## Bounce domains
 
 ### What is a bounce domain?
 

@@ -120,11 +120,7 @@ Bounce domain:      bounce.renuo.ch
 Do not use the root domain if it is also used for normal incoming email. Using a dedicated subdomain avoids interfering
 with your existing email configuration.
 
-### DNS records
-
-SparkPost will provide a CNAME record that you need to add to your DNS provider.
-
-### Verify bounce domain
+### Add bounce domain
 
 1. In the domains tab, select Bounce Domains
 2. Click "Add Bounce Domain"

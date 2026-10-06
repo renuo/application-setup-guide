@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-90af047c.js";
+            window.path_to_searchindex_js = "searchindex-86c556ca.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-170943b7.js"></script>
@@ -1751,7 +1751,7 @@ MAIL_HOST: 'smtp.mailtrap.io'
 MAIL_SENDER: 'Sample App &lt;sample-app@yourdomain.tld&gt;'
 </code></pre>
 <p>Set up your ENV-variables and test if the mails are working. Manual test emails can be send via the following command in the rails console (production environment): <code>ActionMailer::Base.mail(to: 'yourname@renuo.ch', from: ENV['MAIL_SENDER'], subject: 'Testmail', body: 'Mail content').deliver_now!</code></p>
-<h2 id="bounce-domain"><a class="header" href="#bounce-domain">Bounce Domain</a></h2>
+<h2 id="bounce-domains"><a class="header" href="#bounce-domains">Bounce domains</a></h2>
 <h3 id="what-is-a-bounce-domain"><a class="header" href="#what-is-a-bounce-domain">What is a bounce domain?</a></h3>
 <p>A bounce domain (also called a Return-Path domain, MAIL FROM domain, or envelope-from domain) is the domain designated to collect undeliverable message notifications (bounces). It is normally visible in the email’s Return-Path header.</p>
 <pre><code class="language-text">From:           notifications@mail.renuo.ch
@@ -1781,9 +1781,7 @@ Bounce domain:      bounce.renuo.ch
 </code></pre>
 <p>Do not use the root domain if it is also used for normal incoming email. Using a dedicated subdomain avoids interfering
 with your existing email configuration.</p>
-<h3 id="dns-records"><a class="header" href="#dns-records">DNS records</a></h3>
-<p>SparkPost will provide a CNAME record that you need to add to your DNS provider.</p>
-<h3 id="verify-bounce-domain"><a class="header" href="#verify-bounce-domain">Verify bounce domain</a></h3>
+<h3 id="add-bounce-domain"><a class="header" href="#add-bounce-domain">Add bounce domain</a></h3>
 <ol>
 <li>In the domains tab, select Bounce Domains</li>
 <li>Click “Add Bounce Domain”</li>

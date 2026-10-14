@@ -160,7 +160,6 @@ Unfortunately Appsignal doesn't provide an API for project configuration.
 So if you need to do something on a lot of projects, you have to do it manually.
 
 Project creation can be automated though with the following script.
-Run it in a tmp folder. **It writes into a file on disk.**
 
 ```rb
 #!/usr/bin/env ruby
@@ -168,7 +167,7 @@ require 'optparse'
 require 'appsignal'
 require 'appsignal/demo'
 
-PUSH_API_KEY = "XXX"
+PUSH_API_KEY = "XXX" # use the Organization Push key for this
 
 options = {}
 OptionParser.new do |opt|
@@ -178,18 +177,14 @@ end.parse!
 
 raise OptionParser::MissingArgument if options[:env].nil? || options[:name].nil?
 
-File.write 'config/appsignal.rb', <<~RUBY
-  if defined?(Appsignal)
-    Appsignal.configure do |config|
-      %w[HTTP_REFERER HTTP_USER_AGENT REQUEST_URI].each do |header|
-        config.request_headers << header
-      end
-      config.revision = ENV.fetch("DEPLOIO_GIT_REVISION")
-    end
-  end
-RUBY
+ENV["APPSIGNAL_APP_ENV"] = options[:env]
+ENV["APPSIGNAL_PUSH_API_KEY"] = PUSH_API_KEY
 
-Appsignal.config = Appsignal::Config.new(Dir.pwd, options[:env])
+Appsignal.configure do |config|
+  config.enabled = true
+  config.name = options[:name]
+end
+
 Appsignal::Demo.transmit
 ```
 

@@ -167,7 +167,7 @@ require 'optparse'
 require 'appsignal'
 require 'appsignal/demo'
 
-PUSH_API_KEY = "XXX"
+PUSH_API_KEY = "XXX" # use the Organization Push key for this
 
 options = {}
 OptionParser.new do |opt|

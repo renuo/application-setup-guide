@@ -13,7 +13,7 @@ Update strategy should be set to `Grouped Updates`, frequency: `monthly`. Assign
 
 ## Engine Updates
 
-Enable minor engine updates.
+Enable minor engine updates. Currently [in 7 days after release](https://depfu.com/blog/previously-on-depfu#:~:text=We%E2%80%99ve%20heard%20from%20you%20that%20engine%20releases%20(so%20new%20versions%20of%20Ruby%2C%20nodejs%2C%20etc.)%20often%20get%20stuck%20waiting%20for%20upstream%20providers%20like%20Heroku%2C%20Docker%20and%20similar%20to%20make%20the%20new%20version%20available.%20So%20now%20we%20simply%20wait%20for%207%20days%20before%20we%20send%20you%20the%20PR%20for%20a%20new%20version.).
 
 ![Depfu Engine Updates](../images/depfu_engine_updates.png)
 

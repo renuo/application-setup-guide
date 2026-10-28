@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/browser';
 
-const {sentryConfig, renuoSentryConfig} = window;
-Sentry.init({...sentryConfig, ...renuoSentryConfig});
+Sentry.init(window.sentryConfig);
 window.Sentry = Sentry;

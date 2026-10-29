@@ -54,6 +54,7 @@
 - [Wallee Payment](ruby_on_rails/wallee.md)
 - [Content Security Policy](ruby_on_rails/content_security_policy.md)
 - [I18n](i18n.md)
+- [Solid queue](solid_queue.md)
 
 # Services
 

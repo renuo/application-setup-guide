@@ -12,10 +12,10 @@ Add the following gems to your Gemfile:
 group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-rails"
-  gem "parallel_tests"
 end
 
 group :test do
+  gem "rspec-core-parallel"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "super_diff"
@@ -34,7 +34,14 @@ You should know exactly why you are adding each one of them and why is necessary
 
 ### spec/spec_helper.rb
 
-Add SimpleCov configuration at the top of the file (before `RSpec.configure`):
+Require [rspec-core-parallel](https://github.com/renuo/rspec-core-parallel) at the top of the file, so that `rspec` runs the suite
+in parallel, with one worker per physical CPU core and a test database per worker:
+
+```ruby
+require "rspec/core/parallel"
+```
+
+Then add the SimpleCov configuration right after it (before `RSpec.configure`):
 
 ```ruby
 # Run code coverage and exclude files with less than 5 lines of code
@@ -155,7 +162,7 @@ SELENIUM_DRIVER="selenium_chrome_headless"
 config.generators { |g| g.test_framework :rspec }
 ```
 
-* Add the line `bundle exec parallel_rspec` to `bin/check`
+* Add the line `bundle exec rspec` to `bin/check`
 
 > [!NOTE]
 > If you want to debug a spec, you can simply uncomment the line `SELENIUM_DRIVER` in the .env to not run it headless.

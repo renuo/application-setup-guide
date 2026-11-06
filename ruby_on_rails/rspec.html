@@ -35,7 +35,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-2bfda46d.js";
+            window.path_to_searchindex_js = "../searchindex-f4eb6a80.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-170943b7.js"></script>
@@ -185,10 +185,10 @@ Rails 8.1 does ship <code>capybara</code> and <code>selenium-webdriver</code> in
 <pre><code class="language-ruby">group :development, :test do
   gem "factory_bot_rails"
   gem "rspec-rails"
-  gem "parallel_tests"
 end
 
 group :test do
+  gem "rspec-core-parallel"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "super_diff"
@@ -205,7 +205,11 @@ end
 <li>Create a bin stub with <code>bundle binstubs rspec-core</code></li>
 </ul>
 <h3 id="specspec_helperrb"><a class="header" href="#specspec_helperrb">spec/spec_helper.rb</a></h3>
-<p>Add SimpleCov configuration at the top of the file (before <code>RSpec.configure</code>):</p>
+<p>Require <a href="https://github.com/renuo/rspec-core-parallel">rspec-core-parallel</a> at the top of the file, so that <code>rspec</code> runs the suite
+in parallel, with one worker per physical CPU core and a test database per worker:</p>
+<pre><code class="language-ruby">require "rspec/core/parallel"
+</code></pre>
+<p>Then add the SimpleCov configuration right after it (before <code>RSpec.configure</code>):</p>
 <pre><code class="language-ruby"># Run code coverage and exclude files with less than 5 lines of code
 unless ENV["NO_COVERAGE"]
   require "simplecov"
@@ -305,7 +309,19 @@ SELENIUM_DRIVER="headless_chrome"
 <pre><code class="language-rb">config.generators { |g| g.test_framework :rspec }
 </code></pre>
 <ul>
-<li>Add the line <code>bundle exec parallel_rspec</code> to <code>bin/check</code></li>
+<li>Add the line <code>bundle exec rspec</code> to <code>bin/check</code></li>
+</ul>
+<h3 id="ci"><a class="header" href="#ci">CI</a></h3>
+<ul>
+<li>
+<p>Create the test database with <code>bin/rails db:create db:schema:load</code>, as the Semaphore template does. The databases
+of the workers (<code>test_0</code>, <code>test_1</code>, …) are created by the gem, also when <code>DATABASE_URL</code> is set.</p>
+</li>
+<li>
+<p>The Semaphore template of <a href="./configure_ci.html"><code>renuo configure-semaphore</code></a> caches <code>tmp/rspec_parallel_run_times.txt</code>
+between builds.</p>
+<p>If the log of a CI run keeps saying <code>without run times of a previous run</code>, the file is not cached correctly.</p>
+</li>
 </ul>
 <blockquote class="blockquote-tag blockquote-tag-note">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>

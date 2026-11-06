@@ -136,8 +136,11 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    driven_by ENV["SELENIUM_DRIVER"]&.to_sym || :selenium_chrome_headless
-    Capybara.page.current_window.resize_to(1280, 800)
+    # Reduced motion turns off smooth scrolling (e.g. Bootstrap), with which chromedriver waits about a second before
+    # every click on an element below the fold. It also makes CSS transitions instant.
+    driven_by :selenium, using: ENV.fetch("SELENIUM_DRIVER", "headless_chrome").to_sym, screen_size: [1280, 800] do |options|
+      options.add_argument("--force-prefers-reduced-motion")
+    end
   end
 end
 ```
@@ -145,8 +148,8 @@ end
 ### .env.example
 
 ```yml
-# SELENIUM_DRIVER="selenium_chrome"
-SELENIUM_DRIVER="selenium_chrome_headless"
+# SELENIUM_DRIVER="chrome"
+SELENIUM_DRIVER="headless_chrome"
 ```
 
 ### config/environments/development.rb

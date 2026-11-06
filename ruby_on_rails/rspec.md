@@ -169,24 +169,12 @@ config.generators { |g| g.test_framework :rspec }
 * Create the test database with `bin/rails db:create db:schema:load`, as the Semaphore template does, and not with
   `parallel:create`. The databases of the workers (`test_0`, `test_1`, ...) are created by the gem, also when
   `DATABASE_URL` is set.
-* Cache `tmp/rspec_parallel_run_times.txt` between builds, so that the workers start with the longest groups.
-  In `.semaphore/semaphore.yml`, restore it in the prologue of the tests block and store it after `bin/check`
-  on `main` and `develop`:
-
-  ```yaml
-  prologue:
-    commands:
-      - cache restore rspec-run-times-$SEMAPHORE_GIT_BRANCH,rspec-run-times-develop,rspec-run-times-main
-  jobs:
-    - name: tests
-      commands:
-        - bin/check
-        - |
-          if [ "$SEMAPHORE_GIT_BRANCH" = "main" ] || [ "$SEMAPHORE_GIT_BRANCH" = "develop" ]; then
-            cache delete rspec-run-times-$SEMAPHORE_GIT_BRANCH
-            cache store rspec-run-times-$SEMAPHORE_GIT_BRANCH tmp/rspec_parallel_run_times.txt
-          fi
-  ```
+* The Semaphore template of [`renuo configure-semaphore`](./configure_ci.md) caches `tmp/rspec_parallel_run_times.txt`
+  between builds, so that the workers start with the longest groups: the tests block restores it with
+  `source .semaphore/bin/cache_restore run_times` and stores it after `bin/check` with
+  `source .semaphore/bin/cache_store run_times` (only on `main` and `develop`).
+  In existing projects, copy the `run_times` cache group from the
+  [templates](https://github.com/renuo/renuo-cli/tree/main/lib/renuo/cli/templates/semaphore).
 
   If the log of a CI run keeps saying `without run times of a previous run`, the file is not cached correctly.
 

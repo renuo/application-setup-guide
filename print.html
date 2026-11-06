@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8be7403a.js";
+            window.path_to_searchindex_js = "searchindex-2bfda46d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-170943b7.js"></script>
@@ -914,14 +914,17 @@ require "super_diff/rspec-rails"
   end
 
   config.before(:each, type: :system, js: true) do
-    driven_by ENV["SELENIUM_DRIVER"]&amp;.to_sym || :selenium_chrome_headless
-    Capybara.page.current_window.resize_to(1280, 800)
+    # Reduced motion turns off smooth scrolling (e.g. Bootstrap), with which chromedriver waits about a second before
+    # every click on an element below the fold. It also makes CSS transitions instant.
+    driven_by :selenium, using: ENV.fetch("SELENIUM_DRIVER", "headless_chrome").to_sym, screen_size: [1280, 800] do |options|
+      options.add_argument("--force-prefers-reduced-motion")
+    end
   end
 end
 </code></pre>
 <h3 id="envexample"><a class="header" href="#envexample">.env.example</a></h3>
-<pre><code class="language-yml"># SELENIUM_DRIVER="selenium_chrome"
-SELENIUM_DRIVER="selenium_chrome_headless"
+<pre><code class="language-yml"># SELENIUM_DRIVER="chrome"
+SELENIUM_DRIVER="headless_chrome"
 </code></pre>
 <h3 id="configenvironmentsdevelopmentrb"><a class="header" href="#configenvironmentsdevelopmentrb">config/environments/development.rb</a></h3>
 <pre><code class="language-rb">config.generators { |g| g.test_framework :rspec }

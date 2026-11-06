@@ -42,10 +42,13 @@ RSpec.configure do |config|
         browser: :remote,
         url: ENV.fetch("SELENIUM_REMOTE_URL"),
         options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu no-sandbox
-                                                                   disable-dev-shm-usage])
+                                                                   disable-dev-shm-usage
+                                                                   force-prefers-reduced-motion])
       }
     else
-      driven_by ENV["SELENIUM_DRIVER"]&.to_sym || :selenium_chrome_headless
+      driven_by :selenium, using: ENV.fetch("SELENIUM_DRIVER", "headless_chrome").to_sym do |options|
+        options.add_argument("--force-prefers-reduced-motion")
+      end
     end
   end
 

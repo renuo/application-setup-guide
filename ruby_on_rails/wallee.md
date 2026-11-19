@@ -1,6 +1,6 @@
 # Wallee
 
-## Payment Page
+## Payment Page for a Web Shop
 
 ### Setup Wallee
 

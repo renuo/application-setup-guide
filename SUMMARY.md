@@ -37,6 +37,7 @@
 - [Step 5: Customer Plan Services]()
     - [Uptimerobot](ruby_on_rails/uptimerobot.md)
     - [Depfu Security monitoring](ruby_on_rails/depfu.md)
+    - [onlylogs](ruby_on_rails/onlylogs.md)
 
 # Guides & Recipes
 

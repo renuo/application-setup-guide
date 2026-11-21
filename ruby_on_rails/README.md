@@ -61,7 +61,7 @@ Bookmark the project on [Redmine](https://dashboard.renuo.ch/redmine_projects) a
 1. [Uptimerobot](uptimerobot.md)
 1. [Sentry notifications](sentry.md), if requested
 1. [Depfu security monitoring](depfu.md)
-1. [Papertrail alerts](papertrail.md), if requested
+1. [onlylogs](onlylogs.md)
 
 ---
 

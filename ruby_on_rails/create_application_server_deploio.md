@@ -35,4 +35,28 @@ For further configuration, see the [Rails on Deploio guide](https://guides.deplo
 
 ## Next Steps
 
+It is also recommended to configure a `deploio.yml` file in your project root. This file allows you to configure application settings, environment variables, authentication, deployment jobs, workers, and scheduled tasks.
+
+e.g:
+```yml
+deployJob:
+  name: migrate-database
+  command: bundle exec rails db:migrate
+  retries: 1
+  timeout: 5m
+workerJobs:
+  - name: "solid-queue"
+    command: "bin/jobs start"
+    size: mini
+scheduledJobs:
+  - name: "cleanup-api-logs"
+    command: "bundle exec rails runner 'ApiLogsCleanupJob.perform_now'"
+    schedule: "0 3 * * *"
+    size: micro
+    retries: 1
+    timeout: 5m
+```
+
+For more information, check the [Deploio documentation](https://guides.deplo.io/user-guide/configuring-your-application.html#_3-deploio-yaml).
+
 That's it! You have now configured your application with Deploio. No more configuration is needed.
